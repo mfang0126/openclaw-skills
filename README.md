@@ -195,6 +195,15 @@ mkdir -p ~/.openclaw/skills/my-skill/{scripts,references,evals}
 
 See [skill-creator/SKILL.md](skill-creator/SKILL.md) for the full creation workflow.
 
+## Additional Documentation
+
+| Document | Description |
+|----------|-------------|
+| [SKILL_GUIDELINE.md](SKILL_GUIDELINE.md) | Formal standard — 7 required sections, 5 patterns, Progressive Disclosure |
+| [HOW-TO-WRITE-SKILLS.md](HOW-TO-WRITE-SKILLS.md) | Practical playbook — Google ADK patterns, step-by-step writing guide |
+| [AGENT-MAINTENANCE-SYSTEM.md](AGENT-MAINTENANCE-SYSTEM.md) | Four-skill self-maintenance system (self-improving, reflection, soul-keeper, skills-watchdog) |
+| [README-legacy.md](README-legacy.md) | Original architecture notes — research-pro routing, design principles |
+
 ## Contributing
 
 1. Fork this repo
