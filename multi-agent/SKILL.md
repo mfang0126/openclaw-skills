@@ -162,7 +162,7 @@ main 思考：
      {researcher 的完整结果}
      
      要求：Ming 的风格（直接、实用、有代码示例）
-     平台：mingfang.tech 博客
+     平台：example.com blog
      
      完成后用 message 工具发到 Discord：
      action=send, channel=discord, accountId=content,

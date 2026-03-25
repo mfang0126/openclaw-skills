@@ -318,7 +318,7 @@ If you're in Cowork, the main things to know are:
 **维护**
 - [ ] 有 GitHub 来源？→ `git init` + `git remote add origin <url>`，让 skills-watchdog 自动追踪
 - [ ] 放进 `~/.openclaw/skills/`（openclaw-managed）而不是 `~/.agents/skills/`
-- [ ] 完成后 push 到 `github.com/mfang0126/openclaw-skills`
+- [ ] 完成后 push 到 `github.com/<your-username>/openclaw-skills`
 
 **测试**
 - [ ] 写了至少3个触发测试 prompt？
