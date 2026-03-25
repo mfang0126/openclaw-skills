@@ -1,0 +1,30 @@
+{
+  "skill_name": "memory-audit",
+  "pattern": "Reviewer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit my memory files",
+      "input": "~/.openclaw/workspace-main/memory/ with 50 healthy, up-to-date entries",
+      "expected": "Audit report showing counts per topic, no duplicates flagged, no contradictions, Memory Health: ✅ Good"
+    },
+    {
+      "id": 2,
+      "prompt": "Check if my memory is outdated",
+      "input": "Memory files with entries last modified 30+ days ago, containing stale project references",
+      "expected": "Staleness warning listing specific old entries with timestamps, recommended cleanup actions"
+    },
+    {
+      "id": 3,
+      "prompt": "Find duplicate memories",
+      "input": "Memory collection with 3 near-identical entries about user preferences (cosine similarity > 0.85)",
+      "expected": "Duplicates section listing pairs with similarity scores and keep/delete recommendations"
+    },
+    {
+      "id": 4,
+      "prompt": "Are there any contradictions in memory?",
+      "input": "Memory with conflicting entries: 'user prefers Python' and 'user primarily uses JavaScript'",
+      "expected": "Contradictions section listing conflicting pairs, flagged for manual review"
+    }
+  ]
+}

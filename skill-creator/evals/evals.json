@@ -1,0 +1,21 @@
+{
+  "skill_name": "skill-creator",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to create a skill that converts JSON to CSV — it should read a JSON file and output a clean CSV with headers",
+      "expected": "Skill creator guides through intent capture, writes SKILL.md draft, creates test cases in evals/evals.json, runs them, and presents viewer"
+    },
+    {
+      "id": 2,
+      "prompt": "My draft-email skill isn't triggering when users say 'write me an email' — can you help me improve the description?",
+      "expected": "Skill creator goes to description optimization path: generates trigger eval queries, shows HTML review, runs run_loop.py, applies best_description"
+    },
+    {
+      "id": 3,
+      "prompt": "Run evals on my existing skill at ~/.openclaw/skills/my-skill and show me the results",
+      "expected": "Skill creator reads existing skill, spawns with-skill and baseline runs in parallel, generates benchmark.json, launches eval viewer"
+    }
+  ]
+}

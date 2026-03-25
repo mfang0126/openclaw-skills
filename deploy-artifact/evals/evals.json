@@ -1,0 +1,34 @@
+{
+  "skill_name": "deploy-artifact",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把这个 HTML 文件发布一下：/tmp/report.html",
+      "context": "用户想分享一个本地 HTML 文件",
+      "expected": "调用 deploy.sh /tmp/report.html，轮询部署完成，返回公开 URL：https://artifacts-pi.vercel.app/report.html。回复包含可点击链接",
+      "must_not": "不应在部署完成前就返回 URL，不应忽略部署失败"
+    },
+    {
+      "id": 2,
+      "prompt": "给我一个 /tmp/design.pdf 的分享链接",
+      "context": "用户使用自然语言描述需要分享链接",
+      "expected": "识别触发词'分享链接'，调用 deploy.sh，成功后返回 https://artifacts-pi.vercel.app/design.pdf",
+      "must_not": "不应要求用户说'deploy'才触发，不应不识别'分享链接'等中文触发词"
+    },
+    {
+      "id": 3,
+      "prompt": "发布这个文件",
+      "context": "~/.vercel-tokens/accounts.json 文件不存在（token 未配置）",
+      "expected": "脚本检测到 token 缺失，明确报错：'❌ Token 文件未找到：~/.vercel-tokens/accounts.json'，并提供配置说明（如何获取和配置 Vercel token），不抛出原始 shell 错误",
+      "must_not": "不应静默失败，不应输出原始 JSON parse 错误，不应假设文件存在"
+    },
+    {
+      "id": 4,
+      "prompt": "deploy these files: /tmp/a.html /tmp/b.pdf /tmp/c.png",
+      "context": "用户一次性部署多个文件",
+      "expected": "为每个文件单独计算 SHA1 并上传，创建一个包含所有文件的 deployment，返回每个文件的公开 URL 列表",
+      "must_not": "不应为每个文件创建独立 deployment，不应跳过任何文件"
+    }
+  ]
+}

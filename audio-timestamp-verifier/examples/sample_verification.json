@@ -1,0 +1,17 @@
+{
+  "timestamp": 125.5,
+  "window": 2.0,
+  "segment_start": 123.5,
+  "segment_end": 127.5,
+  "segment_duration": 4.0,
+  "expected_text": "我想预约明天下午两点的门诊",
+  "actual_text": "我想预约明天下午2点的门诊",
+  "match_score": 0.89,
+  "diagnosis": "HIGH_MATCH",
+  "suggestion": "Timestamp is accurate (89% match)",
+  "metrics": {
+    "char_similarity": 0.92,
+    "token_similarity": 0.85,
+    "sequence_similarity": 0.88
+  }
+}

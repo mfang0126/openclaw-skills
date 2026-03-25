@@ -1,0 +1,60 @@
+{
+  "skill_name": "browser-use",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Open https://github.com and get the page title",
+      "expected_calls": [
+        "browser-use open https://github.com",
+        "browser-use state OR browser-use get title"
+      ],
+      "expected": "Opens GitHub, retrieves title via state or get title. Does NOT use screenshot to read the title."
+    },
+    {
+      "id": 2,
+      "prompt": "Use cloud browser to search 'AI news 2026' and return the top 3 results",
+      "expected_calls": [
+        "browser-use -b remote run \"Search for 'AI news 2026' and return the top 3 result titles and URLs\"",
+        "browser-use task status <task-id>",
+        "browser-use session stop <session-id>"
+      ],
+      "expected": "Uses remote AI autonomous mode (async), polls task status with minimal flags, cleans up session when done"
+    },
+    {
+      "id": 3,
+      "prompt": "I need to view my private GitHub repos using my existing GitHub login",
+      "expected_calls": [
+        "browser-use -b real profile list",
+        "browser-use -b real profile cookies \"Default\"",
+        "browser-use profile sync --from \"Default\" --domain github.com",
+        "browser-use -b remote --profile <id> open https://github.com"
+      ],
+      "expected": "Lists profiles first, checks domain cookies, syncs only github.com domain (not full profile), uses synced cloud profile"
+    },
+    {
+      "id": 4,
+      "prompt": "Run 3 browser agents in parallel to research competitors A, B, and C",
+      "expected_calls": [
+        "browser-use -b remote run \"Research competitor A pricing and features\"",
+        "browser-use -b remote run \"Research competitor B pricing and features\"",
+        "browser-use -b remote run \"Research competitor C pricing and features\"",
+        "browser-use task list --status finished",
+        "browser-use session stop --all"
+      ],
+      "expected": "Launches 3 async tasks, each gets own session, polls task list, cleans up all sessions after"
+    },
+    {
+      "id": 5,
+      "prompt": "A cloud browser task has been running for 10 minutes and task status shows cost not increasing",
+      "expected_behavior": "Detects stuck task (cost not increasing = no progress). Stops the stuck task. Creates a new session instead of trying to reuse the stopped one.",
+      "expected_calls": [
+        "browser-use task stop <task-id>",
+        "browser-use session stop <session-id>",
+        "browser-use session create",
+        "browser-use -b remote run \"task\" --session-id <new-session-id>"
+      ],
+      "expected": "Identifies stuck task from stale cost, stops it, creates fresh session (does NOT reuse stopped session)"
+    }
+  ]
+}

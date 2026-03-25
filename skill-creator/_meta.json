@@ -1,0 +1,10 @@
+{
+  "name": "skill-creator",
+  "version": "1.0.0",
+  "author": "Anthropic / Ming",
+  "pattern": "Pipeline",
+  "emoji": "🛠️",
+  "created": "2026-03-25",
+  "requires": { "bins": ["python3", "claude"], "modules": [] },
+  "tags": ["skills", "evals", "benchmarks", "iteration", "description-optimization"]
+}

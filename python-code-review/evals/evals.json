@@ -1,0 +1,21 @@
+{
+  "skill_name": "python-code-review",
+  "pattern": "Reviewer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this code:\ndef process(items=[]):\n    try:\n        for item in items:\n            print(item)\n    except:\n        pass",
+      "expected": "Flags: (1) mutable default argument `items=[]` — Critical, (2) bare `except:` — Critical, (3) missing type hints — Warning, (4) `print()` instead of logger — Warning. Provides fixes for each."
+    },
+    {
+      "id": 2,
+      "prompt": "Review this async function:\nasync def fetch(url: str) -> dict:\n    time.sleep(2)\n    response = requests.get(url)\n    return response.json()",
+      "expected": "Flags: (1) `time.sleep()` in async function — blocks event loop, Critical; (2) `requests.get()` is synchronous — use `aiohttp` or `httpx`, Critical. Suggests async alternatives."
+    },
+    {
+      "id": 3,
+      "prompt": "Review this code:\nfrom typing import Optional\nimport logging\n\nlogger = logging.getLogger(__name__)\n\ndef get_user(user_id: int) -> Optional[dict]:\n    try:\n        return db.find(user_id)\n    except DatabaseError as e:\n        logger.error('User lookup failed: %s', e)\n        return None",
+      "expected": "Reports 'No issues found' or at most minor info-level notes. Does NOT flag Optional (valid Python 3.9 style), the except clause (correctly typed), or the logger usage."
+    }
+  ]
+}

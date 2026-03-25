@@ -1,0 +1,30 @@
+{
+  "skill_name": "video-analyzer",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "处理视频 fitness.mp4，级别 B",
+      "input": "fitness.mp4 (local file, ~10 min, fitness/nutrition content)",
+      "expected": "Whisper transcription completes, outputs fitness.md to content-inbox with raw transcript and timestamp markers"
+    },
+    {
+      "id": 2,
+      "prompt": "处理 YouTube 视频 https://youtube.com/watch?v=xxx，级别 C",
+      "input": "YouTube URL, 操作: C (transcribe + validate + materialize)",
+      "expected": "yt-dlp downloads video, Whisper transcribes, research-hub validates claims against authoritative sources, blog-material.md generated with structured sections"
+    },
+    {
+      "id": 3,
+      "prompt": "处理 B 站视频，级别 D，生成博客草稿",
+      "input": "https://bilibili.com/video/BVxxx, 操作: D",
+      "expected": "Full pipeline: download → transcribe → validate → materialize → blog draft with title, summary, key points, and full content sections using templates/blog-material.md"
+    },
+    {
+      "id": 4,
+      "prompt": "处理心理健康主题视频，级别 C",
+      "input": "mental health / emotional wellness video, 操作: C",
+      "expected": "Validation focuses on psychology research sources (not PubMed); scenarios.md scenario type: 情感/心理; output notes research citations"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "skill_name": "typescript-advanced-types",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "How do I create a DeepReadonly type in TypeScript?",
+      "input": "nested config object with mutable properties",
+      "expected": "Recursive mapped type using readonly modifier on nested objects — `type DeepReadonly<T> = { readonly [P in keyof T]: T[P] extends object ? T[P] extends Function ? T[P] : DeepReadonly<T[P]> : T[P] }`"
+    },
+    {
+      "id": 2,
+      "prompt": "Implement a type-safe event emitter with TypeScript generics",
+      "input": "EventMap with user:created { id, name }, user:updated { id } events",
+      "expected": "TypedEventEmitter<T extends Record<string, any>> class with on<K extends keyof T> and emit<K extends keyof T> methods; callbacks receive T[K] typed data"
+    },
+    {
+      "id": 3,
+      "prompt": "Extract the resolved type of an async function",
+      "input": "async function fetchUser(): Promise<User>",
+      "expected": "Awaited<ReturnType<typeof fetchUser>> resolves to User; explanation of Awaited<T> unwrapping nested Promises"
+    },
+    {
+      "id": 4,
+      "prompt": "Create a type that picks only string properties from an interface",
+      "input": "interface Mixed { id: number; name: string; age: number; email: string }",
+      "expected": "PickByType<T, U> using mapped type with key remapping: `type PickByType<T, U> = { [K in keyof T as T[K] extends U ? K : never]: T[K] }` → result: { name: string; email: string }"
+    },
+    {
+      "id": 5,
+      "prompt": "How do I use discriminated unions for a state machine?",
+      "input": "States: idle, fetching (requestId), success (data), error (Error)",
+      "expected": "Union type with literal `type` discriminant; switch(state.type) provides exhaustive narrowing; each branch has correct payload properties typed"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "skill_name": "audio-timestamp-verifier",
+  "pattern": "Reviewer",
+  "evals": [
+    {
+      "id": 1,
+      "name": "High match — accurate timestamp",
+      "prompt": "Verify that timestamp 45.2s in naati_sample.mp3 matches '我想预约明天下午两点的门诊'",
+      "input": {
+        "audio": "naati_sample.mp3",
+        "timestamp": 45.2,
+        "text": "我想预约明天下午两点的门诊",
+        "window": 2.0
+      },
+      "expected_output": {
+        "match_score": ">= 0.85",
+        "diagnosis": "HIGH_MATCH",
+        "suggestion_contains": "accurate"
+      },
+      "expected": "match_score ≥ 0.85, diagnosis = HIGH_MATCH, no correction needed"
+    },
+    {
+      "id": 2,
+      "name": "Low match — timestamp drift detected",
+      "prompt": "Verify timestamp 450.0s in long_audio.mp3 matches '我们需要确认一下你的个人信息'",
+      "input": {
+        "audio": "long_audio.mp3",
+        "timestamp": 450.0,
+        "text": "我们需要确认一下你的个人信息",
+        "window": 2.0
+      },
+      "expected_output": {
+        "match_score": "< 0.70",
+        "diagnosis": "LOW_MATCH",
+        "suggestion_contains": "search range"
+      },
+      "expected": "match_score < 0.70, diagnosis = LOW_MATCH, suggestion includes search range like [448.0, 452.0]"
+    },
+    {
+      "id": 3,
+      "name": "Boundary handling — timestamp near audio start",
+      "prompt": "Verify timestamp 1.5s with window=2.0 — segment start must not go negative",
+      "input": {
+        "audio": "naati_sample.mp3",
+        "timestamp": 1.5,
+        "text": "你好",
+        "window": 2.0
+      },
+      "expected_output": {
+        "segment_start": 0.0,
+        "no_error": true
+      },
+      "expected": "segment_start = 0.0 (clamped, not negative), no exception thrown, valid segment extracted"
+    },
+    {
+      "id": 4,
+      "name": "Silence detection",
+      "prompt": "Verify a timestamp that falls in a silent gap between sentences",
+      "input": {
+        "audio": "naati_sample.mp3",
+        "timestamp": 120.0,
+        "text": "placeholder text",
+        "window": 2.0
+      },
+      "expected_output": {
+        "match_score": 0.0,
+        "diagnosis": "SILENCE",
+        "suggestion_contains": "pause"
+      },
+      "expected": "match_score = 0.0, diagnosis = SILENCE, suggestion advises extending window or checking pause"
+    },
+    {
+      "id": 5,
+      "name": "Mixed language segment",
+      "prompt": "Verify timestamp for mixed Chinese/English text '这个是 medical certificate，需要你的签名'",
+      "input": {
+        "audio": "naati_sample.mp3",
+        "timestamp": 125.8,
+        "text": "这个是 medical certificate，需要你的签名",
+        "window": 2.0
+      },
+      "expected_output": {
+        "match_score": ">= 0.70",
+        "no_error": true
+      },
+      "expected": "Handles CJK + English tokenization correctly, no crash, reasonable match score"
+    }
+  ]
+}

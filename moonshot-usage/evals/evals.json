@@ -1,0 +1,35 @@
+{
+  "skill_name": "moonshot-usage",
+  "evals": [
+    {
+      "id": 1,
+      "name": "check-balance-direct",
+      "prompt": "查一下 moonshot 余额",
+      "expected_output": "Returns available_balance, cash_balance, and voucher_balance",
+      "assertions": [
+        {"type": "contains", "value": "Available: $"},
+        {"type": "contains", "value": "Cash: $"},
+        {"type": "contains", "value": "Voucher: $"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "check-balance-english",
+      "prompt": "What's my Moonshot API balance?",
+      "expected_output": "Returns balance information in readable format",
+      "assertions": [
+        {"type": "contains", "value": "Available"},
+        {"type": "contains", "value": "Cash"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "check-balance-kimi-alias",
+      "prompt": "kimi balance",
+      "expected_output": "Returns Moonshot/Kimi balance",
+      "assertions": [
+        {"type": "contains", "value": "$"}
+      ]
+    }
+  ]
+}

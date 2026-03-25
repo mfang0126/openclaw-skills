@@ -1,0 +1,12 @@
+{
+  "name": "claude-usage",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Tool Wrapper",
+  "emoji": "📊",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["tmux", "claude", "git"]
+  },
+  "tags": ["claude", "usage", "quota", "subscription", "rate-limit", "diagnostics", "pro", "max"]
+}

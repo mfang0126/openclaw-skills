@@ -1,0 +1,26 @@
+{
+  "skill_name": "platform-bridge",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "下载这个抖音视频: https://v.douyin.com/iRNRCeu/",
+      "expected": "Calls DouyinAdapter, attempts TikHub API first, returns DownloadResult with video_path, metadata (title/author/likes), platform='douyin', method='tikhub'."
+    },
+    {
+      "id": 2,
+      "prompt": "Download this YouTube video: https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "expected": "Calls YouTubeAdapter, uses yt-dlp, returns DownloadResult with video_path, platform='youtube', method='yt-dlp'."
+    },
+    {
+      "id": 3,
+      "prompt": "帮我下载 https://www.notion.so/some-page (unknown platform)",
+      "expected": "detect_platform() raises UnknownPlatformError. Agent reports the platform is not supported and lists supported platforms."
+    },
+    {
+      "id": 4,
+      "prompt": "下载小红书笔记: https://www.xiaohongshu.com/explore/abc123",
+      "expected": "Calls XiaohongshuAdapter, attempts TikHub API first, returns DownloadResult with platform='xiaohongshu'. If TikHub fails, falls back to Playwright."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "skill_name": "html2img",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把这个表格转成图片",
+      "input": "/tmp/test-table.html",
+      "expected": "PNG file created, auto-cropped, < 50KB, no whitespace padding"
+    },
+    {
+      "id": 2,
+      "prompt": "help me render this markdown as image",
+      "input": "/tmp/test.md",
+      "expected": "Markdown converted to styled HTML then PNG, dark theme, readable"
+    },
+    {
+      "id": 3,
+      "prompt": "screenshot this HTML file",
+      "input": "/tmp/wide-table.html (1200px wide table)",
+      "expected": "PNG width matches content, no horizontal crop, no extra whitespace"
+    }
+  ]
+}

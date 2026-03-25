@@ -1,0 +1,26 @@
+{
+  "skill_name": "plan-mode",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/plan 给博客加评论系统",
+      "expected": "Enters plan mode. Outputs all 5 sections: 🎯 intent, 📦 resources (with ✅/⚠️/❌ status), 🧠 steps (each with What/How/Time/Risk), ❓ A/B/C options, 🚫 exclusions. No tool calls made. Ends with '确认方向说\"动手\"或\"go\"'."
+    },
+    {
+      "id": 2,
+      "prompt": "帮我删掉这个文件",
+      "expected": "Does NOT enter plan mode. This is an explicit, unambiguous action (< 1 min). Agent executes directly or asks which file to delete."
+    },
+    {
+      "id": 3,
+      "prompt": "我想重构整个后端",
+      "expected": "Detects ambiguous large task. Asks: '这个看起来挺复杂，要先 plan 吗？' Does NOT start executing until user confirms."
+    },
+    {
+      "id": 4,
+      "prompt": "动手 (after a plan was output)",
+      "expected": "Exits plan mode and begins executing the steps outlined in the plan. Starts making tool calls."
+    }
+  ]
+}

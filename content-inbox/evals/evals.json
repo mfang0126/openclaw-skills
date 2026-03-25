@@ -1,0 +1,41 @@
+{
+  "skill_name": "content-inbox",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "https://v.douyin.com/iABCxyz/",
+      "context": "用户只发了一个抖音短链，没有任何其他文字",
+      "expected": "立即触发下载流程（不等待用户指令），后台派 subagent 下载，主会话同步回复：'✅ 开始下载...' 并展示 A/B/C/D 选项询问处理方式",
+      "must_not": "不应回复'你想让我下载吗？'或等待用户说明意图"
+    },
+    {
+      "id": 2,
+      "prompt": "B",
+      "context": "用户刚下载了一个抖音视频，skill 询问了 A/B/C/D，用户回复 B（转写）",
+      "expected": "派 subagent 调用 video-analyzer 做转写，主会话立即回复'✅ 开始转写... 预计 5 分钟，完成后通知你'，不阻塞主会话",
+      "must_not": "不应在主会话中同步等待转写完成"
+    },
+    {
+      "id": 3,
+      "prompt": "D（第三次选择）",
+      "context": "用户连续第3次在处理抖音视频时选择了 D（写博客）",
+      "expected": "记录偏好后询问用户'我注意到你总是选择写博客，要不要把它设为默认动作？'，等待确认后写入配置",
+      "must_not": "不应跳过询问直接写入，或完全不注意到行为模式"
+    },
+    {
+      "id": 4,
+      "prompt": "https://www.xiaohongshu.com/explore/abc123",
+      "context": "用户发送了一个小红书链接",
+      "expected": "识别为 xiaohongshu 平台，立即触发处理流程，回复正在处理并询问用户要如何处理该内容",
+      "must_not": "不应忽略链接或要求用户明确说'下载'"
+    },
+    {
+      "id": 5,
+      "prompt": "下载失败了怎么办",
+      "context": "douyin-dl 脚本返回错误，下载失败",
+      "expected": "告知用户下载失败及错误原因，自动重试一次，再失败则询问要重试吗或提供新链接",
+      "must_not": "不应静默失败，不应不通知用户"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "skill_name": "multi-agent",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use multi-agent to research MCP protocol and write a blog post",
+      "input": "Research MCP then write blog — serial dependency",
+      "expected": "Serial pipeline: researcher spawned first, content spawned after with research results passed in. Discord留痕 in both spawns."
+    },
+    {
+      "id": 2,
+      "prompt": "Simultaneously research 3 topics: LLMs, RAG, and Vector DBs",
+      "input": "Parallel research on 3 independent topics",
+      "expected": "3 parallel researcher spawns with no serial dependency between them. All 3 launch at the same time."
+    },
+    {
+      "id": 3,
+      "prompt": "Full product flow: break down requirements, design tech solution, then verify",
+      "input": "Build a task management feature",
+      "expected": "Serial: product-owner → tech-lead → verifier. Each waits for previous result. Discord留痕 at each step."
+    }
+  ]
+}

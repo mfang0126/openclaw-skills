@@ -1,0 +1,30 @@
+{
+  "skill_name": "newsletter-assistant",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Classify this email as newsletter or not",
+      "input": {"from": "digest@substack.com", "subject": "Weekly Digest #42", "body_preview": "This week's top stories..."},
+      "expected": {"is_newsletter": true, "confidence": 0.95, "method": "domain_whitelist"}
+    },
+    {
+      "id": 2,
+      "prompt": "Classify this email",
+      "input": {"from": "boss@company.com", "subject": "Re: Meeting tomorrow", "body_preview": "Can we move it to 3pm?"},
+      "expected": {"is_newsletter": false, "confidence": 0.99, "method": "pattern_match"}
+    },
+    {
+      "id": 3,
+      "prompt": "Run the full newsletter pipeline on my inbox",
+      "input": "50 emails in data/gmail-all — mix of newsletters and regular emails",
+      "expected": "Classification report + newsletters archived to data/archive/ + deletion confirmation for newsletter emails"
+    },
+    {
+      "id": 4,
+      "prompt": "Clean up my Gmail newsletters",
+      "input": "200 emails, 150 newsletters already in memory DB",
+      "expected": "Memory handles 70%+ without AI calls, remainder via pattern matching, near-zero AI cost"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "soul-keeper",
+  "version": "1.0.0",
+  "author": "Ming",
+  "pattern": "Reviewer",
+  "emoji": "🔍",
+  "created": "2026-03-25",
+  "requires": { "bins": [], "modules": [] },
+  "tags": ["workspace", "soul", "memory", "optimization", "review"]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "browser-use",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Tool Wrapper",
+  "emoji": "🤖",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["browser-use"]
+  },
+  "tags": ["browser", "automation", "ai-agent", "cloud", "remote", "profiles", "playwright"]
+}

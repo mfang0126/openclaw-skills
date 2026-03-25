@@ -1,0 +1,24 @@
+{
+  "skill_name": "mermaid-architect",
+  "pattern": "Generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Draw a flowchart of a user login flow",
+      "input": "User login: start → enter credentials → validate → success or retry",
+      "expected": "Valid .mmd file created with flowchart syntax, rendered to .png without errors, shows Start, Enter Credentials, Validate, Success, Retry nodes"
+    },
+    {
+      "id": 2,
+      "prompt": "Create a sequence diagram for an API request",
+      "input": "Client calls API, API calls DB, DB returns data, API responds to client",
+      "expected": "sequenceDiagram .mmd rendered to .png with 4 actors: Client, API, DB — arrows showing request/response flow"
+    },
+    {
+      "id": 3,
+      "prompt": "Visualize a class hierarchy",
+      "input": "Animal base class, Dog and Cat subclasses, each with name and sound methods",
+      "expected": "classDiagram .mmd rendered showing Animal<|--Dog and Animal<|--Cat inheritance, with name and sound() in each class"
+    }
+  ]
+}

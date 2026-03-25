@@ -1,0 +1,10 @@
+{
+  "name": "turborepo",
+  "version": "2.8.12-canary.2",
+  "author": "Ming",
+  "pattern": "Tool Wrapper",
+  "emoji": "⚡",
+  "created": "2026-03-25",
+  "requires": { "bins": ["turbo", "node"], "modules": [] },
+  "tags": ["turborepo", "monorepo", "build-system", "caching", "ci", "pipelines", "typescript"]
+}

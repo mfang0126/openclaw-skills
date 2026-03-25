@@ -1,0 +1,21 @@
+{
+  "skill_name": "snap",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Take a screenshot of https://github.com",
+      "expected": "PNG image fetched from snap API, saved to file, no errors"
+    },
+    {
+      "id": 2,
+      "prompt": "Show me what anthropic.com looks like right now",
+      "expected": "Screenshot of anthropic.com captured and displayed/saved"
+    },
+    {
+      "id": 3,
+      "prompt": "Capture a full-page screenshot of https://example.com in dark mode",
+      "expected": "Full-page dark mode screenshot, full_page=true and dark_mode=true sent in request body"
+    }
+  ]
+}

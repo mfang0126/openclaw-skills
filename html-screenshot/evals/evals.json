@@ -1,0 +1,41 @@
+{
+  "skill_name": "html-screenshot",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "（用户修改了 HTML 背景颜色，channel=telegram）",
+      "context": "Telegram 频道，Agent 刚刚修改了 HTML 的 background-color，这是视觉变更",
+      "expected": "自动截图（无需用户说'截图'），调用 scripts/screenshot.sh，通过 message tool 将图片发送到 Telegram，回复'已修改：背景颜色已更新'",
+      "must_not": "不应跳过截图，不应要求用户手动说'截图'，不应只返回文件路径"
+    },
+    {
+      "id": 2,
+      "prompt": "看看效果",
+      "context": "用户明确要求查看效果，提供了 /tmp/design.html",
+      "expected": "调用 scripts/screenshot.sh /tmp/design.html /tmp/preview.png，根据当前频道选择发送方式（Telegram→message tool，webchat→Read tool，其他→返回路径），展示截图给用户",
+      "must_not": "不应回复'我无法直接显示图片'，不应忽略用户明确的查看请求"
+    },
+    {
+      "id": 3,
+      "prompt": "（agent-browser 未运行，截图失败）",
+      "context": "scripts/screenshot.sh 调用失败，agent-browser 不可用",
+      "expected": "回复标准错误信息：'❌ Screenshot failed: Browser not available'，提供文件路径'📁 文件在：/path/to/file.html'，询问'🔄 Want me to retry?'",
+      "must_not": "不应静默失败，不应不告知用户，不应抛出原始 shell 错误"
+    },
+    {
+      "id": 4,
+      "prompt": "（用户修改了代码注释，channel=telegram）",
+      "context": "Telegram 频道，Agent 只修改了 HTML 注释，没有视觉变更",
+      "expected": "不触发截图（注释属于 Universal Exclusions），继续正常回复代码修改完成",
+      "must_not": "不应因为任何代码修改都截图，注释/格式化/变量重命名不触发截图"
+    },
+    {
+      "id": 5,
+      "prompt": "对比一下两个版本的设计",
+      "context": "用户有 /tmp/design-v1.html 和 /tmp/design-v2.html",
+      "expected": "分别截图两个文件（v1.png, v2.png），通过当前频道发送两张截图供用户对比",
+      "must_not": "不应只截其中一个，不应将两个截图合并为一个（除非用户明确要求）"
+    }
+  ]
+}

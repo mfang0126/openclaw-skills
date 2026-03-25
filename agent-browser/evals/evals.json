@@ -1,0 +1,57 @@
+{
+  "skill_name": "agent-browser",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Open https://example.com and take a screenshot saved to /tmp/test.png",
+      "expected_calls": ["agent-browser open https://example.com", "agent-browser screenshot /tmp/test.png"],
+      "expected": "Browser opens example.com, screenshot saved to file (not injected into context), /tmp/test.png exists"
+    },
+    {
+      "id": 2,
+      "prompt": "Log into https://app.example.com with email user@test.com and password pass123, then click Submit",
+      "expected_calls": [
+        "agent-browser open https://app.example.com",
+        "agent-browser snapshot -i",
+        "agent-browser fill @eN user@test.com",
+        "agent-browser fill @eN pass123",
+        "agent-browser click @eN",
+        "agent-browser wait --load networkidle",
+        "agent-browser snapshot -i"
+      ],
+      "expected": "Uses snapshot -i to get @refs, fills fields by ref, re-snapshots after navigation. Never screenshots to check login state."
+    },
+    {
+      "id": 3,
+      "prompt": "Open site-a.com and site-b.com in two parallel sessions and screenshot each",
+      "expected_calls": [
+        "agent-browser --session site1 open https://site-a.com",
+        "agent-browser --session site2 open https://site-b.com",
+        "agent-browser --session site1 screenshot /tmp/site-a.png",
+        "agent-browser --session site2 screenshot /tmp/site-b.png"
+      ],
+      "expected": "Uses --session flag for both, parallel sessions maintained, screenshots saved to files"
+    },
+    {
+      "id": 4,
+      "prompt": "Test my website on an iPhone 16 Pro simulator",
+      "expected_calls": [
+        "agent-browser device list",
+        "agent-browser -p ios --device \"iPhone 16 Pro\" open <url>",
+        "agent-browser -p ios snapshot -i"
+      ],
+      "expected": "Uses -p ios flag, lists devices first, same snapshot/interact workflow as desktop"
+    },
+    {
+      "id": 5,
+      "prompt": "Extract all product names from https://shop.example.com/products",
+      "expected_calls": [
+        "agent-browser open https://shop.example.com/products",
+        "agent-browser snapshot -i",
+        "agent-browser get text body"
+      ],
+      "expected": "Uses snapshot -i for structure, get text for content extraction. Does NOT take screenshots to read text."
+    }
+  ]
+}

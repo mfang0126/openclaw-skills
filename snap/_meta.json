@@ -1,0 +1,23 @@
+{
+  "ownerId": "kn7a934yabyv9b07w9mxkf13yx80xhys",
+  "slug": "snap",
+  "version": "1.0.2",
+  "publishedAt": 1770699241316,
+  "name": "snap",
+  "pattern": "Tool Wrapper",
+  "emoji": "\ud83d\udcf8",
+  "author": "Kav-K",
+  "requires": {
+    "bins": [
+      "curl"
+    ],
+    "modules": []
+  },
+  "tags": [
+    "screenshot",
+    "web",
+    "visual",
+    "url",
+    "cloud"
+  ]
+}

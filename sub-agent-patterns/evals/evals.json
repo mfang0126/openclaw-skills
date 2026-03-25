@@ -1,0 +1,21 @@
+{
+  "skill_name": "sub-agent-patterns",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a custom sub-agent that reviews my code after each edit — it should check for code quality, security issues, and suggest improvements",
+      "expected": "Produces valid .claude/agents/code-reviewer.md with correct frontmatter (name, description, tools, model), appropriate tool set (Read, Grep, Glob — no Bash unless needed), and a clear system prompt"
+    },
+    {
+      "id": 2,
+      "prompt": "I keep getting tons of approval prompts every time my agent runs — it's asking me to approve every bash command. How do I fix this?",
+      "expected": "Identifies root cause (Bash in tools list), suggests removing Bash if agent only needs file ops, explains Write tool alternative, mentions putting critical instructions first"
+    },
+    {
+      "id": 3,
+      "prompt": "I need to run security audits on 20 different microservices in parallel — how do I set this up with sub-agents?",
+      "expected": "Explains batch sizing (5-8 items per agent), parallel launch pattern, orchestrator setup with Task tool, 5-step audit prompt template, commit strategy after completion"
+    }
+  ]
+}

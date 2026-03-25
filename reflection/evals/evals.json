@@ -1,0 +1,23 @@
+{
+  "skill_name": "reflection",
+  "evals": [
+    {
+      "id": 1,
+      "scenario": "User corrects agent",
+      "prompt": "No, don't use console.log — use the logger module",
+      "expected": "Agent runs reflection log with tag, miss, and fix. Entry appears in daily log."
+    },
+    {
+      "id": 2,
+      "scenario": "Heartbeat check triggers reflection",
+      "prompt": "Run reflection check (after 60+ minutes)",
+      "expected": "ALERT returned. Agent reads recent lessons, reflects, logs new insight if any."
+    },
+    {
+      "id": 3,
+      "scenario": "Pattern promotion after repeated success",
+      "prompt": "This is the third time 'always check workspace path' worked. Promote it.",
+      "expected": "reflection promote finds pattern in Layer 3, adds to Layer 2 (self-review.md)."
+    }
+  ]
+}

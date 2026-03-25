@@ -1,0 +1,13 @@
+{
+  "name": "deploy-artifact",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Tool Wrapper",
+  "emoji": "🚀",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["curl", "jq", "sha1sum"],
+    "config": ["~/.vercel-tokens/accounts.json"]
+  },
+  "tags": ["deploy", "vercel", "hosting", "share", "url", "cdn", "static"]
+}

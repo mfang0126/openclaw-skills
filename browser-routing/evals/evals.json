@@ -1,0 +1,64 @@
+{
+  "skill_name": "browser-routing",
+  "pattern": "Inversion",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我打开 https://news.ycombinator.com 看今天的头条",
+      "expected_route": "web_fetch",
+      "rationale": "Text-only read of a public page — web_fetch returns markdown with zero tokens, zero browser startup",
+      "anti_patterns": [
+        "Opening a browser to read text",
+        "Taking a screenshot of the page",
+        "Using agent-browser for pure text extraction"
+      ],
+      "expected": "Routes to web_fetch(url='https://news.ycombinator.com'), parses markdown output for headlines"
+    },
+    {
+      "id": 2,
+      "prompt": "帮我登录 Gmail 查看未读邮件",
+      "expected_route": "browser profile=\"user\"",
+      "rationale": "Requires user's existing Google login session — only browser built-in with profile='user' has access to those cookies",
+      "anti_patterns": [
+        "Opening a fresh browser and asking user to log in",
+        "Using agent-browser (no access to user's Chrome cookies)",
+        "Using browser-use without profile"
+      ],
+      "expected": "Routes to browser tool with profile='user', notes user must approve the attach prompt"
+    },
+    {
+      "id": 3,
+      "prompt": "自动帮我填写这个招聘网站的申请表单，页面很复杂有很多动态交互",
+      "expected_route": "browser-use run \"task\"",
+      "rationale": "Complex autonomous task with dynamic interactions — AI autonomous mode handles this better than scripted steps",
+      "anti_patterns": [
+        "Scripting every click step manually with agent-browser",
+        "Using web_fetch (form requires JS and interaction)"
+      ],
+      "expected": "Routes to browser-use run \"fill out the job application form at <url>\", monitors task status"
+    },
+    {
+      "id": 4,
+      "prompt": "录制一段我的 app 操作流程的演示视频",
+      "expected_route": "agent-browser record",
+      "rationale": "Video recording is exclusive to agent-browser — no other tool supports it",
+      "anti_patterns": [
+        "Using browser-use (no record capability)",
+        "Using browser built-in (no record capability)",
+        "Taking multiple screenshots instead"
+      ],
+      "expected": "Routes to agent-browser record start demo.webm, performs actions, agent-browser record stop"
+    },
+    {
+      "id": 5,
+      "prompt": "在美国代理下访问这个网站并截图",
+      "expected_route": "browser-use -b remote --proxy-country us",
+      "rationale": "Proxy/country spoofing is exclusive to browser-use remote mode",
+      "anti_patterns": [
+        "Using agent-browser (no proxy country support)",
+        "Using browser built-in (no proxy country support)"
+      ],
+      "expected": "Routes to browser-use -b remote open <url> --proxy-country us, saves screenshot to file"
+    }
+  ]
+}

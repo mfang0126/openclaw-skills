@@ -1,0 +1,49 @@
+{
+  "skill_name": "ai-sdk",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a generateText call using claude-sonnet",
+      "expected_behavior": "First checks node_modules/ai/docs/ for current generateText API. Fetches current model IDs via curl to AI Gateway (does NOT guess 'claude-3-5-sonnet' from memory). Uses Vercel AI Gateway provider. Generates minimal code only specifying non-default options.",
+      "anti_patterns": [
+        "Writing code directly from memory without checking docs",
+        "Using hardcoded model ID like 'claude-3-5-sonnet-20241022'",
+        "Importing from '@anthropic-ai/sdk' instead of 'ai'",
+        "Over-specifying options that match defaults"
+      ],
+      "expected": "Valid, type-safe generateText call using current API from docs, model ID from live curl"
+    },
+    {
+      "id": 2,
+      "prompt": "My project using useChat is throwing 'messages is not a function' error. How do I fix it?",
+      "expected_behavior": "Checks references/common-errors.md first (before searching source code). Identifies this as a known useChat breaking change. Provides correct current useChat API pattern from docs.",
+      "anti_patterns": [
+        "Searching source code before checking common-errors.md",
+        "Suggesting old useChat patterns from training memory"
+      ],
+      "expected": "Quick diagnosis from common-errors.md, correct current API from docs"
+    },
+    {
+      "id": 3,
+      "prompt": "Add streaming AI chat to my Next.js project",
+      "expected_behavior": "Checks package.json to confirm Next.js. Searches node_modules/ai/docs/ for Next.js-specific quickstart pattern. Only installs 'ai' package initially; defers provider packages. Detects framework from package.json, not assumption.",
+      "anti_patterns": [
+        "Assuming framework without checking package.json",
+        "Installing all packages upfront",
+        "Using outdated streaming API patterns"
+      ],
+      "expected": "Framework detected, minimal install, correct streaming API route + client hook from current docs"
+    },
+    {
+      "id": 4,
+      "prompt": "Typecheck is failing: 'Property parameters does not exist on type Tool'",
+      "expected_behavior": "Recognizes 'parameters' as a renamed property. Checks references/common-errors.md for the rename. Finds the correct current property name (inputSchema). Does not guess.",
+      "anti_patterns": [
+        "Guessing the new property name",
+        "Suggesting to disable typecheck"
+      ],
+      "expected": "Identifies rename from common-errors.md, provides correct property name and import"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "content-research-writer",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Pipeline",
+  "emoji": "✍️",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": [],
+    "tools": ["web_search"]
+  },
+  "tags": ["writing", "research", "blog", "newsletter", "content", "citations", "outline"]
+}

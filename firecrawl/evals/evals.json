@@ -1,0 +1,36 @@
+{
+  "skill_name": "firecrawl",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Search the web for the latest Claude 4 release news",
+      "input": "query: 'Claude 4 release news'",
+      "expected": "Runs: firecrawl search 'Claude 4 release news' --json -o .firecrawl/search-claude4-release-news.json. Does NOT use WebSearch. Reads output with grep or jq, not full file dump."
+    },
+    {
+      "id": 2,
+      "prompt": "Fetch and read the content of https://docs.anthropic.com/en/api/getting-started",
+      "input": "url: https://docs.anthropic.com/en/api/getting-started",
+      "expected": "Runs: firecrawl scrape 'https://docs.anthropic.com/en/api/getting-started' -o .firecrawl/docs.anthropic.com-api-getting-started.md. Creates .firecrawl/ directory first. Does NOT use WebFetch."
+    },
+    {
+      "id": 3,
+      "prompt": "Scrape all pages from https://example.com to find anything about pricing",
+      "input": "url: https://example.com, goal: find pricing info",
+      "expected": "Runs: firecrawl map 'https://example.com' --search 'pricing' -o .firecrawl/urls.txt, then scrapes relevant URLs in parallel using & and wait. Checks firecrawl --status for concurrency limit first."
+    },
+    {
+      "id": 4,
+      "prompt": "Research and compare 5 alternatives to Notion for team wikis",
+      "input": "topic: Notion alternatives for team wikis",
+      "expected": "Runs: firecrawl search 'Notion alternatives team wiki 2025' --limit 10 --scrape --json -o .firecrawl/search-notion-alternatives.json. Processes with jq to extract titles and URLs. Does NOT use built-in WebSearch."
+    },
+    {
+      "id": 5,
+      "prompt": "Find all blog post URLs on https://openai.com/blog",
+      "input": "url: https://openai.com/blog",
+      "expected": "Runs: firecrawl map 'https://openai.com/blog' --json -o .firecrawl/urls.json. Then uses jq or grep to list URLs. Does NOT use WebFetch or browser scraping."
+    }
+  ]
+}

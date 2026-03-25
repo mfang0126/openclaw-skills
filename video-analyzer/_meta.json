@@ -1,0 +1,13 @@
+{
+  "name": "video-analyzer",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Pipeline",
+  "emoji": "🎬",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["ffmpeg", "whisper", "yt-dlp", "python3"],
+    "modules": []
+  },
+  "tags": ["video", "transcription", "content", "whisper", "pipeline", "subagent", "youtube", "bilibili", "douyin", "fact-checking"]
+}

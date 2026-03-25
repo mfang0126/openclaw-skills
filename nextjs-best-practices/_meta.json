@@ -1,0 +1,14 @@
+{
+  "name": "nextjs-best-practices",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Tool Wrapper",
+  "emoji": "⚡",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": [],
+    "modules": [],
+    "runtime": ["next@13+", "react@18+"]
+  },
+  "tags": ["nextjs", "react", "app-router", "server-components", "web", "frontend"]
+}

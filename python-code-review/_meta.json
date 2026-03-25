@@ -1,0 +1,13 @@
+{
+  "name": "python-code-review",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Reviewer",
+  "emoji": "🐍",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["python3"],
+    "modules": []
+  },
+  "tags": ["python", "code-review", "type-safety", "async", "pep8"]
+}

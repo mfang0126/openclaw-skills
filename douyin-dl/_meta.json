@@ -1,0 +1,13 @@
+{
+  "name": "douyin-dl",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Tool Wrapper",
+  "emoji": "📹",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["python3", "wget"],
+    "config": ["~/.openclaw/config.json (tikhub_api_token)"]
+  },
+  "tags": ["douyin", "tiktok", "download", "video", "tikhub", "social-media"]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "reflection",
+  "version": "1.0.0",
+  "author": "hopyky",
+  "pattern": "Pipeline",
+  "emoji": "🪞",
+  "created": "2026-03-25",
+  "description": "Unified self-reflection and self-improvement with three-layer memory",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills/tree/main/skills/hopyky/reflection",
+  "replaces": ["self-improving", "self-reflection"],
+  "companion": ["soul-keeper"],
+  "requires": {
+    "bins": ["jq", "date"],
+    "modules": []
+  },
+  "tags": ["memory", "reflection", "self-improvement", "learning", "meta"],
+  "scripts": {
+    "check": "scripts/reflection check",
+    "log": "scripts/reflection log",
+    "read": "scripts/reflection read",
+    "stats": "scripts/reflection stats",
+    "promote": "scripts/reflection promote",
+    "demote": "scripts/reflection demote"
+  }
+}

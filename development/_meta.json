@@ -1,0 +1,13 @@
+{
+  "name": "development",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Pipeline",
+  "emoji": "🛠️",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["git", "gh", "pnpm", "agent-browser"],
+    "tools": ["agent-browser"]
+  },
+  "tags": ["development", "coding", "git", "pr", "vercel", "preview", "testing", "e2e"]
+}

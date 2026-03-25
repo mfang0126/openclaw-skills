@@ -1,0 +1,16 @@
+{
+  "name": "mermaid-architect",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Generator",
+  "emoji": "🗺️",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["mmdc", "node"],
+    "modules": []
+  },
+  "tags": ["diagram", "mermaid", "visualization", "chart", "flowchart"],
+  "ownerId": "kn75beh7fdqwjqc7rd6q1fnk2x81082h",
+  "slug": "mermaid-architect",
+  "publishedAt": 1770939197462
+}

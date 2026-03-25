@@ -1,0 +1,30 @@
+{
+  "skill_name": "wordpress-cli",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把这篇 Markdown 文章发布到 WordPress（草稿）",
+      "input": "article.md containing H1 title, blockquote excerpt, table, and code block",
+      "expected": "Draft created at WordPress, post ID returned, link to wp-admin edit page shown, title extracted from H1, excerpt from first blockquote"
+    },
+    {
+      "id": 2,
+      "prompt": "Publish ~/articles/review.md directly (not draft)",
+      "input": "review.md, status: publish",
+      "expected": "Post published live, returns public post URL (not draft), status: 'publish' in response"
+    },
+    {
+      "id": 3,
+      "prompt": "Post with custom title, override the H1",
+      "input": "article.md draft '自定义标题'",
+      "expected": "Draft created with title '自定义标题' (ignoring H1 in file), correct CSS styling applied"
+    },
+    {
+      "id": 4,
+      "prompt": "发布失败，返回 401 Unauthorized",
+      "input": "Wrong WP_PASS set, correct WP_URL and WP_USER",
+      "expected": "Clear error: '❌ 发布失败: Sorry, you are not allowed to create posts as this user.', guidance to regenerate WordPress app password"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "skill_name": "douyin-dl",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "https://v.douyin.com/iABCxyz/",
+      "context": "用户发送了一个抖音短链（不含任何额外文字）",
+      "expected": "识别短链为抖音 URL，调用 python3 {baseDir}/scripts/douyin_download.py 'https://v.douyin.com/iABCxyz/' --download，解析出 modal_id，下载视频到 ~/Downloads/douyin/，回复视频标题、作者、文件路径",
+      "must_not": "不应要求用户再次确认'是否下载'，不应忽略只含链接的消息"
+    },
+    {
+      "id": 2,
+      "prompt": "7615599455526585067",
+      "context": "用户发送了一个裸 modal_id（16-19位数字）",
+      "expected": "识别为 Douyin aweme_id，调用脚本 python3 {baseDir}/scripts/douyin_download.py '7615599455526585067' --download，正常下载并返回结果",
+      "must_not": "不应把纯数字当作普通消息忽略，不应要求用户提供完整 URL"
+    },
+    {
+      "id": 3,
+      "prompt": "帮我下载这个视频 https://www.douyin.com/video/7615599455526585067",
+      "context": "用户发送了完整 Douyin 视频 URL",
+      "expected": "从 URL 中提取 modal_id（7615599455526585067），调用脚本下载，回复成功信息和文件路径",
+      "must_not": "不应无法识别完整 URL 格式，不应只识别短链"
+    },
+    {
+      "id": 4,
+      "prompt": "下载 https://v.douyin.com/expired123/",
+      "context": "TikHub token 未在 ~/.openclaw/config.json 中配置",
+      "expected": "脚本检测到缺少 tikhub_api_token，明确提示：'❌ 需要配置 TikHub API token'，提供申请链接 https://user.tikhub.io/register，以及配置方法说明。不抛出原始 Python traceback",
+      "must_not": "不应静默失败，不应输出原始 Python KeyError 或 requests 异常"
+    },
+    {
+      "id": 5,
+      "prompt": "https://v.douyin.com/livestream123/",
+      "context": "用户分享的是一个抖音直播链接",
+      "expected": "尝试后识别为直播流，告知用户'❌ 抖音直播流暂不支持下载（视频内容已结束或为实时直播）'",
+      "must_not": "不应在不支持的内容类型上无限重试，不应崩溃无响应"
+    }
+  ]
+}

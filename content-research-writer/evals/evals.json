@@ -1,0 +1,41 @@
+{
+  "skill_name": "content-research-writer",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我写一篇关于 AI 对产品管理影响的文章大纲",
+      "context": "用户想写一篇关于 AI 和产品管理的文章，没有提供额外信息",
+      "expected": "输出结构化大纲，包含：Hook（引人入胜的开头）、Introduction（背景与问题陈述）、3-4个 Main Sections（含研究待办）、Conclusion（行动号召）、Research To-Do 清单。同时询问目标受众和文章风格偏好",
+      "must_not": "不应直接输出完整文章，不应跳过大纲阶段，不应不询问澄清问题"
+    },
+    {
+      "id": 2,
+      "prompt": "帮我改进 hook：'产品管理正在因为 AI 而改变。在这篇文章中，我将讨论一些 AI 影响产品经理的方式。'",
+      "context": "用户提供了一段平淡的 hook，希望改进",
+      "expected": "分析当前 hook 的问题（太平淡、缺乏情感冲击），提供至少 3 个改进选项（数据驱动型、故事型、问句型），每个选项附上原因说明",
+      "must_not": "不应只提供 1 个选项，不应直接替换而不解释原因"
+    },
+    {
+      "id": 3,
+      "prompt": "我刚写完第三节（常见错误），帮我看看",
+      "context": "用户正在写一篇文章，完成了某一节后寻求反馈",
+      "expected": "使用标准反馈格式输出：What Works Well ✓ / Suggestions for Improvement（Clarity/Flow/Evidence/Style）/ Specific Line Edits（含原文和建议版本）/ Questions to Consider。反馈应具体且可操作",
+      "must_not": "不应只给笼统评价（如'写得不错'），不应修改用户的核心观点"
+    },
+    {
+      "id": 4,
+      "prompt": "帮我找关于 AI 生产力提升的最新数据和引用",
+      "context": "用户写文章时需要引用支持论点",
+      "expected": "搜索并整理 3-5 条相关数据/研究/专家引用，附上来源格式（作者、年份、出版物），标注已添加到大纲哪个位置",
+      "must_not": "不应捏造引用，不应提供无法验证来源的数据"
+    },
+    {
+      "id": 5,
+      "prompt": "草稿写完了，帮我做最终审查",
+      "context": "用户完成了完整草稿，要求综合审查",
+      "expected": "输出完整的 Full Draft Review：Overall Assessment / Structure & Flow / Content Quality / Technical Quality / Readability / Final Polish Suggestions / Pre-Publish Checklist",
+      "must_not": "不应跳过任何审查维度，不应只给总体评分而无具体建议"
+    }
+  ]
+}

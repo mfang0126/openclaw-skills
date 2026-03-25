@@ -1,0 +1,34 @@
+{
+  "skill_name": "development",
+  "pattern": "Pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "登录按钮点击无响应",
+      "context": "用户报告了一个 UI bug，登录按钮没有反应",
+      "expected": "完整执行 Pipeline：(1) 复现 bug，定位相关代码 (2) 设计修复方案 (3) 实施代码修改 (4) pnpm dev 启动 Dev Server (5) agent-browser E2E 测试验证修复 (6) 创建 PR（分支命名 fix/login-button，包含 PR body）。不应直接 merge 到 main",
+      "must_not": "不应跳过 Dev Server 测试，不应直接 push 到 main，不应只做编译检查而不模拟真实操作"
+    },
+    {
+      "id": 2,
+      "prompt": "改完了，帮我测一下",
+      "context": "代码已经修改完成，用户要求测试",
+      "expected": "启动 Dev Server（pnpm dev），使用 agent-browser 做 E2E 测试（open → snapshot → 模拟操作 → 验证结果），输出测试报告（通过/失败详情）。不应等 Vercel Preview 部署",
+      "must_not": "不应只做 pnpm tsc --noEmit 编译检查，不应说'请在 Preview 测试'"
+    },
+    {
+      "id": 3,
+      "prompt": "Preview 部署失败了",
+      "context": "Vercel Preview 构建失败，用户不确定是代码问题还是部署问题",
+      "expected": "在 Dev Server 重新验证功能正确性（pnpm build + pnpm dev），确认逻辑无误后，向用户说明 'Preview 失败不等于代码有问题，可能是 Vercel 环境配置问题'。提供检查 build log 的建议",
+      "must_not": "不应因 Preview 失败就开始回滚代码，不应让任务陷入等待 Preview 的僵局"
+    },
+    {
+      "id": 4,
+      "prompt": "帮我创建一个新的 feature：用户可以导出数据为 CSV",
+      "context": "新功能需求，需要前后端配合",
+      "expected": "(1) 询问澄清：数据范围、格式要求、触发方式 (2) 设计方案（哪些文件需要修改）(3) 实施（前端按钮 + 后端 API）(4) Dev Server + agent-browser 测试下载流程 (5) 创建 PR，branch 命名 feature/csv-export",
+      "must_not": "不应跳过需求澄清直接写代码，不应在未测试的情况下创建 PR"
+    }
+  ]
+}

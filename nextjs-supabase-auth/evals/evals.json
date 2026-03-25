@@ -1,0 +1,26 @@
+{
+  "skill_name": "nextjs-supabase-auth",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up Supabase Auth in Next.js App Router",
+      "expected": "Provides createServerClient setup for server context and createBrowserClient for client context, with correct cookie handling. References @supabase/ssr package."
+    },
+    {
+      "id": 2,
+      "prompt": "Protect a route using Next.js middleware with Supabase",
+      "expected": "Produces middleware.ts with createServerClient, calls getUser() to validate session, redirects unauthenticated users to /login, and returns supabaseResponse to propagate cookie updates."
+    },
+    {
+      "id": 3,
+      "prompt": "Handle OAuth callback in Next.js App Router with Supabase",
+      "expected": "Produces app/auth/callback/route.ts that reads the 'code' query param and calls supabase.auth.exchangeCodeForSession(code), then redirects to the 'next' param or '/'."
+    },
+    {
+      "id": 4,
+      "prompt": "Why does my Supabase session keep expiring in a Server Component?",
+      "expected": "Explains that getSession() is client-side only; Server Components must use getUser() to validate against Supabase Auth server. Also checks that middleware is running to refresh cookies."
+    }
+  ]
+}

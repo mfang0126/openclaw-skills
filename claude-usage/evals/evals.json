@@ -1,0 +1,40 @@
+{
+  "skill_name": "claude-usage",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "How much Claude quota do I have left?",
+      "expected_calls": ["bash scripts/check-usage.sh"],
+      "expected_output_fields": ["plan type", "session usage %", "weekly usage %", "reset time"],
+      "expected": "Triggers check-usage.sh, returns plan type (Pro/Max), session %, weekly %, and reset time. Does NOT answer with API billing info."
+    },
+    {
+      "id": 2,
+      "prompt": "Claude is responding really slowly — am I being rate limited?",
+      "expected_behavior": "Recognizes this as a quota/rate-limit diagnostic scenario. Runs check-usage.sh first. If usage is high (>80%), explains likely throttling and provides reset time. If usage is low, suggests other causes (network, server load).",
+      "expected_calls": ["bash scripts/check-usage.sh"],
+      "expected": "Proactive diagnostic: runs usage check, interprets result in context of slowness, gives actionable advice"
+    },
+    {
+      "id": 3,
+      "prompt": "查一下我的 claude 用量，还能用吗",
+      "expected_calls": ["bash scripts/check-usage.sh"],
+      "expected": "Chinese trigger correctly identified as quota check (not API billing question). Runs check-usage.sh, responds with remaining quota in plain language."
+    },
+    {
+      "id": 4,
+      "name": "Error: tmux not found",
+      "prompt": "Check Claude usage (tmux is not installed)",
+      "expected_behavior": "Script exits with 'command not found: tmux'. Agent reports the missing dependency clearly and provides the fix: 'brew install tmux'. Does not attempt workarounds.",
+      "expected": "Clear error message, exact fix command provided, no silent failure"
+    },
+    {
+      "id": 5,
+      "name": "Distinguish from API billing",
+      "prompt": "How many API tokens did I spend this month?",
+      "expected_behavior": "Recognizes this is about API billing, NOT subscription quota. Clarifies the difference. Does NOT run check-usage.sh (wrong tool for this question). Points user to Anthropic API dashboard instead.",
+      "expected": "Correctly distinguishes subscription quota vs API billing. Does not misuse check-usage.sh for API billing questions."
+    }
+  ]
+}

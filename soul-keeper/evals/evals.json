@@ -1,0 +1,21 @@
+{
+  "skill_name": "soul-keeper",
+  "pattern": "Reviewer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I've corrected the same thing 3 times now — you keep using tabs instead of spaces in my Python files",
+      "expected": "Skill triggers, identifies SOUL.md as the file to update, suggests adding a preference rule about Python indentation style"
+    },
+    {
+      "id": 2,
+      "prompt": "We just kicked off the new mobile redesign project, let's get started",
+      "expected": "Skill triggers, flags MEMORY.md and WORKING.md for update to reflect the new project context and active focus"
+    },
+    {
+      "id": 3,
+      "prompt": "OK I think we're done for today, talk tomorrow",
+      "expected": "Skill triggers session-end hook, batches pending updates across all workspace files, presents summary of suggested changes"
+    }
+  ]
+}

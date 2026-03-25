@@ -1,0 +1,247 @@
+{
+  "agent-browser": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "ai-sdk": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "audio-timestamp-verifier": {
+    "version": "1.0.0",
+    "baseline_date": "2026-03-22"
+  },
+  "browser-routing": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "browser-use": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "calculator": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "claude-usage": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "content-inbox": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "content-research-writer": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "demo-video": {
+    "version": "1.0.0",
+    "baseline_date": "2026-03-22"
+  },
+  "deploy-artifact": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "development": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "docx": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "douyin-dl": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "ffmpeg-cli": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "firecrawl": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "grok-search": {
+    "version": "0.2.1",
+    "baseline_date": "2026-03-22"
+  },
+  "grokipedia": {
+    "version": "7c058d8",
+    "baseline_date": "2026-03-22"
+  },
+  "html-screenshot": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "mastra": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "memory-audit": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "mermaid-architect": {
+    "version": "1.0.0",
+    "baseline_date": "2026-03-22"
+  },
+  "moonshot-usage": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "multi-agent": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "nano-banana-pro-2": {
+    "version": "0.1.0",
+    "baseline_date": "2026-03-22"
+  },
+  "newsletter-assistant": {
+    "version": "1.0.0",
+    "baseline_date": "2026-03-22"
+  },
+  "nextjs-best-practices": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "nextjs-supabase-auth": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "openclaw-config": {
+    "version": "1.0.0",
+    "baseline_date": "2026-03-22"
+  },
+  "pdf": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "plan-mode": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "platform-bridge": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "python-code-review": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "reddit-cli": {
+    "version": "1.0.2",
+    "baseline_date": "2026-03-22"
+  },
+  "research-pro": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "self-improving": {
+    "version": "1.1.3",
+    "baseline_date": "2026-03-22"
+  },
+  "self-reflection": {
+    "version": "1.1.1",
+    "baseline_date": "2026-03-22",
+    "source": "github.com/openclaw/skills/skills/hopyky/self-reflection"
+  },
+  "seo": {
+    "version": "1.0.3",
+    "baseline_date": "2026-03-22"
+  },
+  "show-my-ip": {
+    "version": "1.0.0",
+    "baseline_date": "2026-03-22"
+  },
+  "skill-creator": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "skills-watchdog": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "snap": {
+    "version": "1.0.2",
+    "baseline_date": "2026-03-22"
+  },
+  "soul-keeper": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "sub-agent-patterns": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "supabase-postgres-best-practices": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "tailscale": {
+    "version": "1.0.0",
+    "baseline_date": "2026-03-22"
+  },
+  "tavily-best-practices": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "tavily-crawl": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "tavily-extract": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "tavily-map": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "tavily-research": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "tavily-search": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "turborepo": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "typescript-advanced-types": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "ui-ux-pro-max-2": {
+    "version": "0.1.0",
+    "baseline_date": "2026-03-22"
+  },
+  "vercel": {
+    "version": "1.0.1",
+    "baseline_date": "2026-03-22"
+  },
+  "video-analyzer": {
+    "version": "unknown",
+    "baseline_date": "2026-03-22"
+  },
+  "wordpress-cli": {
+    "version": "1.0.0",
+    "baseline_date": "2026-03-22"
+  },
+  "youtube": {
+    "version": "4be9679",
+    "baseline_date": "2026-03-22"
+  },
+  "cli_tavily": {
+    "version": "0.1.0",
+    "baseline_date": "2026-03-22"
+  },
+  "cli_firecrawl": {
+    "version": "1.3.0",
+    "baseline_date": "2026-03-22"
+  }
+}
