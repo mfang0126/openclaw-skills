@@ -85,7 +85,6 @@ Skills are auto-detected by OpenClaw — no additional configuration needed. Jus
 | Skill | Description | Pattern |
 |-------|-------------|---------|
 | [deploy-artifact](deploy-artifact/) | Deploy files to Vercel artifacts | Tool Wrapper |
-| [wordpress-cli](wordpress-cli/) | Publish Markdown to WordPress | Tool Wrapper |
 | [vercel](vercel/) | Vercel CLI operations | Tool Wrapper |
 | [tailscale](tailscale/) | Tailscale VPN management | Tool Wrapper |
 
@@ -98,7 +97,6 @@ Skills are auto-detected by OpenClaw — no additional configuration needed. Jus
 | [plan-mode](plan-mode/) | Task planning before execution | Pipeline |
 | [skill-creator](skill-creator/) | Create and improve skills | Pipeline |
 | [soul-keeper](soul-keeper/) | Monitor and optimize workspace files | Reviewer |
-| [memory-audit](memory-audit/) | Audit memory quality and consistency | Reviewer |
 | [reflection](reflection/) | Self-reflection and improvement | Pipeline |
 | [self-improving](self-improving/) | Continuous learning from corrections | Tool Wrapper |
 | [skills-watchdog](skills-watchdog/) | Check skills for updates | Tool Wrapper |
@@ -110,11 +108,8 @@ Skills are auto-detected by OpenClaw — no additional configuration needed. Jus
 | Skill | Description | Pattern |
 |-------|-------------|---------|
 | [content-research-writer](content-research-writer/) | Research-backed content writing | Pipeline |
-| [content-inbox](content-inbox/) | Unified content management (Douyin/WeChat/etc.) | Pipeline |
-| [newsletter-assistant](newsletter-assistant/) | Newsletter email processing | Pipeline |
 | [video-analyzer](video-analyzer/) | Video transcription and analysis | Pipeline |
 | [douyin-dl](douyin-dl/) | Download Douyin videos without watermarks | Tool Wrapper |
-| [demo-video](demo-video/) | Record demo videos | Tool Wrapper |
 | [ffmpeg-cli](ffmpeg-cli/) | FFmpeg media operations | Tool Wrapper |
 | [mermaid-architect](mermaid-architect/) | Generate Mermaid diagrams | Generator |
 
@@ -125,7 +120,7 @@ Skills are auto-detected by OpenClaw — no additional configuration needed. Jus
 | [grok-search](grok-search/) | xAI Grok web search | Tool Wrapper |
 | [moonshot-usage](moonshot-usage/) | Moonshot AI API usage tracking | Tool Wrapper |
 | [claude-usage](claude-usage/) | Claude subscription quota checker | Tool Wrapper |
-| [nano-banana-pro-2](nano-banana-pro-2/) | Google AI image generation | Tool Wrapper |
+| [nano-banana-2](nano-banana-2/) | AI image generation (Gemini 3.1 Flash + Pro, transparency, style transfer) | Tool Wrapper |
 
 ### 📄 Document Processing
 
@@ -134,12 +129,6 @@ Skills are auto-detected by OpenClaw — no additional configuration needed. Jus
 | [docx](docx/) | Word document manipulation | Tool Wrapper |
 | [pdf](pdf/) | PDF form filling and extraction | Tool Wrapper |
 | [seo](seo/) | SEO analysis and optimization | Tool Wrapper |
-
-### 🔊 Audio
-
-| Skill | Description | Pattern |
-|-------|-------------|---------|
-| [audio-timestamp-verifier](audio-timestamp-verifier/) | Verify audio timestamp accuracy | Reviewer |
 
 ## Skill Architecture
 
