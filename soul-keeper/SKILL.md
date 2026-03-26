@@ -142,6 +142,57 @@ Use when the agent detects that **workspace files are out of sync with reality**
 
 ---
 
+## 教训升级路径（与 reflection 集成）
+
+### 触发条件（自动检测）
+
+| 信号 | 检查 | 动作 |
+|------|------|------|
+| self-review.md 有 `applied >= 3` 的教训 | 读 self-review.md | 建议升级到 SOUL.md |
+| self-review.md 教训和 SOUL.md 现有规则重复 | 对比两个文件 | 建议合并或删除 |
+| self-review.md 超过 100 行 | 检查行数 | 建议归档旧条目到 memory/ |
+| 教训 30 天无触发 | 检查 status 和 source date | 建议标记 deprecated |
+
+### 升级流程
+
+reflection 的教训达到 `applied >= 3` 或 `evidence >= 3`：
+
+1. soul-keeper 检测到（通过 N-turn 心跳或 session 结束钩子）
+2. 读教训内容和 context
+3. 检查 SOUL.md 是否已有类似规则
+4. **无类似规则** → 建议加入 SOUL.md，格式匹配 SOUL.md 现有风格
+5. **有类似规则** → 建议合并或增强现有规则
+6. 用户确认后执行
+
+### 降级流程
+
+SOUL.md 中的规则 30 天未被引用：
+
+1. soul-keeper 检测到
+2. 建议降级到 self-review.md
+3. 用户确认后执行
+
+### 输出格式
+
+```
+📈 教训升级建议
+
+来源: self-review.md — "[教训内容]"
+数据: evidence=5, applied=3, 来自 2026-03-15
+目标: SOUL.md
+
+现有 SOUL.md 检查:
+- ✅ 无重复规则
+- ✅ 不超 token 预算 (当前 650B / 800B)
+
+建议写入:
+"[规则内容，匹配 SOUL.md 风格]"
+
+确认升级？
+```
+
+---
+
 ## 规则
 
 1. **不自动改文件** — 必须用户确认

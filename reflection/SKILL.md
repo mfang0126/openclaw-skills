@@ -118,6 +118,102 @@ For size limit enforcement and compaction rules, load `references/operations.md`
 - Increment the Applied counter in state file
 - If Applied >= 3 and still in Layer 3 → suggest promotion
 
+## Signal Detection
+
+Replaces external Python scripts — agent detects signals inline using these rules.
+
+### HIGH Signal (log immediately)
+- User says "never", "always", "wrong", "stop", "the rule is"
+- User says "不对", "错了", "应该是", "别这样"
+- Explicit correction of previous output
+- User reverses a decision with explanation
+
+**Action:** Log immediately. No confirmation needed. Mark `confidence: HIGH`.
+
+### MEDIUM Signal (log, mark as pending verification)
+- User says "perfect", "exactly", accepts output enthusiastically
+- User says "对", "可以", "就这样"
+- A proposed approach is adopted without changes
+- User builds on agent's suggestion
+
+**Action:** Log as positive lesson. Mark `confidence: MEDIUM`.
+
+### LOW Signal (observe, do not log yet)
+- Implicit pattern (user didn't say good or bad)
+- Needs 3x repetition to upgrade to MEDIUM
+
+**Action:** Mental note only. No file write.
+
+---
+
+## Quality Gates
+
+Every lesson MUST pass all 5 checks before being stored. **Fail any → discard.**
+
+| Check | Standard | Fail Example |
+|-------|----------|-------------|
+| **Reusable** | Will encounter this again | "今天网络慢" (one-time) |
+| **Non-trivial** | Required discovery, not common sense | "先读文档再操作" (obvious) |
+| **Specific** | Can describe trigger condition | "要小心" (too vague) |
+| **Verified** | Solution actually worked | Guess without verification |
+| **No duplication** | Not already in self-review or SOUL | Redundant entry |
+
+---
+
+## Conflict Detection
+
+Before storing a new lesson, search `self-review.md` and `SOUL.md` for contradictions:
+
+- **No conflict** → store normally
+- **Conflict found** → report to user, let them decide
+
+**Conflict report format:**
+```
+⚠️ Conflict Detected
+
+New lesson: [X]
+Existing rule: [Y] (from SOUL.md:12 or self-review.md:5)
+
+Conflict: [explain the contradiction]
+
+Choose:
+- Keep new (replace old)
+- Keep old (discard new)
+- Keep both (different scenarios — specify when each applies)
+```
+
+---
+
+## Structured Lesson Format
+
+All lessons use this YAML format in `memory/YYYY-MM-DD.md`:
+
+```yaml
+- id: lesson-YYYY-MM-DD-NNN
+  domain: coordination | tech | research | product | qa
+  agent: king | tech-lead | researcher | product-owner | verifier
+  type: negative | positive | decision
+  confidence: HIGH | MEDIUM | LOW
+  pattern: "description of when this happens"
+  trigger: "when to recall this lesson"
+  good: "correct approach"
+  bad: "incorrect approach"
+  source_quote: "user's original words (optional)"
+  evidence: 1
+  applied: 0
+  source: "YYYY-MM-DD"
+  target_file: "self-review.md | SOUL.md"
+  status: active | confirmed | deprecated
+```
+
+**Promotion/demotion rules:**
+- evidence >= 3 → candidate for self-review.md (Layer 2)
+- applied >= 3 → candidate for SOUL.md (Layer 1, requires user confirmation)
+- 30 days with no trigger → status: deprecated
+- User explicitly rejects → delete immediately
+
+---
+
 ## Auto-Trigger Conditions
 
 ### 1. User Correction Detected
@@ -128,7 +224,7 @@ Trigger phrases (non-exhaustive):
 - "Stop doing X" / "Never do Y"
 - "Always do X for me" / "I prefer X, not Y"
 
-**Action:** Log immediately. No confirmation needed for logging. Only ask for confirmation when promoting to Layer 1.
+**Action:** HIGH signal → run quality gates → log if passes. No confirmation needed for logging. Only ask for confirmation when promoting to Layer 1.
 
 ### 2. Session End ("Land the Plane")
 
@@ -192,6 +288,54 @@ Reflection and soul-keeper are **companion skills** with distinct responsibiliti
 | **Writes** | memory/*.md, state file | Workspace files (with user confirmation) |
 
 **Flow:** Reflection produces lessons → soul-keeper decides when workspace files need updating. They do NOT overlap. Install both for full lifecycle.
+
+## Reflection Report Format
+
+Every `/reflect` or session-end reflection outputs this structured report:
+
+```markdown
+# Reflection Report
+
+**Date**: [YYYY-MM-DD HH:MM]
+**Session duration**: [X minutes]
+**Focus**: [main task this session]
+
+## Detected Signals
+
+| # | Signal | Level | Original words | Domain |
+|---|--------|-------|---------------|--------|
+| 1 | [lesson] | HIGH | "[user quote]" | coordination |
+
+## Proposed Writes
+
+### Lesson 1: [title]
+
+**Target layer**: Layer 3 (daily) → pending upgrade to Layer 2
+**Quality gates**:
+- [x] Reusable
+- [x] Non-trivial
+- [x] Specific
+- [x] Verified
+- [x] No duplication
+
+**Conflict detection**: ✅ No conflict
+
+**Format**:
+```yaml
+- id: lesson-2026-03-26-001
+  domain: coordination
+  ...
+```
+
+## Confirm
+
+Write the above lessons?
+- `Y` — write all
+- `N` — discard
+- `1` — write only lesson #1
+```
+
+---
 
 ## Examples
 
