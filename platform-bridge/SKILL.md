@@ -1,6 +1,6 @@
 ---
 name: platform-bridge
-description: "平台适配器（抖音/小红书/公众号/YouTube/B站）。统一下载接口，隐藏各平台差异。Use when: 下载视频, 抖音链接, 小红书笔记, youtube下载, bilibili下载, 平台下载, 视频提取, download douyin, download xiaohongshu."
+description: "Platform adapter (Douyin/Xiaohongshu/WeChat/YouTube/Bilibili). Unified download interface, hides platform differences. Use when: download video, douyin link, xiaohongshu note, youtube download, bilibili download, platform download, video extraction, download douyin, download xiaohongshu."
 requires:
   bins: ["python3", "yt-dlp"]
   modules: ["requests", "playwright"]

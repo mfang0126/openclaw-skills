@@ -1,11 +1,11 @@
 ---
 name: browser-routing
 description: |
-  浏览器工具路由决策器。任何涉及网页操作时自动选择最省 token、最可靠的工具。
+  Browser tool routing decision maker. Auto-selects the most token-efficient and reliable tool for any web operation.
 
   USE FOR:
-  - "打开网页", "open website", "截图", "screenshot", "看页面内容"
-  - "抓内容", "scrape page", "填表单", "fill form", "登录网站", "login"
+  - "open website", "打开网页", "screenshot", "截图", "view page content"
+  - "scrape page", "抓内容", "fill form", "填表单", "login website", "登录网站"
   - "自动化浏览器", "automate browser", "需要用哪个浏览器工具"
   - "web automation", "which browser tool", "browser task", "网页操作"
   - Any task that involves a browser, webpage, or web automation

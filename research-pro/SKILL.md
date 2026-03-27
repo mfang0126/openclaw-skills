@@ -1,11 +1,12 @@
 ---
 name: research-pro
 description: |
-  统一研究入口——所有搜索、调研、信息收集请求的唯一入口。自动判断深度，按需调用下层工具（Grok web/X、Reddit、YouTube、Tavily、Firecrawl）。
+  Unified research skill — handles ANY research, investigation, or information-gathering task automatically.
+  Selects the right depth (Quick/Standard/Deep/Crawl) and tools (Tavily API, Grok X/web search, Reddit, Firecrawl) based on what the user needs.
 
-  触发场景：
-  - "帮我研究/查/了解/调研/分析" + 任何话题
-  - "search for / look up / find out / research / investigate / compare / analyze"
+  USE FOR:
+  - "research / investigate / look up / explore / analyze" + any topic
+  - "帮我研究/查/了解/调研/分析/对比" + 任何话题
   - 竞品分析、市场调研、技术对比、趋势了解
   - 需要 X/Twitter 实时讨论、Reddit 社区意见、YouTube 视频内容
   - 不确定用哪个工具时 → 直接用这个，它会自动选

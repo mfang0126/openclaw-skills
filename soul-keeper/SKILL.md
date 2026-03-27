@@ -1,11 +1,11 @@
 ---
 name: soul-keeper
 description: |
-  监测 workspace files 的更新时机，在正确的时候提示优化。基于 WORKSPACE_FILES_GUIDE.md 执行。
+  Monitors workspace files for update timing and prompts optimization at the right time. Based on WORKSPACE_FILES_GUIDE.md execution.
 
   USE FOR:
-  - "更新 workspace files" / "改配置" / "优化文件" / "update workspace"
-  - "帮我更新 SOUL.md" / "USER.md 要改" / "MEMORY.md 需要更新"
+  - "update workspace files" / "change config" / "optimize files" / "update workspace"
+  - "help me update SOUL.md" / "USER.md needs update" / "MEMORY.md needs refresh"
   - "记住这个偏好" / "把这个存下来" / "save this preference"
   - 用户纠正同类行为 2+ 次（自动触发）
   - 对话结束时（"好了"/"bye"/"今天就这样"）检查 workspace files
