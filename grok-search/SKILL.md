@@ -150,3 +150,11 @@ X-only filters (server-side via x_search tool params):
 
 - `citations` are merged/validated from xAI response annotations where possible (more reliable than trusting the model’s JSON blindly).
 - Prefer `--x` for tweets/threads, `--web` for general research.
+
+---
+
+## References
+
+### Official Documentation
+- **xAI Grok API Documentation** — https://docs.x.ai
+- **xAI Responses API** — https://docs.x.ai/api-reference/responses

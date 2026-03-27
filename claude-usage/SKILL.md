@@ -113,3 +113,11 @@ If the script hangs: `tmux kill-session -t cu-*`
 - Only checks **subscription** usage (Pro/Max), not API billing
 - Requires a running terminal environment (won't work in sandboxed containers)
 - Output parsing depends on Claude Code CLI's `/usage` format — may break if Anthropic changes the output layout
+
+---
+
+## References
+
+### Official Documentation
+- **Claude API Documentation** — https://docs.anthropic.com
+- **Claude Usage API** — https://docs.anthropic.com/en/api/usage

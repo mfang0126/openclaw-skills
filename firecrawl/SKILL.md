@@ -325,3 +325,12 @@ For many URLs, use xargs with `-P` for parallel execution:
 ```bash
 cat urls.txt | xargs -P 10 -I {} sh -c 'firecrawl scrape "{}" -o ".firecrawl/$(echo {} | md5).md"'
 ```
+
+---
+
+## References
+
+### Official Documentation
+- **Firecrawl Documentation** — https://docs.firecrawl.dev
+- **Firecrawl API Reference** — https://docs.firecrawl.dev/api-reference
+- **Firecrawl CLI** — https://github.com/mendableai/firecrawl

@@ -475,3 +475,13 @@ wait
 ---
 
 
+
+---
+
+## References
+
+### APIs & Tools
+- **Tavily API** — https://tavily.com
+- **xAI Grok API** — https://docs.x.ai
+- **Reddit API** — https://www.reddit.com/dev/api
+- **Firecrawl** — https://firecrawl.dev

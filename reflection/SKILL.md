@@ -258,6 +258,19 @@ Configure heartbeat in `~/.openclaw/openclaw.json`:
 
 Add to workspace HEARTBEAT.md:
 ```
+## References
+
+### Original Sources
+- **reflect-learn by stevengonsalvez** — https://github.com/openclaw/skills/tree/main/skills/stevengonsalvez/reflect-learn
+  - Original concept: Signal detection + quality gates + conflict detection
+  - Merged and enhanced with three-layer memory architecture
+
+### Inspirations
+- **Google ADK Five Patterns** — https://google.github.io/adk-docs/skills/
+- **agentskills.io Standard** — https://agentskills.io/specification
+
+---
+
 ## Self-Reflection Check (required)
 Run `reflection check` at each heartbeat.
 If ALERT: read past lessons, reflect, then log insights.

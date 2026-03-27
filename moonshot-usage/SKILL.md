@@ -130,3 +130,11 @@ curl -s https://api.moonshot.ai/v1/users/me/balance \
 | `curl: command not found` | curl not installed | `brew install curl` or `apt install curl` |
 | Empty response | Network issue | Check internet connection, retry |
 | `code != 0` in response | API error | Check Moonshot status page |
+
+---
+
+## References
+
+### Official Documentation
+- **Moonshot AI Platform** — https://platform.moonshot.cn
+- **Moonshot API Documentation** — https://platform.moonshot.cn/docs
