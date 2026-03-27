@@ -14,3 +14,8 @@ self-improving/
 reflection.bak/
 email-classifier/
 reminder-cron/
+
+# Skills Index 维护文件（私有）
+scripts/generate-skills-list.sh
+SKILLS_INDEX_TEMPLATE.md
+MAINTENANCE.md
