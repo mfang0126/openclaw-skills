@@ -9,6 +9,10 @@ metadata: {"clawdbot":{"emoji":"▲","requires":{"bins":["vercel","curl"]}}}
 Complete Vercel CLI reference and documentation access.
 
 ## When to Use
+
+## Prerequisites
+
+无需特殊依赖，装了就能用。
 - Deploying applications to Vercel
 - Managing projects, domains, and environment variables
 - Running local development server

@@ -14,6 +14,10 @@ On first use, read `setup.md` for workspace integration.
 
 ## When to Use
 
+## Prerequisites
+
+无需特殊依赖，装了就能用。
+
 Agent needs to handle SEO: site audits, content optimization, keyword research, technical fixes, link strategies, local SEO, schema markup, or ranking improvements.
 
 ## Architecture

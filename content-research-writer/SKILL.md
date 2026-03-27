@@ -29,6 +29,10 @@ This skill acts as your writing partner, helping you research, outline, draft, a
 
 ## When to Use This Skill
 
+## Prerequisites
+
+无需特殊依赖，装了就能用。
+
 - Writing blog posts, articles, or newsletters
 - Creating educational content or tutorials
 - Drafting thought leadership pieces

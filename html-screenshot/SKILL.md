@@ -30,6 +30,10 @@ Capture screenshots of HTML files using agent-browser. Auto-screenshot after **v
 
 ## When to Use
 
+## Prerequisites
+
+无需特殊依赖，装了就能用。
+
 - User wants to visualize HTML code
 - Generate website mockups or previews
 - Create visual documentation

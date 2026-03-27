@@ -3,6 +3,7 @@
 > 一个精心策划的 AI agent skills 集合，为 [OpenClaw](https://github.com/openclaw/openclaw) 提供开箱即用的能力
 
 **快速导航**：
+- 📚 **[Skills 快速索引](SKILLS_INDEX.md)** — 按场景、类别、或关键词搜索 ⭐ **推荐**
 - [Skills 列表](#skills-列表) — 所有 skills 的完整列表
 - [快速开始](#快速开始) — 如何安装和使用
 - [Skill 分类](#skill-分类) — 按类别查找

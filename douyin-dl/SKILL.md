@@ -34,6 +34,10 @@ Download Douyin videos using the TikHub API. Handles short links, full URLs, and
 
 ## When to Use
 
+## Prerequisites
+
+无需特殊依赖，装了就能用。
+
 Use when the user shares a Douyin link or video ID and wants to save the video locally. Triggers automatically on any `v.douyin.com` or `douyin.com` URL — even if the user doesn't say "download".
 
 **Don't use when:** The link is for YouTube, Bilibili, Instagram, or another platform (use their tools). Douyin **live streams** and **image carousels (图集)** are not supported.
