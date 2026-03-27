@@ -1,0 +1,86 @@
+{
+  "name": "openclaw-skills",
+  "version": "1.0.0",
+  "description": "The largest open-source collection of production-ready AI agent skills — 60+ skills for web automation, research, content creation, and more",
+  "keywords": [
+    "ai-agent-skills",
+    "openclaw",
+    "claude-code-skills",
+    "ai-automation",
+    "agent-tools",
+    "web-scraping",
+    "research-skills",
+    "content-creation",
+    "browser-automation",
+    "self-reflection",
+    "three-layer-memory",
+    "firecrawl",
+    "playwright",
+    "mermaid-diagrams",
+    "calculator",
+    "document-generation"
+  ],
+  "categories": [
+    "Web & Browser",
+    "AI & Development",
+    "Research & Analysis",
+    "Content & Documentation",
+    "Utilities & Tools",
+    "Audio & Video",
+    "Platform & Integration",
+    "Testing & Quality",
+    "Agent & Memory",
+    "System & Config",
+    "Creative & Design",
+    "Knowledge & Learning"
+  ],
+  "skillCount": 60,
+  "readyToUseCount": 47,
+  "requiresApiKeyCount": 13,
+  "license": "MIT",
+  "repository": "https://github.com/mfang0126/openclaw-skills",
+  "documentation": "https://docs.openclaw.ai",
+  "community": "https://discord.com/invite/clawd",
+  "marketplace": "https://clawhub.com",
+  "standards": [
+    "SKILL_GUIDELINE.md",
+    "Google ADK Five Patterns",
+    "agentskills.io Specification",
+    "Claude Code Skill Standard"
+  ],
+  "features": [
+    "Progressive disclosure architecture",
+    "AI-friendly documentation",
+    "Examples + Error Handling + Tests",
+    "Bilingual (English + Chinese)",
+    "Auto-generated index",
+    "References and credits"
+  ],
+  "highlights": [
+    {
+      "skill": "reflection",
+      "description": "Three-layer memory system for agent continuous learning",
+      "unique": "Merged reflect-learn + soul-keeper architecture"
+    },
+    {
+      "skill": "firecrawl",
+      "description": "Unified web scraping and search with LLM-optimized output",
+      "unique": "Replaces WebFetch + WebSearch + browser automation"
+    },
+    {
+      "skill": "research-pro",
+      "description": "Unified research tool with auto depth selection",
+      "unique": "Tavily + Grok + Reddit + Firecrawl integration"
+    },
+    {
+      "skill": "calculator",
+      "description": "100% accurate math calculations for LLMs",
+      "unique": "Zero API cost, Node.js execution"
+    },
+    {
+      "skill": "mermaid-architect",
+      "description": "Generate and render Mermaid diagrams to images",
+      "unique": "Auto-render to PNG/SVG"
+    }
+  ]
+}

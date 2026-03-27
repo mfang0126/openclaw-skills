@@ -1,6 +1,8 @@
 # OpenClaw Skills Collection
 
-> A curated collection of AI agent skills for [OpenClaw](https://github.com/openclaw/openclaw) — the open-source personal AI assistant
+> The largest open-source collection of production-ready AI agent skills — 60+ skills for web automation, research, content creation, and more
+
+**Keywords**: AI agent skills, OpenClaw skills, Claude Code skills, AI automation, agent tools, web scraping skills, research skills, content creation AI, calculator skill, mermaid diagram generator, firecrawl integration, browser automation Playwright, self-reflection agents, three-layer memory, agent continuous learning
 
 **Quick Navigation**:
 - 📚 **[Skills Quick Index](SKILLS_INDEX.md)** — Search by scenario, category, or keyword ⭐ **Recommended**
@@ -8,6 +10,16 @@
 - [Quick Start](#quick-start) — How to install and use
 - [Skill Categories](#skill-categories) — Browse by category
 - [Common Scenarios](#common-scenarios) — Which skill should I use?
+
+---
+
+## Why OpenClaw Skills?
+
+✅ **Largest Collection** — 60+ production-ready skills, more than any other repo
+✅ **High Quality** — All skills follow SKILL_GUIDELINE.md standards with Examples + Error Handling + Tests
+✅ **AI-Optimized** — Progressive disclosure architecture, AI-friendly documentation
+✅ **Battle-Tested** — Used in production by the OpenClaw community
+✅ **Bilingual** — English (default) + Chinese versions available
 
 ---
 
