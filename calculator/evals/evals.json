@@ -1,0 +1,30 @@
+{
+  "skill_name": "calculator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我算一下 1847 * 0.0032",
+      "expected_output": "5.9104"
+    },
+    {
+      "id": 2,
+      "prompt": "从 $1.60 降到 $0.72， 省了多少百分比？",
+      "expected_output": "55"
+    },
+    {
+      "id": 3,
+      "prompt": "1536 MB 是多少 GB？",
+      "expected_output": "1.5"
+    },
+    {
+      "id": 4,
+      "prompt": "帮我算一下 GPT-4 API 的成本：100K input tokens， 50K output tokens。价格：$0.03/M input， $0.06/M output",
+      "expected_output": "0.006"
+    },
+    {
+      "id": 5,
+      "prompt": "2 的 10 次方是多少？",
+      "expected_output": "1024"
+    }
+  ]
+}

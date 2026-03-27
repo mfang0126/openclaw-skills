@@ -152,6 +152,113 @@ Use calculator skill → Get exact result → Include in response
 Proceed normally
 ```
 
+## Examples
+
+### Example 1: API Cost Calculation
+
+**用户输入**：
+> 帮我算一下 GPT-4 API 的成本：100K input tokens， 50K output tokens。价格：$0.03/M input， $0.06/M output
+
+**AI 执行**：
+```bash
+./calculate.sh "(100000 / 1000000 * 0.03) + (50000 / 1000000 * 0.06)"
+```
+
+**输出**：
+```
+0.006
+```
+
+**AI 回复**：
+✅ 总成本：$0.006 (0.6 cents)
+
+---
+
+### Example 2: Percentage Savings
+
+**用户输入**：
+> 从 $1.60 降到 $0.72， 省了多少百分比？
+
+**AI 执行**：
+```bash
+./calculate.sh "(1.60 - 0.72) / 1.60 * 100"
+```
+
+**输出**：
+```
+55
+```
+
+**AI 回复**：
+✅ 节省了 55%
+
+---
+
+### Example 3: Unit Conversion
+
+**用户输入**：
+> 1536 MB 是多少 GB？
+
+**AI 执行**：
+```bash
+./calculate.sh "1536 / 1024"
+```
+
+**输出**：
+```
+1.5
+```
+
+**AI 回复**：
+✅ 1.5 GB
+
+---
+
+### Example 4: Comparison Table
+
+**用户输入**：
+> 帮我对比三个方案的成本：
+> - Plan A: 1000 * 0.0016
+> - Plan B: 1000 * 0.0004 + 200 * 0.0016
+> - Savings: (1.60 - 0.72) / 1.60 * 100
+
+**AI 执行**：
+```bash
+./calculate.sh --table \
+  "plan_a:1000 * 0.0016" \
+  "plan_b:1000 * 0.0004 + 200 * 0.0016" \
+  "savings:(1.60 - 0.72) / 1.60 * 100"
+```
+
+**输出**：
+```
+| Label   | Result |
+|---------|--------|
+| plan_a  | 1.6    |
+| plan_b  | 0.72   |
+| savings | 55     |
+```
+
+**AI 回复**：
+✅ Plan A: $1.60
+✅ Plan B: $0.72
+✅ 节省: 55%
+
+---
+
+## Error Handling
+
+| 错误 | 原因 | 解决方案 |
+|------|------|---------|
+| `SyntaxError` | 表达式语法错误 | 检查括号匹配、 运算符使用 |
+| `ReferenceError` | 使用了不存在的变量/函数 | 只使用 Math.* 函数 |
+| `Division by zero` | 除以零 | 检查分母是否为 0 |
+| `Invalid number` | 结果不是有效数字 | 检查输入数据 |
+| `Node not found` | Node.js 未安装 | 安装 Node.js (`brew install node`) |
+| `Permission denied` | 脚本没有执行权限 | 运行 `chmod +x calculate.sh` |
+
+---
+
 ## Why This Works
 
 | Approach | Accuracy | Speed | Cost |
