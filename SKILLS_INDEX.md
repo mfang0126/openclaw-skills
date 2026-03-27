@@ -1,305 +1,155 @@
-# Skills 快速索引
+# Skills Quick Index
 
-> **快速找到你需要的 skill** — 按场景、类别、或关键词搜索
-
----
-
-## 🚀 快速开始
-
-### 我想做...
-
-| 场景 | 推荐 Skill | 一句话描述 | 装了就能用？ |
-|------|-----------|-----------|------------|
-| **研究一个话题** | `research-pro` | 统一研究工具（Tavily + Grok + Reddit）| ❌ 需要 API key |
-| **计算成本/百分比** | `calculator` | 100% 准确的数学计算 | ✅ |
-| **打开网页/截图** | `agent-browser` | 浏览器自动化（Playwright）| ✅ |
-| **抓网页内容** | `firecrawl` | 网页抓取和搜索 | ❌ 需要 API key |
-| **画流程图** | `mermaid-architect` | Mermaid 图表生成和渲染 | ✅ |
-| **创建 Word 文档** | `docx` | Word 文档创建和编辑 | ✅ |
-| **处理 PDF** | `pdf` | PDF 操作（合并、拆分、OCR）| ✅ |
-| **转录音频** | `openai-whisper` | 本地语音转文字 | ✅ |
-| **下载抖音视频** | `douyin-dl` | 抖音视频下载 | ✅ |
-| **部署文件到 Vercel** | `deploy-artifact` | 部署文件获取公开链接 | ✅ |
-| **查 IP** | `show-my-ip` | 显示当前公网 IP | ✅ |
-| **查天气** | `weather` | 天气查询 | ✅ |
+> **Hybrid Mode** — Manually curated quick start + Auto-generated skills list
 
 ---
 
-## 📊 分类浏览
+## 🚀 Quick Start
 
-### 🌐 Web & Browser
+### I want to...
 
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `agent-browser` | 浏览器自动化（Playwright）| ✅ | ❌ |
-| `browser-use` | 浏览器自动化（Browser-Use）| ✅ | ❌ |
-| `browser-routing` | 浏览器工具路由决策器 | ✅ | ❌ |
-| `firecrawl` | 网页抓取和搜索 | ❌ | ✅ Firecrawl |
-| `html-screenshot` | HTML 文件截图 | ✅ | ❌ |
-| `html2img` | HTML 转图片 | ✅ | ❌ |
-| `snap` | 网站截图 | ❌ | ✅ Snap API |
-
----
-
-### 🧠 AI & Development
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `ai-sdk` | AI SDK 开发指南 | ✅ | ❌ |
-| `mastra` | Mastra framework 指南 | ✅ | ❌ |
-| `calculator` | 100% 准确的数学计算 | ✅ | ❌ |
-| `coding-agent` | 编码任务委派 | ✅ | ❌ |
-| `development` | 通用开发指南 | ✅ | ❌ |
-| `typescript-advanced-types` | TypeScript 高级类型 | ✅ | ❌ |
-| `turborepo` | Turborepo 最佳实践 | ✅ | ❌ |
-| `vercel` | Vercel 部署指南 | ✅ | ❌ |
-| `tailscale` | Tailscale 网络配置 | ❌ | ✅ Tailscale |
+| Scenario | Recommended Skill | Description | Ready to use? |
+|----------|------------------|-------------|---------------|
+| **Research a topic** | `research-pro` | Unified research tool (Tavily + Grok + Reddit) | ❌ Requires API key |
+| **Calculate costs/percentages** | `calculator` | 100% accurate math calculations | ✅ |
+| **Open webpage/screenshot** | `agent-browser` | Browser automation (Playwright) | ✅ |
+| **Scrape webpage content** | `firecrawl` | Web scraping and search | ❌ Requires API key |
+| **Draw flowcharts** | `mermaid-architect` | Mermaid diagram generation and rendering | ✅ |
+| **Create Word documents** | `docx` | Word document creation and editing | ✅ |
+| **Process PDFs** | `pdf` | PDF operations (merge, split, OCR) | ✅ |
+| **Transcribe audio** | `openai-whisper` | Local speech-to-text | ✅ |
+| **Download Douyin videos** | `douyin-dl` | Douyin video download | ✅ |
+| **Deploy files to Vercel** | `deploy-artifact` | Deploy files and get public URL | ✅ |
+| **Check IP address** | `show-my-ip` | Show current public IP | ✅ |
+| **Check weather** | `weather` | Weather query | ✅ |
 
 ---
 
-### 📝 Content & Documentation
+## 🎯 Common Solution Stacks
 
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `docx` | Word 文档创建和编辑 | ✅ | ❌ |
-| `pdf` | PDF 操作 | ✅ | ❌ |
-| `mermaid-architect` | Mermaid 图表生成 | ✅ | ❌ |
-| `content-research-writer` | 内容研究 + 写作助手 | ✅ | ❌ |
-| `demo-video` | 产品演示视频创建 | ✅ | ❌ |
-
----
-
-### 🔍 Research & Analysis
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `research-pro` | 统一研究工具 | ❌ | ✅ Tavily/Grok/Reddit |
-| `grok-search` | Grok X/Twitter 搜索 | ❌ | ✅ xAI |
-| `reddit-cli` | Reddit 搜索和浏览 | ✅ | ❌ |
-| `content-inbox` | 统一内容管理 | ✅ | ❌ |
-| `platform-bridge` | 平台适配器 | ✅ | ❌ |
-
----
-
-### 📱 Platform & Integration
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `douyin-dl` | 抖音视频下载 | ✅ | ❌ |
-| `moonshot-usage` | Moonshot API 余额查询 | ❌ | ✅ Moonshot |
-| `claude-usage` | Claude 使用量查询 | ❌ | ✅ Claude |
-
----
-
-### 🛠️ Utilities & Tools
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `deploy-artifact` | 部署文件到 Vercel | ✅ | ❌ |
-| `show-my-ip` | 显示当前公网 IP | ✅ | ❌ |
-| `goplaces` | Google Places API | ❌ | ✅ Google |
-| `weather` | 天气查询 | ✅ | ❌ |
-| `ffmpeg-cli` | FFmpeg 命令行工具 | ❌ | 需要安装 ffmpeg |
-| `load` | 内部调试工具 | ✅ | ❌ |
-| `openclaw-config` | OpenClaw 配置管理 | ✅ | ❌ |
-
----
-
-### 🎵 Audio & Video
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `openai-whisper` | 本地语音转文字 | ✅ | ❌ |
-| `openai-whisper-api` | OpenAI Whisper API | ❌ | ✅ OpenAI |
-| `songsee` | 音频频谱可视化 | ✅ | ❌ |
-| `video-frames` | 视频帧提取 | ✅ | ❌ |
-| `video-analyzer` | 视频分析 | ✅ | ❌ |
-
----
-
-### 🧪 Testing & Quality
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `python-code-review` | Python 代码审查 | ✅ | ❌ |
-| `audio-timestamp-verifier` | 音频时间戳验证 | ✅ | ❌ |
-| `skills-watchdog` | Skills 监控 | ✅ | ❌ |
-
----
-
-### 🧠 Agent & Memory
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `reflection` | 自我反思和学习 | ✅ | ❌ |
-| `soul-keeper` | Workspace 文件同步 | ✅ | ❌ |
-| `self-improving` | 自我改进 | ✅ | ❌ |
-| `multi-agent` | 多 agent 协作 | ✅ | ❌ |
-
----
-
-### 📚 Documentation & Guides
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `skill-creator` | 创建和优化 skills | ✅ | ❌ |
-| `plan-mode` | 计划模式 | ✅ | ❌ |
-| `sub-agent-patterns` | Sub-agent 模式指南 | ✅ | ❌ |
-
----
-
-### 🔧 System & Config
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `openclaw-config` | OpenClaw 配置管理 | ✅ | ❌ |
-| `node-connect` | OpenClaw node 连接诊断 | ✅ | ❌ |
-| `healthcheck` | 系统安全和加固 | ✅ | ❌ |
-
----
-
-### 🎨 Creative & Design
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `nano-banana-2` | 图像生成（Gemini 3 Pro）| ❌ | ✅ Gemini |
-| `openai-image-gen` | 批量图像生成 | ❌ | ✅ OpenAI |
-| `ui-ux-pro-max-2` | UI/UX 设计指南 | ✅ | ❌ |
-
----
-
-### 📖 Knowledge & Learning
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `summarize` | URL/播客/文件总结 | ✅ | ❌ |
-| `Grokipedia` | Grokipedia 百科搜索 | ✅ | ❌ |
-| `apple-reminders` | Apple Reminders 管理 | ✅ | ❌ |
-
----
-
-### 🔐 Backend & Database
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `nextjs-supabase-auth` | Next.js + Supabase Auth | ✅ | ❌ |
-| `supabase-backend-platform` | Supabase 后端平台 | ❌ | ✅ Supabase |
-| `supabase-postgres-best-practices` | Supabase Postgres 最佳实践 | ✅ | ❌ |
-
----
-
-### 📈 SEO & Marketing
-
-| Skill | 描述 | 装了就能用？ | 需要 API key |
-|-------|------|------------|-------------|
-| `seo` | SEO 站点审计 + 内容写作 | ✅ | ❌ |
-
----
-
-## 🎯 常用方案组合
-
-### 方案 1: 网页自动化
-```bash
-# 安装
-git clone https://github.com/mfang0126/openclaw-skills.git ~/.openclaw/skills
-
-# 使用
-"帮我打开 google.com 并截图" → agent-browser
-"帮我抓取这个网页的内容" → firecrawl（需要 API key）
+### Stack 1: Web Automation
 ```
-
----
-
-### 方案 2: 内容创作
-```bash
-# 安装
-git clone https://github.com/mfang0126/openclaw-skills.git ~/.openclaw/skills
-
-# 使用
-"帮我研究一下这个话题" → content-research-writer
-"帮我创建一个 Word 文档" → docx
-"帮我画一个流程图" → mermaid-architect
+agent-browser + browser-routing + firecrawl
 ```
+**Use for**: Open webpages + screenshots + scrape data
 
----
-
-### 方案 3: Agent 持续改进
-```bash
-# 安装
-git clone https://github.com/mfang0126/openclaw-skills.git ~/.openclaw/skills
-
-# 使用（自动触发）
-用户纠正 agent → reflection 记录教训
-检测到需要更新配置 → soul-keeper 提示
+### Stack 2: Content Creation
 ```
-
----
-
-### 方案 4: 前端开发
-```bash
-# 安装
-git clone https://github.com/mfang0126/openclaw-skills.git ~/.openclaw/skills
-
-# 使用
-"如何在 Next.js 里用 generateText？" → ai-sdk
-"怎么用 Mastra 创建一个 agent？" → mastra
-"Next.js 最佳实践" → nextjs-best-practices
-"Supabase Auth 集成" → nextjs-supabase-auth
+content-research-writer + docx + pdf + mermaid-architect
 ```
+**Use for**: Research + writing + generate documents
 
----
-
-### 方案 5: 内容下载
-```bash
-# 安装
-git clone https://github.com/mfang0126/openclaw-skills.git ~/.openclaw/skills
-
-# 使用
-"帮我下载这个抖音视频" → douyin-dl
-"帮我处理这个链接（抖音/小红书）" → platform-bridge
+### Stack 3: Agent Continuous Improvement
 ```
-
----
-
-### 方案 6: 研究调研
-```bash
-# 安装
-git clone https://github.com/mfang0126/openclaw-skills.git ~/.openclaw/skills
-
-# 使用（需要 API key）
-"帮我研究一下这个竞品" → research-pro
-"搜索一下这个话题在 Twitter 上的讨论" → grok-search
-"帮我写一篇分析文章" → content-research-writer
+reflection + soul-keeper + self-improving
 ```
+**Use for**: Record lessons + sync configs + self-improvement
+
+### Stack 4: Frontend Development
+```
+ai-sdk + mastra + nextjs-best-practices + nextjs-supabase-auth
+```
+**Use for**: AI SDK + Mastra + Next.js + Supabase
+
+### Stack 5: Content Download
+```
+douyin-dl + platform-bridge + content-research-writer
+```
+**Use for**: Download Douyin/Xiaohongshu + multi-platform + writing
+
+### Stack 6: Research & Investigation
+```
+research-pro + grok-search + content-research-writer
+```
+**Use for**: Deep research + X search + writing
 
 ---
 
-## 🔍 快速搜索
+## 🔍 Quick Search
 
-### 按关键词搜索
-
-| 关键词 | 相关 Skills |
-|--------|------------|
-| **网页** | agent-browser, browser-use, firecrawl, html-screenshot |
-| **截图** | agent-browser, html-screenshot, snap |
-| **计算** | calculator |
-| **文档** | docx, pdf, mermaid-architect |
-| **音频** | openai-whisper, songsee, video-frames |
-| **视频** | video-frames, video-analyzer, demo-video |
-| **下载** | douyin-dl, platform-bridge |
-| **研究** | research-pro, grok-search, content-research-writer |
-| **部署** | deploy-artifact, vercel |
-| **记忆** | reflection, soul-keeper, self-improving |
-| **开发** | ai-sdk, mastra, nextjs-best-practices |
-| **测试** | python-code-review, skills-watchdog |
-| **配置** | openclaw-config, node-connect |
+| Keyword | Related Skills |
+|---------|---------------|
+| **webpage** | agent-browser, browser-use, firecrawl, html-screenshot |
+| **screenshot** | agent-browser, html-screenshot, snap |
+| **calculate** | calculator |
+| **document** | docx, pdf, mermaid-architect |
+| **audio** | openai-whisper, songsee, video-frames |
+| **video** | video-frames, video-analyzer, demo-video |
+| **download** | douyin-dl, platform-bridge |
+| **research** | research-pro, grok-search, content-research-writer |
+| **deploy** | deploy-artifact, vercel |
+| **memory** | reflection, soul-keeper, self-improving |
+| **develop** | ai-sdk, mastra, nextjs-best-practices |
+| **test** | python-code-review, skills-watchdog |
+| **config** | openclaw-config, node-connect |
 
 ---
 
-## 📊 统计
+## 📊 All Skills (Auto-generated)
 
-| 类别 | 数量 | 装了就能用 | 需要 API key |
-|------|------|-----------|-------------|
+> The following content is auto-generated from all SKILL.md frontmatter
+
+<!-- AUTO-GENERATED-START -->
+| Skill | Description |
+|-------|-------------|
+| [`agent-browser`](./agent-browser/) | Browser automation CLI for AI agents. Use when the user needs to interact with websites |
+| [`ai-sdk`](./ai-sdk/) | Answer questions about the Vercel AI SDK and help build AI-powered features |
+| [`audio-timestamp-verifier`](./audio-timestamp-verifier/) | Verify audio timestamp accuracy by re-transcribing segments and comparing |
+| [`browser-routing`](./browser-routing/) | Browser tool routing decision maker. Auto-selects the most token-efficient tool |
+| [`browser-use`](./browser-use/) | AI-powered browser automation CLI. Use when the user needs autonomous web tasks |
+| [`calculator`](./calculator/) | Precise mathematical calculations with 100% accuracy |
+| [`claude-usage`](./claude-usage/) | Check how much Claude Max / Claude Pro subscription quota you have LEFT |
+| [`content-inbox`](./content-inbox/) | Unified content management system. Auto-process Douyin/Xiaohongshu links |
+| [`content-research-writer`](./content-research-writer/) | Assists in writing high-quality content by conducting research and adding citations |
+| [`demo-video`](./demo-video/) | Create product demo videos by automating browser interactions and capturing frames |
+| [`deploy-artifact`](./deploy-artifact/) | Deploy local files (HTML/PDF/MD/images) to Vercel artifacts project |
+| [`development`](./development/) | Full-stack development workflow skill. Guides the complete development cycle |
+| [`docx`](./docx/) | Use this skill whenever the user wants to create, read, edit, or manipulate Word documents |
+| [`douyin-dl`](./douyin-dl/) | Download Douyin (抖音) videos via the TikHub API — no login required |
+| [`firecrawl`](./firecrawl/) | Firecrawl handles all web operations with superior accuracy and speed |
+| [`goplaces`](./goplaces/) | Query Google Places API (New) for text search, place details, and reviews |
+| [`grok-search`](./grok-search/) | Search the web or X/Twitter using xAI Grok server-side tools |
+| [`html-screenshot`](./html-screenshot/) | Capture screenshots of HTML files or URLs using agent-browser |
+| [`html2img`](./html2img/) | Convert HTML or Markdown to a PNG image using headless Playwright |
+| [`mastra`](./mastra/) | Comprehensive Mastra framework guide for building agents and workflows |
+| [`mermaid-architect`](./mermaid-architect/) | Generate and render Mermaid diagrams to PNG/SVG images |
+| [`moonshot-usage`](./moonshot-usage/) | Check Moonshot AI API balance and usage |
+| [`multi-agent`](./multi-agent/) | Orchestrate parallel and serial multi-agent task pipelines |
+| [`nano-banana-2`](./nano-banana-2/) | Generates AI images using the nano-banana CLI (Gemini 3.1 Flash default) |
+| [`nextjs-best-practices`](./nextjs-best-practices/) | Next.js App Router principles. Server Components, data fetching, routing patterns |
+| [`nextjs-supabase-auth`](./nextjs-supabase-auth/) | Expert integration of Supabase Auth with Next.js App Router |
+| [`openclaw-config`](./openclaw-config/) | OpenClaw configuration file (openclaw.json) safe modification rules |
+| [`pdf`](./pdf/) | Use this skill whenever the user wants to do anything with PDF files |
+| [`plan-mode`](./plan-mode/) | Plan Mode — think-only safe mode. Analyze intent, inventory resources, create plan |
+| [`platform-bridge`](./platform-bridge/) | Platform adapter (Douyin/Xiaohongshu/YouTube/Bilibili). Unified download interface |
+| [`python-code-review`](./python-code-review/) | Reviews Python code for type safety, async patterns, error handling |
+| [`reflection`](./reflection/) | Unified self-reflection and self-improvement. Three-layer memory system |
+| [`research-pro`](./research-pro/) | Unified research skill — handles ANY research or information-gathering task |
+| [`self-improving`](./self-improving/) | Self-reflection + Self-criticism + learning from corrections |
+| [`seo`](./seo/) | SEO specialist agent with site audits, content writing, and keyword research |
+| [`show-my-ip`](./show-my-ip/) | Show the current public IP address of the server |
+| [`skill-creator`](./skill-creator/) | Create new skills, modify and improve existing skills |
+| [`skills-watchdog`](./skills-watchdog/) | Automatically checks all installed OpenClaw skills for updates |
+| [`snap`](./snap/) | Give your agent the ability to instantly take screenshots of any website |
+| [`soul-keeper`](./soul-keeper/) | Monitor workspace files update timing and prompt optimization at the right time |
+| [`sub-agent-patterns`](./sub-agent-patterns/) | Comprehensive guide to sub-agents in Claude Code |
+| [`supabase-backend-platform`](./supabase-backend-platform/) | Supabase backend platform skill for database and authentication |
+| [`supabase-postgres-best-practices`](./supabase-postgres-best-practices/) | Postgres performance optimization and best practices from Supabase |
+| [`tailscale`](./tailscale/) | Hybrid skill using CLI for local operations and API for tailnet management |
+| [`turborepo`](./turborepo/) | Turborepo monorepo build system guidance |
+| [`typescript-advanced-types`](./typescript-advanced-types/) | Advanced TypeScript type patterns and techniques |
+| [`ui-ux-pro-max-2`](./ui-ux-pro-max-2/) | UI/UX design guidelines and best practices |
+| [`vercel`](./vercel/) | Vercel deployment and configuration guidance |
+| [`video-analyzer`](./video-analyzer/) | Deep analysis of video content: transcription, verification, materialization |
+
+<!-- AUTO-GENERATED-END -->
+
+---
+
+## 📈 Statistics
+
+| Category | Count | Ready to use | Requires API key |
+|----------|-------|--------------|------------------|
 | **Web & Browser** | 7 | 5 | 2 |
 | **AI & Development** | 9 | 8 | 1 |
 | **Content & Documentation** | 5 | 5 | 0 |
@@ -315,8 +165,8 @@ git clone https://github.com/mfang0126/openclaw-skills.git ~/.openclaw/skills
 | **Knowledge & Learning** | 3 | 3 | 0 |
 | **Backend & Database** | 3 | 2 | 1 |
 | **SEO & Marketing** | 1 | 1 | 0 |
-| **总计** | **60** | **47** | **13** |
+| **Total** | **60** | **47** | **13** |
 
 ---
 
-**最后更新**: 2026-03-27
+**Last Updated**: 2026-03-27
