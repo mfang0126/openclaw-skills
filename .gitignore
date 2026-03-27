@@ -1,4 +1,3 @@
-
 # Added by ggshield
 .cache_ggshield
 
@@ -15,7 +14,7 @@ reflection.bak/
 email-classifier/
 reminder-cron/
 
-# Skills Index 维护文件（私有）
-scripts/generate-skills-list.sh
+# Skills Index maintenance files (private)
+scripts/
 SKILLS_INDEX_TEMPLATE.md
 MAINTENANCE.md
