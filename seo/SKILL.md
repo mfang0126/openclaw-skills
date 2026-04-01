@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: SEO (Site Audit + Content Writer + Competitor Analysis)
 slug: seo
 version: 1.0.3

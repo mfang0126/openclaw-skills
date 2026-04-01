@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: ai-sdk
 description: |
   Answer questions about the Vercel AI SDK and help build AI-powered features.

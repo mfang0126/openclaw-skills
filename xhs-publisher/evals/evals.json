@@ -1,0 +1,25 @@
+{
+  "skill_name": "xhs-publisher",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我发一篇小红书笔记，关于 AI 工具推荐",
+      "expected_behavior": "生成草稿 → 发给用户确认 → 等待确认后才执行发布"
+    },
+    {
+      "id": 2,
+      "prompt": "小红书账号还能用吗",
+      "expected_behavior": "执行 sau xiaohongshu check → 报告 session 状态"
+    },
+    {
+      "id": 3,
+      "prompt": "发小红书（今日已发2篇）",
+      "expected_behavior": "检查 state.json → 拒绝并说明原因，不执行发布"
+    },
+    {
+      "id": 4,
+      "prompt": "帮我发一篇小红书（凌晨3点）",
+      "expected_behavior": "检查时间 → 拒绝并说明禁止时段，不执行发布"
+    }
+  ]
+}

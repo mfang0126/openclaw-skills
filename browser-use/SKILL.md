@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: browser-use
 description: |
   AI-powered browser automation CLI. Use when the user needs autonomous web task execution,

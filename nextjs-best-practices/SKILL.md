@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: nextjs-best-practices
 description: "Next.js App Router best practices, patterns, and decisions. Use when user asks about Next.js, App Router, Server Components, Client Components, data fetching, RSC, routing, metadata, caching, or server actions."
 allowed-tools: Read, Write, Edit, Glob, Grep

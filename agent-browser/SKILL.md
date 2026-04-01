@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: agent-browser
 description: |
   Browser automation CLI for AI agents. Use when the user needs to interact with websites,

@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: html-screenshot
 description: |
   Capture screenshots of HTML files or URLs using agent-browser. Auto-screenshot after visual changes (colors, layout, elements). Cost-free local rendering.

@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: moonshot-usage
 description: Check Moonshot AI API balance and usage. Use when user asks for "moonshot balance", "moonshot usage", "查 moonshot 余额", "kimi balance", "how much moonshot credit left", "moonshot 还有多少钱", or "check kimi api balance".
 ---

@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: platform-bridge
 description: "Platform adapter (Douyin/Xiaohongshu/WeChat/YouTube/Bilibili). Unified download interface, hides platform differences. Use when: download video, douyin link, xiaohongshu note, youtube download, bilibili download, platform download, video extraction, download douyin, download xiaohongshu."
 requires:

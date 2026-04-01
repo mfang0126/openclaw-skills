@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: deploy-artifact
 description: |
   Deploy local files (HTML/PDF/MD/images) to Vercel artifacts project and return a public URL.

@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: video-analyzer
 description: |
   深度分析视频内容：转写、验证、素材化，输出结构化 Markdown 笔记。

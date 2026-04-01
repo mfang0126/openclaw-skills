@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: content-research-writer
 description: |
   Assists in writing high-quality content by conducting research, adding citations, improving hooks,

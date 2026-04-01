@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: douyin-dl
 description: |
   Download Douyin (抖音) videos via the TikHub API — no login required.

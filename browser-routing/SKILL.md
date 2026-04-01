@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: browser-routing
 description: |
   Browser tool routing decision maker. Auto-selects the most token-efficient and reliable tool for any web operation.

@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: soul-keeper
 description: |
   Monitors workspace files for update timing and prompts optimization at the right time. Based on WORKSPACE_FILES_GUIDE.md execution.

@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: python-code-review
 description: "Reviews Python code for type safety, async patterns, error handling, and common mistakes. Use when: reviewing .py files, checking type hints, async/await usage, exception handling, code review python, check my code, review this function."
 requires:

@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: vercel
 description: Deploy applications and manage projects with complete CLI reference. Commands for deployments, projects, domains, environment variables, and live documentation access.
 metadata: {"clawdbot":{"emoji":"▲","requires":{"bins":["vercel","curl"]}}}

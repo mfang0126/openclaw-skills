@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: turborepo
 description: |
   Turborepo monorepo build system guidance. Triggers on: turbo.json, task pipelines,

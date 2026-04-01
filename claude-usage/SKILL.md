@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: claude-quota-checker
 description: |
   Check how much Claude Max / Claude Pro subscription quota you have LEFT — not how much you spent.

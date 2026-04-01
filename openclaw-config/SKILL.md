@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: openclaw-config
 description: |
   OpenClaw 配置文件（openclaw.json）的安全修改规则、字段参考和错误学习记录。

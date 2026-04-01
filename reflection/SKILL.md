@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: reflection
 description: |
   Unified self-reflection and self-improvement. Three-layer memory:

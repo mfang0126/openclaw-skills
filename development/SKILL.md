@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: development
 description: |
   Full-stack development workflow skill. Guides the complete cycle from understanding

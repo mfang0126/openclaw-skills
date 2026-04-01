@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: skill-creator
 description: |
   Create new skills, modify and improve existing skills, and measure skill performance.

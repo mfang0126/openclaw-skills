@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: html2img
 description: |
   Convert HTML or Markdown to a PNG image using headless Playwright. Zero tokens,

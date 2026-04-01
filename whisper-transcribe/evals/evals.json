@@ -1,0 +1,24 @@
+{
+  "skill_name": "whisper-transcribe",
+  "pattern": "Tool Wrapper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "转文字 ~/Downloads/douyin/douyin_7621752652505845044.mp4",
+      "input": "~/Downloads/douyin/douyin_7621752652505845044.mp4",
+      "expected": "Chinese text output from whisper.cpp fallback, ~2-3 seconds"
+    },
+    {
+      "id": 2,
+      "prompt": "transcribe /tmp/meeting.wav",
+      "input": "/tmp/meeting.wav",
+      "expected": "Text output, provider is groq or whisper.cpp depending on key availability"
+    },
+    {
+      "id": 3,
+      "prompt": "转文字 /tmp/nonexistent.wav",
+      "input": "/tmp/nonexistent.wav",
+      "expected": "Error: File not found, exit code 1"
+    }
+  ]
+}

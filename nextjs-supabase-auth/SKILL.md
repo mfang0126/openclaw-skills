@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: nextjs-supabase-auth
 description: "Expert integration of Supabase Auth with Next.js App Router Use when: supabase auth next, authentication next.js, login supabase, auth middleware, protected route, oauth callback, session refresh, protected page, @supabase/ssr."
 source: vibeship-spawner-skills (Apache 2.0)

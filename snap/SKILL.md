@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: snap
 description: |
   Give your agent the ability to instantly take screenshots of any website with just the URL.

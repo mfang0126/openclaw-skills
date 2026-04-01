@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: multi-agent
 description: Orchestrate parallel and serial multi-agent task pipelines. Use when user says "multi-agent", "parallel processing", "assign to agent", "use multiple agents", "team collaboration", or asks researcher/content/tech-lead/verifier to do something.
 ---

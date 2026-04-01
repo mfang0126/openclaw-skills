@@ -1,4 +1,5 @@
 ---
+user-invocable: false
 name: supabase-backend-platform
 description: |
   Supabase backend platform skill. Use when user mentions: Supabase, Postgres database,
