@@ -18,3 +18,6 @@ reminder-cron/
 scripts/
 SKILLS_INDEX_TEMPLATE.md
 MAINTENANCE.md
+.DS_Store
+bundled-baseline.sha256
+verify-bundled.sh
