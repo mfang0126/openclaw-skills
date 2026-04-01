@@ -1,6 +1,7 @@
 ---
 user-invocable: false
 name: SEO (Site Audit + Content Writer + Competitor Analysis)
+source: clawhub.ai/seo (v1.0.3) — seo
 slug: seo
 version: 1.0.3
 homepage: https://clawic.com/skills/seo

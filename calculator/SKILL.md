@@ -1,6 +1,7 @@
 ---
 user-invocable: false
 name: calculator
+source: Anthropic (Claude Code built-in) — © 2025 Anthropic
 description: Precise mathematical calculations with 100% accuracy. Use for any arithmetic, percentages, unit conversions, or cost calculations. LLMs cannot reliably perform math - always use this tool for calculations.
 metadata:
   openclaw:

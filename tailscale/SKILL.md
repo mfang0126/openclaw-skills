@@ -1,6 +1,7 @@
 ---
 user-invocable: false
 name: tailscale
+source: clawhub.ai/tailscale (v1.0.0) — tailscale
 version: 1.0.0
 description: Manage Tailscale tailnet via CLI and API. Use when the user asks to "check tailscale status", "list tailscale devices", "ping a device", "send file via tailscale", "tailscale funnel", "create auth key", "check who's online", or mentions Tailscale network management.
 ---

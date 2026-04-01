@@ -50,7 +50,7 @@ bash {skillDir}/scripts/check.sh
 
 To enable tracking for a skill from a monorepo, add to its SKILL.md:
 ```yaml
-source: https://github.com/owner/repo/tree/main/path/to/skill
+source: Original (created locally)
 ```
 ---
 

@@ -1,6 +1,7 @@
 ---
 user-invocable: false
 name: claude-quota-checker
+source: adapted from openclaw-claude-usage (ClawHub) — rewritten with tmux approach
 description: |
   Check how much Claude Max / Claude Pro subscription quota you have LEFT — not how much you spent.
   Shows remaining % for session and weekly windows, plan type, and exact reset times.

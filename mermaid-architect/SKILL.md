@@ -1,6 +1,7 @@
 ---
 user-invocable: false
 name: mermaid-architect
+source: clawhub.ai/mermaid-architect (v1.0.0) — mermaid-architect
 description: Generate and render Mermaid diagrams to PNG/SVG images. Use when user asks for "diagram", "flowchart", "sequence diagram", "visualize", "draw this", "make a chart", "architecture diagram", or "visualize this flow".
 ---
 

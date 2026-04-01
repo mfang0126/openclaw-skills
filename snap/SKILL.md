@@ -1,6 +1,7 @@
 ---
 user-invocable: false
 name: snap
+source: clawhub.ai/snap (v1.0.2) — snap
 description: |
   Give your agent the ability to instantly take screenshots of any website with just the URL.
   Cloud-based, free, open source. Powered by headless Chromium.

@@ -1,6 +1,7 @@
 ---
 user-invocable: false
 name: show-my-ip
+source: clawhub.ai/show-my-ip (v1.0.0) — show-my-ip
 description: "Show the current public IP address of the server. Use when asked: what's my IP, show public IP, what IP am I coming from, check VPN, server outbound IP, firewall allowlist IP."
 requires:
   bins: ["curl"]

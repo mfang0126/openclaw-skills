@@ -1,6 +1,7 @@
 ---
 user-invocable: false
 name: skill-creator
+source: Anthropic (Claude Code built-in) — © 2025 Anthropic
 description: |
   Create new skills, modify and improve existing skills, and measure skill performance.
 
