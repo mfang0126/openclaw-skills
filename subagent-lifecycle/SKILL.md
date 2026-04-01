@@ -223,9 +223,33 @@ Why same response? If you report first and delete later:
 - The watchdog fires, creating confusion
 - You waste time investigating a completed task
 
+### How to Delete Watchdog (Step-by-Step)
+
+**Step 1: Get the UUID**
+```
+cron list
+```
+Find your watchdog in the list, copy the `id` field (e.g., `85bc113f-2585-490e-84ea-e73b6b8d3dc4`).
+
+**Step 2: Delete by UUID**
+```
+cron remove --jobId <UUID>
+```
+⚠️ **Important**: Do NOT use the watchdog `name` (e.g., "watchdog-wave1"). Use the full UUID.
+
+**Step 3: Verify deletion**
+Wait 5-10 minutes. If no watchdog trigger arrives → success.
+
+**Step 4: If still triggering (deletion failed)**
+Some cron jobs persist in cache even after `cron remove` reports success. Use the nuclear option:
+```
+gateway restart
+```
+This clears all cron jobs from memory. All legitimate cron jobs will reload from config; the stuck watchdog will be gone.
+
 ### Cleanup Checklist
 
-- [ ] Watchdog cron deleted
+- [ ] Watchdog cron deleted (and verified 5 min later, or gateway restarted if stuck)
 - [ ] Result summarized to requester
 - [ ] Any temporary files cleaned up (if applicable)
 - [ ] Session can be closed (if one-shot task)

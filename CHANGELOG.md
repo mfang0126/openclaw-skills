@@ -8,27 +8,34 @@ Every skill in this repo is annotated with its origin:
 
 | Source | Label | Count | Description |
 |--------|-------|-------|-------------|
-| **Original** | 🟢 | 22 | Created by us (King/Ming/Freedom/hopyky) |
-| **ClawHub** | 🔵 | 8 | Installed from [clawhub.ai](https://clawhub.ai), possibly modified locally |
+| **Original** | 🟢 | 26 | Created by us (King/Ming/Freedom/hopyky) |
+| **ClawHub (in repo, modified)** | 🔵 | 2 | From ClawHub, we added content |
+| **ClawHub (external)** | ⚪ | 6 | From ClawHub, no modifications, installed separately |
+| **Anthropic (external)** | 🔴 | 2 | © Anthropic, Claude Code built-in, installed separately |
 | **Adapted** | 🟡 | 1 | Based on third-party, rewritten for our use case |
 | **Third-party (in repo)** | 🟠 | 5 | From specific third-party sources with licenses |
 | **Third-party (external)** | ⚪ | 1 | Installed outside this repo |
-| **Anthropic** | 🔴 | 4 | © Anthropic, from Claude Code built-in skills |
 
-### 🟢 Original Skills
+### 🟢 Original Skills (in this repo)
 douyin-dl, content-research-writer, platform-bridge, video-analyzer, openclaw-config, soul-keeper, reflection, skills-watchdog, multi-agent, sub-agent-patterns, subagent-lifecycle, plan, development, python-code-review, deploy-artifact, html-screenshot, html2img, moonshot-usage, supabase-backend-platform, turborepo, typescript-advanced-types, xhs-publisher, knowledge-capture, reddit, safe-delete, whisper-transcribe
 
-### 🔵 ClawHub Skills
-| Skill | Slug | Version | Author |
-|-------|------|---------|--------|
-| grok-search | grok-search | 0.2.1 | ClawHub |
-| seo | seo | 1.0.3 | ClawHub (clawic.com) |
-| ffmpeg-cli | ffmpeg-cli | 1.0.0 | ascendswang (ClawHub) |
-| mermaid-architect | mermaid-architect | 1.0.0 | ClawHub |
-| snap | snap | 1.0.2 | Kav-K (ClawHub) |
-| show-my-ip | show-my-ip | 1.0.0 | ClawHub |
-| tailscale | tailscale | 1.0.0 | ClawHub |
-| ui-ux-pro-max-2 | ui-ux-pro-max-2 | 0.1.0 | ClawHub |
+### 🔵 ClawHub Skills (in this repo, with modifications)
+| Skill | Slug | Version | Our Changes |
+|-------|------|---------|-------------|
+| grok-search | grok-search | 0.2.1 | Added References section |
+| seo | seo | 1.0.3 | Added Prerequisites section |
+
+### ⚪ External Skills (not in this repo, installed separately)
+| Skill | Source | Description |
+|-------|--------|-------------|
+| ffmpeg-cli | ClawHub (ascendswang) | FFmpeg wrapper |
+| mermaid-architect | ClawHub | Mermaid diagrams |
+| snap | ClawHub (Kav-K) | Website screenshots |
+| show-my-ip | ClawHub | Public IP lookup |
+| tailscale | ClawHub | Tailscale management |
+| ui-ux-pro-max-2 | ClawHub | UI/UX design |
+| docx | Claude Code built-in (© Anthropic) | Word documents |
+| pdf | Claude Code built-in (© Anthropic) | PDF operations |
 
 ### 🟡 Adapted Skills
 | Skill | Based On | Changes |
@@ -49,13 +56,30 @@ douyin-dl, content-research-writer, platform-bridge, video-analyzer, openclaw-co
 |-------|--------|---------|
 | humanizer | [blader/humanizer](https://github.com/blader/humanizer) | MIT (© Siqi Chen) |
 
-### 🔴 Anthropic (Claude Code built-in)
+### 🔴 Anthropic (in repo, with modifications)
+| Skill | License | Our Changes |
+|-------|---------|-------------|
+| calculator | MIT © 2025 Anthropic | Added Examples + Error Handling + evals |
+| skill-creator | Apache 2.0 © Anthropic | Generalized push target template |
+
+### 🔴 Anthropic (external, not in repo)
 | Skill | License |
 |-------|---------|
 | docx | Proprietary © 2025 Anthropic |
 | pdf | Proprietary © 2025 Anthropic |
-| calculator | MIT © 2025 Anthropic |
-| skill-creator | Apache 2.0 © Anthropic |
+
+---
+
+## [2026-04-02] — c4e9767
+
+### Removed (no modifications, moved to external)
+- ffmpeg-cli, mermaid-architect, snap, show-my-ip, tailscale, ui-ux-pro-max-2 — ClawHub, unmodified
+- docx, pdf — Claude Code built-in, unmodified
+- These are now listed in README as "External Skills We Use"
+
+### Updated
+- README: added "External Skills We Use" section, removed deleted skills from Skills List
+- CHANGELOG: restructured Skill Source Index to reflect in-repo vs external
 
 ---
 

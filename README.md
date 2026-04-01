@@ -62,9 +62,6 @@
 
 | Skill | Description | When to Use | Quick Example |
 |-------|-------------|-------------|---------------|
-| **docx** | Word document creation and editing | Create/edit .docx files | "Create a Word document" |
-| **pdf** | PDF operations (merge, split, OCR) | Process PDF files | "Merge these PDFs" |
-| **mermaid-architect** | Mermaid diagram generation and rendering | Draw flowcharts, sequence diagrams | "Draw a flowchart" |
 | **html-screenshot** | HTML file screenshot | Render HTML to image | "See how this HTML looks" |
 
 ---
@@ -74,7 +71,6 @@
 | Skill | Description | When to Use | Quick Example |
 |-------|-------------|-------------|---------------|
 | **deploy-artifact** | Deploy files to Vercel artifacts | Share files, get public URL | "Deploy this HTML file" |
-| **show-my-ip** | Show current public IP | Check server IP | "What's my current IP?" |
 | **goplaces** | Google Places API query | Search places, get details | "Get info about this restaurant" |
 | **weather** | Weather query (wttr.in + Open-Meteo) | Check weather, forecasts | "What's the weather tomorrow?" |
 
@@ -144,8 +140,7 @@
 
 | Skill | Description | When to Use | Quick Example |
 |-------|-------------|-------------|---------------|
-| **nano-banana-pro** | Image generation (Gemini 3 Pro) | Generate or edit images | "Generate an image" |
-| **openai-image-gen** | Batch image generation (OpenAI) | Batch generate images + gallery | "Batch generate 10 images" |
+| **nano-banana-2** | Image generation (NB2 + Pro) | Generate or edit images | "Generate an image" |
 
 ---
 
@@ -379,5 +374,22 @@ MIT - Use freely, improve freely, share freely
 
 ---
 
-**Last Updated**: 2026-03-27
-**Skills Count**: 45+
+## External Skills We Use
+
+These are installed separately (not in this repo):
+
+| Skill | Source | Description |
+|-------|--------|-------------|
+| ffmpeg-cli | [ClawHub](https://clawhub.ai) (ascendswang) | FFmpeg wrapper |
+| mermaid-architect | [ClawHub](https://clawhub.ai) | Mermaid diagrams |
+| snap | [ClawHub](https://clawhub.ai) (Kav-K) | Website screenshots |
+| show-my-ip | [ClawHub](https://clawhub.ai) | Public IP lookup |
+| tailscale | [ClawHub](https://clawhub.ai) | Tailscale management |
+| ui-ux-pro-max-2 | [ClawHub](https://clawhub.ai) | UI/UX design |
+| docx | Claude Code built-in (© Anthropic) | Word documents |
+| pdf | Claude Code built-in (© Anthropic) | PDF operations |
+
+---
+
+**Last Updated**: 2026-04-02
+**Skills Count**: 37+ (this repo) + 8 external
