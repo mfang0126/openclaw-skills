@@ -202,9 +202,9 @@ cat ~/.openclaw/skills/calculator/SKILL.md | head -20
 
 | Pattern | Skills | Characteristics |
 |---------|--------|-----------------|
-| **Tool Wrapper** | ai-sdk, mastra, nextjs-best-practices | Load knowledge on demand |
-| **Generator** | mermaid-architect, docx, pdf | Fixed output structure |
-| **Reviewer** | python-code-review, audio-timestamp-verifier | Review and validate |
+| **Tool Wrapper** | ai-sdk | Load knowledge on demand |
+| **Generator** | calculator | Fixed output structure |
+| **Reviewer** | python-code-review | Review and validate |
 | **Inversion** | plan-mode | Ask before doing |
 | **Pipeline** | reflection, soul-keeper | Pipeline processing |
 
@@ -251,7 +251,7 @@ Example:
 ### 📊 "I need to draw flowcharts/sequence diagrams"
 
 ```
-Recommended: mermaid-architect
+Recommended: mermaid-architect (installed from ClawHub)
 
 Example:
 "Draw a flowchart for user login"
@@ -263,8 +263,8 @@ Example:
 ### 📝 "I need to create Word/PDF documents"
 
 ```
-Word documents → docx
-PDF operations → pdf
+Word documents → docx (Claude Code built-in)
+PDF operations → pdf (Claude Code built-in)
 
 Example:
 "Create a Word document with a table" → docx
@@ -388,8 +388,13 @@ These are installed separately (not in this repo):
 | ui-ux-pro-max-2 | [ClawHub](https://clawhub.ai) | UI/UX design |
 | docx | Claude Code built-in (© Anthropic) | Word documents |
 | pdf | Claude Code built-in (© Anthropic) | PDF operations |
+| nextjs-supabase-auth | vibeship-spawner-skills (Apache 2.0) | Next.js + Supabase auth |
+| nextjs-best-practices | Community | Next.js best practices |
+| supabase-postgres | Supabase official docs (MIT) | Postgres optimization |
+| mastra | Mastra official docs (Apache 2.0) | Mastra framework guide |
+| nano-banana-2 | kingbootoshi (MIT) | AI image generation |
 
 ---
 
 **Last Updated**: 2026-04-02
-**Skills Count**: 37+ (this repo) + 8 external
+**Skills Count**: 32+ (this repo) + 13 external
