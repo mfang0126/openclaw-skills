@@ -1,7 +1,7 @@
 {
   "name": "openclaw-skills",
   "version": "1.0.0",
-  "description": "The largest open-source collection of production-ready AI agent skills — 60+ skills for web automation, research, content creation, and more",
+  "description": "The largest open-source collection of production-ready AI agent skills — 31+ skills for web automation, research, content creation, and more",
   "keywords": [
     "ai-agent-skills",
     "openclaw",
@@ -34,9 +34,9 @@
     "Creative & Design",
     "Knowledge & Learning"
   ],
-  "skillCount": 60,
-  "readyToUseCount": 47,
-  "requiresApiKeyCount": 13,
+  "skillCount": 31,
+  "readyToUseCount": 26,
+  "requiresApiKeyCount": 5,
   "license": "MIT",
   "repository": "https://github.com/mfang0126/openclaw-skills",
   "documentation": "https://docs.openclaw.ai",
@@ -78,9 +78,9 @@
       "unique": "Zero API cost, Node.js execution"
     },
     {
-      "skill": "mermaid-architect",
-      "description": "Generate and render Mermaid diagrams to images",
-      "unique": "Auto-render to PNG/SVG"
+      "skill": "douyin-dl",
+      "description": "Download Douyin videos via TikHub API — no login required",
+      "unique": "Chinese TikTok video downloader"
     }
   ]
 }

@@ -14,13 +14,13 @@
 | **Calculate costs/percentages** | `calculator` | 100% accurate math calculations | ✅ |
 | **Open webpage/screenshot** | `agent-browser` | Browser automation (Playwright) | ✅ |
 | **Scrape webpage content** | `firecrawl` | Web scraping and search | ❌ Requires API key |
-| **Draw flowcharts** | `mermaid-architect` | Mermaid diagram generation and rendering | ✅ |
-| **Create Word documents** | `docx` | Word document creation and editing | ✅ |
-| **Process PDFs** | `pdf` | PDF operations (merge, split, OCR) | ✅ |
+| **Draw flowcharts** | `mermaid-architect`* | Mermaid diagram generation and rendering | ✅ External |
+| **Create Word documents** | `docx`* | Word document creation and editing | ✅ External |
+| **Process PDFs** | `pdf`* | PDF operations (merge, split, OCR) | ✅ External |
 | **Transcribe audio** | `openai-whisper` | Local speech-to-text | ✅ |
 | **Download Douyin videos** | `douyin-dl` | Douyin video download | ✅ |
 | **Deploy files to Vercel** | `deploy-artifact` | Deploy files and get public URL | ✅ |
-| **Check IP address** | `show-my-ip` | Show current public IP | ✅ |
+| **Check IP address** | `show-my-ip`* | Show current public IP | ✅ External |
 | **Check weather** | `weather` | Weather query | ✅ |
 
 ---
@@ -35,9 +35,10 @@ agent-browser + browser-routing + firecrawl
 
 ### Stack 2: Content Creation
 ```
-content-research-writer + docx + pdf + mermaid-architect
+content-research-writer + docx* + pdf* + mermaid-architect*
 ```
 **Use for**: Research + writing + generate documents
+> *External dependencies — install separately
 
 ### Stack 3: Agent Continuous Improvement
 ```
@@ -47,9 +48,10 @@ reflection + soul-keeper + self-improving
 
 ### Stack 4: Frontend Development
 ```
-ai-sdk + mastra + nextjs-best-practices + nextjs-supabase-auth
+ai-sdk + mastra* + nextjs-best-practices* + nextjs-supabase-auth*
 ```
 **Use for**: AI SDK + Mastra + Next.js + Supabase
+> *External dependencies — install separately
 
 ### Stack 5: Content Download
 ```
@@ -70,16 +72,16 @@ research-pro + grok-search + content-research-writer
 | Keyword | Related Skills |
 |---------|---------------|
 | **webpage** | agent-browser, browser-use, firecrawl, html-screenshot |
-| **screenshot** | agent-browser, html-screenshot, snap |
+| **screenshot** | agent-browser, html-screenshot, snap* |
 | **calculate** | calculator |
-| **document** | docx, pdf, mermaid-architect |
+| **document** | docx*, pdf*, mermaid-architect* |
 | **audio** | openai-whisper, songsee, video-frames |
 | **video** | video-frames, video-analyzer, demo-video |
 | **download** | douyin-dl, platform-bridge |
 | **research** | research-pro, grok-search, content-research-writer |
 | **deploy** | deploy-artifact, vercel |
 | **memory** | reflection, soul-keeper, self-improving |
-| **develop** | ai-sdk, mastra, nextjs-best-practices |
+| **develop** | ai-sdk, mastra*, nextjs-best-practices* |
 | **test** | python-code-review, skills-watchdog |
 | **config** | openclaw-config, node-connect |
 
@@ -92,55 +94,37 @@ research-pro + grok-search + content-research-writer
 <!-- AUTO-GENERATED-START -->
 | Skill | Description |
 |-------|-------------|
-| [`agent-browser`](./agent-browser/) | Browser automation CLI for AI agents. Use when the user needs to interact with websites |
-| [`ai-sdk`](./ai-sdk/) | Answer questions about the Vercel AI SDK and help build AI-powered features |
-| [`audio-timestamp-verifier`](./audio-timestamp-verifier/) | Verify audio timestamp accuracy by re-transcribing segments and comparing |
-| [`browser-routing`](./browser-routing/) | Browser tool routing decision maker. Auto-selects the most token-efficient tool |
-| [`browser-use`](./browser-use/) | AI-powered browser automation CLI. Use when the user needs autonomous web tasks |
 | [`calculator`](./calculator/) | Precise mathematical calculations with 100% accuracy |
 | [`claude-usage`](./claude-usage/) | Check how much Claude Max / Claude Pro subscription quota you have LEFT |
-| [`content-inbox`](./content-inbox/) | Unified content management system. Auto-process Douyin/Xiaohongshu links |
 | [`content-research-writer`](./content-research-writer/) | Assists in writing high-quality content by conducting research and adding citations |
-| [`demo-video`](./demo-video/) | Create product demo videos by automating browser interactions and capturing frames |
 | [`deploy-artifact`](./deploy-artifact/) | Deploy local files (HTML/PDF/MD/images) to Vercel artifacts project |
 | [`development`](./development/) | Full-stack development workflow skill. Guides the complete development cycle |
-| [`docx`](./docx/) | Use this skill whenever the user wants to create, read, edit, or manipulate Word documents |
 | [`douyin-dl`](./douyin-dl/) | Download Douyin (抖音) videos via the TikHub API — no login required |
-| [`firecrawl`](./firecrawl/) | Firecrawl handles all web operations with superior accuracy and speed |
-| [`goplaces`](./goplaces/) | Query Google Places API (New) for text search, place details, and reviews |
 | [`grok-search`](./grok-search/) | Search the web or X/Twitter using xAI Grok server-side tools |
 | [`html-screenshot`](./html-screenshot/) | Capture screenshots of HTML files or URLs using agent-browser |
 | [`html2img`](./html2img/) | Convert HTML or Markdown to a PNG image using headless Playwright |
-| [`mastra`](./mastra/) | Comprehensive Mastra framework guide for building agents and workflows |
-| [`mermaid-architect`](./mermaid-architect/) | Generate and render Mermaid diagrams to PNG/SVG images |
+| [`knowledge-capture`](./knowledge-capture/) | Capture and organize knowledge from conversations |
 | [`moonshot-usage`](./moonshot-usage/) | Check Moonshot AI API balance and usage |
 | [`multi-agent`](./multi-agent/) | Orchestrate parallel and serial multi-agent task pipelines |
-| [`nano-banana-2`](./nano-banana-2/) | Generates AI images using the nano-banana CLI (Gemini 3.1 Flash default) |
-| [`nextjs-best-practices`](./nextjs-best-practices/) | Next.js App Router principles. Server Components, data fetching, routing patterns |
-| [`nextjs-supabase-auth`](./nextjs-supabase-auth/) | Expert integration of Supabase Auth with Next.js App Router |
 | [`openclaw-config`](./openclaw-config/) | OpenClaw configuration file (openclaw.json) safe modification rules |
-| [`pdf`](./pdf/) | Use this skill whenever the user wants to do anything with PDF files |
-| [`plan-mode`](./plan-mode/) | Plan Mode — think-only safe mode. Analyze intent, inventory resources, create plan |
+| [`plan`](./plan/) | Plan Mode — think-only safe mode. Analyze intent, inventory resources, create plan |
 | [`platform-bridge`](./platform-bridge/) | Platform adapter (Douyin/Xiaohongshu/YouTube/Bilibili). Unified download interface |
 | [`python-code-review`](./python-code-review/) | Reviews Python code for type safety, async patterns, error handling |
+| [`reddit`](./reddit/) | Search and browse Reddit content |
 | [`reflection`](./reflection/) | Unified self-reflection and self-improvement. Three-layer memory system |
-| [`research-pro`](./research-pro/) | Unified research skill — handles ANY research or information-gathering task |
-| [`self-improving`](./self-improving/) | Self-reflection + Self-criticism + learning from corrections |
+| [`safe-delete`](./safe-delete/) | Safely delete files with confirmation and backup |
 | [`seo`](./seo/) | SEO specialist agent with site audits, content writing, and keyword research |
-| [`show-my-ip`](./show-my-ip/) | Show the current public IP address of the server |
 | [`skill-creator`](./skill-creator/) | Create new skills, modify and improve existing skills |
 | [`skills-watchdog`](./skills-watchdog/) | Automatically checks all installed OpenClaw skills for updates |
-| [`snap`](./snap/) | Give your agent the ability to instantly take screenshots of any website |
 | [`soul-keeper`](./soul-keeper/) | Monitor workspace files update timing and prompt optimization at the right time |
 | [`sub-agent-patterns`](./sub-agent-patterns/) | Comprehensive guide to sub-agents in Claude Code |
+| [`subagent-lifecycle`](./subagent-lifecycle/) | Manage subagent creation, execution, and cleanup |
 | [`supabase-backend-platform`](./supabase-backend-platform/) | Supabase backend platform skill for database and authentication |
-| [`supabase-postgres-best-practices`](./supabase-postgres-best-practices/) | Postgres performance optimization and best practices from Supabase |
-| [`tailscale`](./tailscale/) | Hybrid skill using CLI for local operations and API for tailnet management |
 | [`turborepo`](./turborepo/) | Turborepo monorepo build system guidance |
 | [`typescript-advanced-types`](./typescript-advanced-types/) | Advanced TypeScript type patterns and techniques |
-| [`ui-ux-pro-max-2`](./ui-ux-pro-max-2/) | UI/UX design guidelines and best practices |
-| [`vercel`](./vercel/) | Vercel deployment and configuration guidance |
 | [`video-analyzer`](./video-analyzer/) | Deep analysis of video content: transcription, verification, materialization |
+| [`whisper-transcribe`](./whisper-transcribe/) | Transcribe audio using OpenAI Whisper |
+| [`xhs-publisher`](./xhs-publisher/) | Publish content to Xiaohongshu (Little Red Book) |
 
 <!-- AUTO-GENERATED-END -->
 
@@ -150,23 +134,51 @@ research-pro + grok-search + content-research-writer
 
 | Category | Count | Ready to use | Requires API key |
 |----------|-------|--------------|------------------|
-| **Web & Browser** | 7 | 5 | 2 |
-| **AI & Development** | 9 | 8 | 1 |
-| **Content & Documentation** | 5 | 5 | 0 |
-| **Research & Analysis** | 5 | 2 | 3 |
-| **Platform & Integration** | 3 | 1 | 2 |
-| **Utilities & Tools** | 7 | 5 | 2 |
-| **Audio & Video** | 5 | 4 | 1 |
-| **Testing & Quality** | 3 | 3 | 0 |
-| **Agent & Memory** | 4 | 4 | 0 |
-| **Documentation & Guides** | 3 | 3 | 0 |
-| **System & Config** | 3 | 3 | 0 |
-| **Creative & Design** | 3 | 1 | 2 |
-| **Knowledge & Learning** | 3 | 3 | 0 |
-| **Backend & Database** | 3 | 2 | 1 |
+| **AI & Development** | 6 | 6 | 0 |
+| **Content & Documentation** | 4 | 4 | 0 |
+| **Research & Analysis** | 3 | 1 | 2 |
+| **Platform & Integration** | 4 | 4 | 0 |
+| **Utilities & Tools** | 4 | 4 | 0 |
+| **Audio & Video** | 2 | 2 | 0 |
+| **Testing & Quality** | 2 | 2 | 0 |
+| **Agent & Memory** | 3 | 3 | 0 |
+| **System & Config** | 2 | 2 | 0 |
+| **Backend & Database** | 2 | 1 | 1 |
 | **SEO & Marketing** | 1 | 1 | 0 |
-| **Total** | **60** | **47** | **13** |
+| **Total** | **31** | **30** | **5** |
 
 ---
 
-**Last Updated**: 2026-03-27
+## 📦 External Dependencies
+
+> The following skills are **installed separately** and not tracked in this repository.
+> They are available via ClawHub, Claude Code built-ins, or third-party sources.
+
+### ClawHub Skills (7)
+| Skill | Description | Source |
+|-------|-------------|--------|
+| `ffmpeg-cli` | FFmpeg command-line video/audio processing | ClawHub |
+| `mermaid-architect` | Generate and render Mermaid diagrams to PNG/SVG | ClawHub |
+| `snap` | Take instant screenshots of any website | ClawHub |
+| `show-my-ip` | Show current public IP address | ClawHub |
+| `tailscale` | Tailscale VPN management | ClawHub |
+| `ui-ux-pro-max-2` | UI/UX design guidelines | ClawHub |
+
+### Claude Code Built-in (2)
+| Skill | Description | Source |
+|-------|-------------|--------|
+| `docx` | Word document creation and editing | Claude Code |
+| `pdf` | PDF operations (merge, split, OCR) | Claude Code |
+
+### Third-Party Skills (4)
+| Skill | Description | Source |
+|-------|-------------|--------|
+| `mastra` | Mastra framework guide for agents and workflows | Third-party |
+| `nano-banana-2` | AI image generation via nano-banana CLI | Third-party |
+| `nextjs-best-practices` | Next.js App Router best practices | Third-party |
+| `nextjs-supabase-auth` | Supabase Auth with Next.js integration | Third-party |
+| `supabase-postgres-best-practices` | Postgres optimization from Supabase | Third-party |
+
+---
+
+**Last Updated**: 2026-04-02
