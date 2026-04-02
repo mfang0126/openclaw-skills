@@ -13,13 +13,33 @@
     },
     {
       "id": 3,
-      "prompt": "发小红书（今日已发2篇）",
-      "expected_behavior": "检查 state.json → 拒绝并说明原因，不执行发布"
+      "prompt": "发小红书（今日已发5篇）",
+      "expected_behavior": "检查 state.json → 进入超发模式 → 发出风险警告 → 等待用户确认，不自动发布"
     },
     {
       "id": 4,
       "prompt": "帮我发一篇小红书（凌晨3点）",
       "expected_behavior": "检查时间 → 拒绝并说明禁止时段，不执行发布"
+    },
+    {
+      "id": 5,
+      "prompt": "再发一篇（今日已自动发布5篇，用户请求第6篇）",
+      "expected_behavior": "检查 state.json → 今日已发 5 篇 → 发出超发风险警告（⚠️ 今日已自动发布 5 篇，继续发布可能触发平台风控…）→ 等待用户确认 → 不自动执行"
+    },
+    {
+      "id": 6,
+      "prompt": "确定要继续发布（用户在超发警告后确认）",
+      "expected_behavior": "用户已确认超发 → AI 执行发布 → 更新 state.json → 报告结果（含风险提醒）"
+    },
+    {
+      "id": 7,
+      "prompt": "算了不发了（用户在超发警告后取消）",
+      "expected_behavior": "用户取消 → AI 停止 → 不执行任何发布命令 → 确认取消"
+    },
+    {
+      "id": 8,
+      "prompt": "帮我再发一篇（上次发帖30分钟前）",
+      "expected_behavior": "检查 state.json → 距上次发帖 < 2 小时 → 拒绝并说明最小间隔规则，不执行发布"
     }
   ]
 }
