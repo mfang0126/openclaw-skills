@@ -1,234 +1,250 @@
 {
   "agent-browser": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "ai-sdk": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "audio-timestamp-verifier": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "browser-routing": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "browser-use": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "calculator": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "claude-usage": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
-  },
-  "clawdcursor": {
-    "version": "0.6.3",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "content-inbox": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "content-research-writer": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "demo-video": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "deploy-artifact": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "development": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "docx": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "douyin-dl": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "email-classifier": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "ffmpeg-cli": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "firecrawl": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "grok-search": {
     "version": "0.2.1",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "html-screenshot": {
     "version": "2.1.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "html2img": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
+  },
+  "knowledge-capture": {
+    "version": "unknown",
+    "baseline_date": "2026-04-02"
   },
   "load": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "mastra": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "memory-audit": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "mermaid-architect": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "moonshot-usage": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "multi-agent": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "nano-banana-2": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "nextjs-best-practices": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "nextjs-supabase-auth": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "openclaw-config": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "pdf": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "plan-mode": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "platform-bridge": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "python-code-review": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
+  },
+  "reddit": {
+    "version": "unknown",
+    "baseline_date": "2026-04-02"
   },
   "reflection.bak": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "reflection": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "reminder-cron": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "research-pro": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
+  },
+  "safe-delete": {
+    "version": "unknown",
+    "baseline_date": "2026-04-02"
   },
   "self-improving": {
     "version": "1.1.3",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "seo": {
     "version": "1.0.3",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "show-my-ip": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "skill-creator": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "skills-watchdog": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "snap": {
     "version": "1.0.2",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "soul-keeper": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "sub-agent-patterns": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
+  },
+  "subagent-lifecycle": {
+    "version": "unknown",
+    "baseline_date": "2026-04-02"
   },
   "supabase-backend-platform": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "supabase-postgres-best-practices": {
     "version": "unknown",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "tailscale": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "turborepo": {
     "version": "2.8.12-canary.2",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "typescript-advanced-types": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "ui-ux-pro-max-2": {
     "version": "0.1.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "vercel": {
     "version": "1.0.1",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "video-analyzer": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "whisper-transcribe": {
     "version": "1.0.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
+  },
+  "xhs-publisher": {
+    "version": "unknown",
+    "baseline_date": "2026-04-02"
   },
   "cli_tavily": {
     "version": "0.1.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   },
   "cli_firecrawl": {
     "version": "1.3.0",
-    "baseline_date": "2026-03-30"
+    "baseline_date": "2026-04-02"
   }
 }
