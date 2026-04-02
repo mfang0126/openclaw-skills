@@ -18,6 +18,40 @@ The goal isn't to write clever instructions — it's to define:
 
 ---
 
+## How Skills Get Loaded (Progressive Disclosure)
+
+Understanding this mechanism is critical — it determines how you write every field.
+
+```
+User message arrives
+    │
+    ▼
+Phase 1: DISCOVERY (every message)
+    Agent reads ONLY the YAML frontmatter of all skills
+    Cost: ~30-50 tokens per skill
+    Decision: does this skill match? (based on `description`)
+    │
+    ├── No match → skill ignored (zero additional cost)
+    │
+    ▼
+Phase 2: EXECUTION (only when matched)
+    Agent loads the FULL SKILL.md body + referenced files
+    Cost: hundreds to thousands of tokens
+    │
+    ▼
+Phase 3: ON-DEMAND (during execution)
+    Agent reads references/ files only when needed
+    Cost: varies by file
+```
+
+**Why this matters:**
+- `description` is read on EVERY message → must be precise, must include trigger keywords
+- Instructions/Examples/Output Format are only loaded when matched → can be detailed
+- references/ files are loaded on demand → put heavy docs here, not in SKILL.md body
+- A vague description = your skill never gets loaded. A bloated description = wasted tokens on every message.
+
+---
+
 ## File Structure
 
 ```
@@ -136,7 +170,7 @@ description: |
   Output: [what the user gets back]
 ```
 
-**Conflict check:** Before finalizing, run `openclaw skills list` and compare trigger words with existing skills.
+**Conflict check:** Before finalizing, list all installed skills and compare trigger words. Ensure no two skills share the same trigger keywords.
 
 ---
 
@@ -428,8 +462,9 @@ What does this skill need to do?
 **Design**
 - [ ] Pattern identified and noted in SKILL.md
 - [ ] Description has trigger keywords + negative boundaries
+- [ ] Description works at discovery phase (~30-50 tokens, frontmatter only)
 - [ ] `user-invocable` set correctly
-- [ ] No trigger conflicts with existing skills
+- [ ] No trigger conflicts with existing skills (list all installed skills to check)
 
 **Content**
 - [ ] Instructions are numbered steps, not paragraphs
@@ -437,12 +472,14 @@ What does this skill need to do?
 - [ ] Output format explicitly defined
 - [ ] Troubleshooting covers top 3 failures
 - [ ] Reference docs in `references/`, not inline
+- [ ] Heavy content in `references/`, keeping SKILL.md body lean
 
 **Portability (Generic Skill Test)**
 
 Answer NO to ALL before publishing:
 - [ ] References files outside `{skillDir}` or standard workspace paths?
 - [ ] Hardcoded skill names, versions, usernames, or paths?
+- [ ] Hardcoded platform-specific CLI commands or tool names?
 - [ ] Assumes tools without checking availability?
 - [ ] Uses absolute paths instead of `{skillDir}` or `$HOME`?
 - [ ] Fails on first run due to missing dirs/files?
