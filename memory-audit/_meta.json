@@ -1,0 +1,15 @@
+{
+  "name": "memory-audit",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Reviewer",
+  "emoji": "🧠",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["python3"],
+    "modules": ["requirements.txt"],
+    "env": ["GLM_API_KEY"],
+    "services": ["qdrant:6333"]
+  },
+  "tags": ["memory", "audit", "review", "maintenance", "qdrant", "duplicates"]
+}

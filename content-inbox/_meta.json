@@ -1,0 +1,13 @@
+{
+  "name": "content-inbox",
+  "version": "1.0.0",
+  "author": "King",
+  "pattern": "Pipeline",
+  "emoji": "📥",
+  "created": "2026-03-25",
+  "requires": {
+    "bins": ["python3"],
+    "skills": ["douyin-dl", "video-analyzer"]
+  },
+  "tags": ["content", "download", "douyin", "xiaohongshu", "wechat", "automation", "inbox"]
+}

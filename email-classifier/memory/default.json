@@ -1,0 +1,1253 @@
+{
+  "account": "mfang0126@gmail.com",
+  "version": "2.0",
+  "total_emails_learned": 496,
+  "total_senders": 184,
+  "senders": {
+    "account-security-noreply@accountprotection.microsoft.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 6,
+      "mixed": false
+    },
+    "account@nvidia.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "accounting@gitkraken.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "admin@obsidian.md": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "alerts@ironline.ird.govt.nz": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 8,
+      "mixed": false
+    },
+    "alexandria@storageking.com.au": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "antonychen6500@gmail.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "au_thingstodo@trip.com": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 5,
+      "mixed": true,
+      "breakdown": {
+        "track": 3,
+        "trash": 2
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "ba.donotreply@dot-air.com": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 8,
+      "mixed": true,
+      "breakdown": {
+        "act": 6,
+        "track": 2
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "billing@tm1.openai.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "cai139193541@gmail.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "calendar-notification@google.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "ccdsydney@ncat.nsw.gov.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "clint@tldrsec.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "customer@waug.com": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 4,
+      "mixed": true,
+      "breakdown": {
+        "act": 2,
+        "track": 2
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "customer_surveys@feedback.telstra.com.au": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "customercare@panasonic.aero": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 3,
+      "mixed": true,
+      "breakdown": {
+        "trash": 1,
+        "track": 2
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "didi@au.didiglobal.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "discover@airbnb.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "divine@folklore.vc": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "do-not-reply-support@lastpass.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "do-not-reply@hello.stackoverflow.email": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "do-not-reply@paymarkclick.co.nz": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "donotreply@comms.medibank.com.au": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 10,
+      "mixed": true,
+      "breakdown": {
+        "act": 7,
+        "track": 3
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "donotreply@fishbowl.com.au": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "donotreply@gravatar.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "donotreply@kogan.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "donotreply_businessassist@nab.com.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "en_flt_noreply@trip.com": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 4,
+      "mixed": true,
+      "breakdown": {
+        "act": 2,
+        "track": 2
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "eservices@justice.nsw.gov.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "fastlink@vavmails.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "google-maps-platform-noreply@google.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "googleaistudio-noreply@google.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "read": 1
+      }
+    },
+    "googleplay-noreply@google.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 4,
+      "mixed": false
+    },
+    "hello@e.flybuys.com.au": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "hello@emails.airalo.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "hello@info.shopback.com.au": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "hello@jiangren.com.au": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 4,
+      "mixed": false
+    },
+    "hello@mailer.olympics.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "hello@notify.railway.app": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "hello@origin.com.au": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 2,
+      "mixed": true,
+      "breakdown": {
+        "act": 1,
+        "track": 1
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "help@arc.net": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "help@easycrypto.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "ica_notification@ica.gov.sg": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "info@bandbbs.cn": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "info@lighttune.com.au": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 15,
+      "mixed": true,
+      "breakdown": {
+        "trash": 10,
+        "act": 5
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "info_at_x_com_294c4ftytr1257_2612053b@icloud.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "information@loyalty.email.ikea.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "act": 1
+      }
+    },
+    "invoice+statements+acct_1pksddhjohyvid2c@stripe.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "james.mcclure@antler.co": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "jason.cai@tendor.ai": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 4,
+      "mixed": false
+    },
+    "jrlanding@email.propertyme.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "l.clark@barfoot.co.nz": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "mail@noreply.meandu.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "marq@deluxgroup.com.au": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 12,
+      "mixed": true,
+      "breakdown": {
+        "act": 4,
+        "read": 8
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "mike.abbott@antler.co": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 2,
+      "mixed": true,
+      "breakdown": {
+        "act": 1,
+        "trash": 1
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "mollycheng06@gmail.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "nabconnect_system_notice@nab.com.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "news@cyberpunk.net": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "newsletter@m.finder.com.au": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 18,
+      "mixed": false
+    },
+    "nick.li@bakertillysr.nz": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply-v8cl5nr0nc9bsj7u6lahmnho@slack.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@accounts.google.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 23,
+      "mixed": false
+    },
+    "no-reply@accounts.nintendo.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 4,
+      "mixed": false
+    },
+    "no-reply@airnz.co.nz": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@divvy.com.au": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@elevenlabs.io": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "no-reply@email.apple.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "read": 1
+      }
+    },
+    "no-reply@email.slackhq.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@emails.gumtree.com.au": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "no-reply@glados.network": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@grab.com": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 29,
+      "mixed": true,
+      "breakdown": {
+        "trash": 6,
+        "track": 16,
+        "act": 7
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "no-reply@hackmd.io": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@li.me": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@my.jbmobile.jbhifi.com.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@notify.boost.com.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@notify.docker.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@notify.telstra.com": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 3,
+      "mixed": true,
+      "breakdown": {
+        "act": 1,
+        "track": 2
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "no-reply@p.simplywall.st": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "no-reply@render.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@revolut.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "read": 1
+      }
+    },
+    "no-reply@service.tiktok.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@slack.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no-reply@spotify.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no.reply@ikea.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no_reply@communications.paypal.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "no_reply@email.apple.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "read": 1
+      }
+    },
+    "no_reply@notification.au.moomoo.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "noreply.news@e-mail.hoyoverse.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@datamanta.ai": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "noreply@discord.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "noreply@email.apple.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@email.transportnsw.info": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 4,
+      "mixed": true,
+      "breakdown": {
+        "act": 1,
+        "track": 3
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "noreply@github.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 9,
+      "mixed": false
+    },
+    "noreply@glassdoor.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@goget.com.au": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 13,
+      "mixed": true,
+      "breakdown": {
+        "act": 4,
+        "track": 9
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "noreply@hellobike.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "noreply@mail.announcements.ca-montreal-1.oci.oraclecloud.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "read": 1
+      }
+    },
+    "noreply@mail.announcements.us-ashburn-1.oci.oraclecloud.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "read": 1
+      }
+    },
+    "noreply@mail.app.supabase.io": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@marketing.medibank.com.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false,
+      "breakdown": {
+        "act": 2
+      }
+    },
+    "noreply@messages.boost.com.au": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@notice.kimi.ai": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "noreply@notifications.auspost.com.au": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 24,
+      "mixed": true,
+      "breakdown": {
+        "act": 9,
+        "track": 15
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "noreply@service.decathlon.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@steampowered.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 6,
+      "mixed": false
+    },
+    "noreply@supabase.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@superloop.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 4,
+      "mixed": false
+    },
+    "noreply@tavily.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@transactional.superloop.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@travellerdeclaration.govt.nz": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@uber.com": {
+      "category": "track",
+      "confidence": 0.97,
+      "count": 31,
+      "mixed": true,
+      "breakdown": {
+        "track": 30,
+        "trash": 1
+      }
+    },
+    "noreply@worldsquarechristmas.com.au": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@x.ai": {
+      "category": "act",
+      "confidence": 0.8,
+      "count": 5,
+      "mixed": true,
+      "breakdown": {
+        "act": 4,
+        "track": 1
+      }
+    },
+    "noreply@zoho.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "noreply@zohoaccounts.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "notifications@github.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "act": 1
+      }
+    },
+    "notifications@link.com": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 3,
+      "mixed": true,
+      "breakdown": {
+        "act": 2,
+        "trash": 1
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "notifications@stripe.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "notifications@vercel.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 22,
+      "mixed": false
+    },
+    "notify@mail.notion.so": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "notify@updates.notion.so": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "origin@ecomms.origin.com.au": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "otp@flyscoot.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "payments-noreply@google.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "platformnotifications-noreply@google.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "pragmaticengineer+deepdives@substack.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "pragmaticengineer@substack.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "qantasff@e.qantas.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "reader-revenue-manager-noreply@google.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "sam@startmate.com.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "samb@choosemastra.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "security@mail.instagram.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "security@vercel.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "service@felixmobile.com.au": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "sgen_flt_noreply@trip.com": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 8,
+      "mixed": true,
+      "breakdown": {
+        "track": 3,
+        "act": 4,
+        "read": 1
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "spark@readdle.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "stefan.knight@antler.co": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 3,
+      "mixed": false
+    },
+    "store-news@e.kogan.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "support@codepen.io": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "support@coinspot.com.au": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 7,
+      "mixed": true,
+      "breakdown": {
+        "track": 4,
+        "act": 3
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "support@ebaoguo.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 4,
+      "mixed": false
+    },
+    "support@gitguardian.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 9,
+      "mixed": false
+    },
+    "support@github.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "support@paymentwall.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "taoyi.business@hotmail.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "trip.com@newsletter.trip.com": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "victoriar@meriton.com.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "vishnu@info.ente.io": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "website@huggingface.co": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "wordpress@mingfang.tech": {
+      "category": "mixed",
+      "confidence": 0,
+      "count": 3,
+      "mixed": true,
+      "breakdown": {
+        "trash": 2,
+        "act": 1
+      },
+      "note": "Needs subject-based rules, not sender-only"
+    },
+    "noreply.survey@britishairwayscx.ba.com": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "act": 1
+      }
+    },
+    "messenger@messaging.squareup.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "track": 1
+      }
+    },
+    "team@user.hostinger.com": {
+      "category": "read",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false,
+      "breakdown": {
+        "read": 1
+      }
+    },
+    "BNZ_notifications@bnz.co.nz": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 35,
+      "mixed": false
+    },
+    "Commonwealth Bank of Australia": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 21,
+      "mixed": false
+    },
+    "ANZ Plus": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 17,
+      "mixed": false
+    },
+    "bot.nz@bankofchina.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 11,
+      "mixed": false
+    },
+    "personalbanking.nz@bankofchina.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 6,
+      "mixed": false
+    },
+    "noreply1.bocnz@bankofchina.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "refix.nz@bankofchina.com": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "AustralianSuper": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 11,
+      "mixed": false
+    },
+    "Binance": {
+      "category": "track",
+      "confidence": 0.8,
+      "count": 20,
+      "mixed": false
+    },
+    "Tiger Brokers": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "Coinbase": {
+      "category": "track",
+      "confidence": 0.8,
+      "count": 10,
+      "mixed": false
+    },
+    "Linkt": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 4,
+      "mixed": false
+    },
+    "Everyday Rewards": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "My Parcel Locker": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 7,
+      "mixed": false
+    },
+    "no-reply.penalty@revenue.nsw.gov.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "noreply-lusc@homeaffairs.gov.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "VEVO-noreply@homeaffairs.gov.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "donotreply@asic.gov.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "donotreply@companies.govt.nz": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 8,
+      "mixed": false
+    },
+    "donotreply@nzta.govt.nz": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@business.gov.au": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 1,
+      "mixed": false
+    },
+    "noreply@criminalrecords.govt.nz": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 2,
+      "mixed": false
+    },
+    "SEEK Profile": {
+      "category": "trash",
+      "confidence": 1.0,
+      "count": 19,
+      "mixed": false
+    },
+    "Cloudflare": {
+      "category": "read",
+      "confidence": 0.8,
+      "count": 16,
+      "mixed": false
+    },
+    "Cloudflare Registrar": {
+      "category": "read",
+      "confidence": 0.8,
+      "count": 7,
+      "mixed": false
+    },
+    "no-reply@service.one.nz": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "Amazon.com.au": {
+      "category": "track",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "NZ Companies Office": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 8,
+      "mixed": false
+    },
+    "BoldSign": {
+      "category": "act",
+      "confidence": 1.0,
+      "count": 5,
+      "mixed": false
+    },
+    "Trip.com": {
+      "category": "track",
+      "confidence": 0.8,
+      "count": 8,
+      "mixed": false
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "version": "2.0",
+  "description": "通用邮件分类规则 - 适用于所有邮箱账号",
+  "priority": "subject > sender_domain > sender_name > sender_memory > ai",
+
+  "subject_rules": {
+    "track": [
+      "invoice", "receipt", "statement", "payment confirmation", "order #",
+      "order confirmed", "your order", "transaction", "billing", "bill",
+      "subscription renewed", "subscription receipt", "charge", "refund",
+      "tax invoice", "account summary", "direct debit", "fee notice",
+      "payment received", "payment due", "账单", "发票", "收据", "付款"
+    ],
+    "act": [
+      "action required", "action needed", "urgent", "important notice",
+      "verify", "verification", "confirm your", "please confirm",
+      "expires", "expiring", "expiration", "overdue", "past due",
+      "penalty", "fine", "notice", "reminder", "follow up",
+      "security alert", "new device", "unusual sign", "login from",
+      "password", "reset", "account suspended", "account locked",
+      "review required", "approval needed", "sign here", "signature",
+      "court", "legal", "complaint", "dispute",
+      "sec=official", "sec=unclassified",
+      "需要操作", "请确认", "即将到期"
+    ],
+    "trash": [
+      "% off", "sale", "deal", "limited time", "offer",
+      "newsletter", "unsubscribe", "weekly digest", "monthly digest",
+      "job alert", "new jobs", "jobs for you",
+      "last chance", "don't miss", "exclusive", "special offer",
+      "promo", "promotion", "discount", "voucher", "coupon",
+      "we miss you", "come back", "re-engage",
+      "weekly update", "last week your posts", "impressions last week",
+      "views last week", "your posts got"
+    ],
+    "read": [
+      "shared a document", "invited you to", "shared with you",
+      "has been added to", "welcome to the team",
+      "congratulations", "accepted your invitation"
+    ]
+  },
+
+  "sender_domain_rules": {
+    "track": [
+      "bnz.co.nz", "anz.com.au", "anz.co.nz",
+      "commbank.com.au", "cba.com.au", "netbank",
+      "nab.com.au", "westpac.com.au", "stgeorge.com.au",
+      "bankofchina.com", "bocnz",
+      "australiansuper.com", "industrysuper.com",
+      "linkt.com.au", "tollroad",
+      "amazon.com.au", "amazon.co.nz",
+      "paypal.com", "stripe.com",
+      "xero.com", "myob.com",
+      "ird.govt.nz", "ato.gov.au",
+      "superloop.com", "tpg.com.au",
+      "uber.com", "didi", "lyft.com",
+      "qantas.com", "airnz.co.nz", "virginaustralia.com",
+      "everyday rewards", "flybuys",
+      "kogan.com", "amazon"
+    ],
+    "act": [
+      ".gov.au", ".govt.nz", ".gov.nz", ".gov.sg",
+      "homeaffairs.gov.au", "immi.gov.au",
+      "asic.gov.au", "companies.govt.nz",
+      "revenue.nsw.gov.au", "service.nsw.gov.au",
+      "nzta.govt.nz", "waka kotahi",
+      "ato.gov.au", "ird.govt.nz",
+      "my.gov.au", "mygov", "myid.gov.au",
+      "police.govt.nz", "justice.govt.nz",
+      "accounts.google.com", "accountprotection.microsoft.com",
+      "vercel.com", "github.com", "cloudflare.com",
+      "discord.com", "slack.com", "notion.so",
+      "apple.com", "icloud.com"
+    ],
+    "trash": [
+      "linkedin.com/jobs", "seek.com", "indeed.com",
+      "kucoin.com", "binance.com", "coinbase.com",
+      "tripadvisor.com", "booking.com", "agoda.com",
+      "grab.com/promo", "airbnb.com/promo",
+      "insta360.com", "dji.com",
+      "qantasff@", "loyalty@", "rewards@",
+      "marketing@", "promo@", "newsletter@",
+      "campaign@", "noreply@promo", "news@"
+    ],
+    "read": [
+      "cloudflare.com", "github.com",
+      "substack.com", "medium.com",
+      "hackernews", "producthunt.com",
+      "a16z.com", "ycombinator.com",
+      "anthropic.com", "openai.com"
+    ]
+  },
+
+  "sender_name_rules": {
+    "track": [
+      "bank", "banking", "finance", "financial",
+      "super", "superannuation", "insurance",
+      "toll", "invoice", "accounts receivable",
+      "payroll", "payslip", "tax"
+    ],
+    "act": [
+      "government", "council", "authority", "department",
+      "court", "tribunal", "ncat", "legal",
+      "police", "immigration", "customs",
+      "support", "security alert"
+    ],
+    "trash": [
+      "marketing", "newsletter", "promotions",
+      "job alert", "career", "recruiter",
+      "deals", "offers", "sale"
+    ]
+  },
+
+  "notes": {
+    "mixed_senders": "发件人同时发多类邮件时，主题词规则优先",
+    "personal_emails": "个人邮件无法用规则分类，直接进 AI 层",
+    "domain_priority": "精确域名匹配优先于通配符匹配"
+  }
+}
