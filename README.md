@@ -1,400 +1,119 @@
-# OpenClaw Skills Collection
+# OpenClaw Skills — Our Collection
 
-> The largest open-source collection of production-ready AI agent skills — 60+ skills for web automation, research, content creation, and more
+40 production-ready AI agent skills, all original or meaningfully modified.
 
-**Keywords**: AI agent skills, OpenClaw skills, Claude Code skills, AI automation, agent tools, web scraping skills, research skills, content creation AI, calculator skill, mermaid diagram generator, firecrawl integration, browser automation Playwright, self-reflection agents, three-layer memory, agent continuous learning
+## What's In This Repo
 
-**Quick Navigation**:
-- 📚 **[Skills Quick Index](SKILLS_INDEX.md)** — Search by scenario, category, or keyword ⭐ **Recommended**
-- [Skills List](#skills-list) — Complete list of all skills
-- [Quick Start](#quick-start) — How to install and use
-- [Skill Categories](#skill-categories) — Browse by category
-- [Common Scenarios](#common-scenarios) — Which skill should I use?
+This repo contains **only skills we created or significantly rewrote**. External/third-party skills are managed separately via ClawHub or manual install — see [EXTERNAL.md](EXTERNAL.md).
 
----
+### By Category
 
-## Why OpenClaw Skills?
+**🌐 Web & Browser**
+| Skill | Description |
+|-------|-------------|
+| agent-browser | Browser automation (Playwright) |
+| browser-use | AI-powered browser automation CLI |
+| browser-routing | Browser tool routing decision maker |
+| firecrawl | Web scraping and search (Firecrawl API) |
 
-✅ **Largest Collection** — 60+ production-ready skills, more than any other repo
-✅ **High Quality** — All skills follow SKILL_GUIDELINE.md standards with Examples + Error Handling + Tests
-✅ **AI-Optimized** — Progressive disclosure architecture, AI-friendly documentation
-✅ **Battle-Tested** — Used in production by the OpenClaw community
-✅ **Bilingual** — English (default) + Chinese versions available
+**🧠 Research & Analysis**
+| Skill | Description |
+|-------|-------------|
+| research-pro | Unified research (Tavily + Grok + Reddit + Firecrawl) |
+| reddit | Reddit search/read CLI |
+| content-research-writer | Content research + writing assistant |
 
----
+**🎬 Media & Audio**
+| Skill | Description |
+|-------|-------------|
+| douyin-dl | Douyin video downloader |
+| douyin-transcript | Douyin → transcription pipeline |
+| knowledge-capture | Video → transcribe → summarize → archive |
+| whisper-transcribe | Speech-to-text (Groq API / whisper.cpp) |
+| video-analyzer | Video content analysis |
+| audio-timestamp-verifier | Verify audio timestamp accuracy (NAATI CCL) |
 
-## Skills List
+**💻 Development**
+| Skill | Description |
+|-------|-------------|
+| development | Full-stack development workflow |
+| python-code-review | Python code review |
+| typescript-advanced-types | TypeScript advanced patterns |
+| ai-sdk | Vercel AI SDK reference |
+| deploy-artifact | Deploy to Vercel artifacts |
+| turborepo | Turborepo monorepo guide |
+| supabase-backend-platform | Supabase backend patterns |
+| html-screenshot | HTML → screenshot |
+| html2img | HTML → image |
 
-### 🌐 Web & Browser
+**🤖 Agent Architecture**
+| Skill | Description |
+|-------|-------------|
+| multi-agent | Multi-agent coordination |
+| sub-agent-patterns | Sub-agent design patterns |
+| subagent-lifecycle | Sub-agent lifecycle management |
+| reflection | Agent self-reflection system |
+| soul-keeper | Agent identity preservation |
+| plan-mode | Structured planning workflow |
 
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **agent-browser** | Browser automation (Playwright) | Open webpages, fill forms, screenshots, scrape data | "Open google.com and take a screenshot" |
-| **browser-use** | Browser automation (Browser-Use) | Autonomous browser operations | "Automatically login to this website" |
-| **browser-routing** | Browser tool routing decision maker | When unsure which browser tool to use | (Auto-triggered internally) |
-| **firecrawl** | Web scraping and search (Firecrawl) | Scrape webpage content, search, deep research | "Scrape the content from this webpage" |
+**🔧 Tools & Utilities**
+| Skill | Description |
+|-------|-------------|
+| openclaw-config | OpenClaw config management |
+| skills-watchdog | Monitor skill updates |
+| safe-delete | trash instead of rm |
+| calculator | Math calculations (Anthropic fork + our Examples/evals) |
+| claude-usage | Claude API usage tracking (ClawHub fork, fully rewritten) |
+| moonshot-usage | Moonshot API usage tracking |
+| load | Agent bootstrap status check |
 
----
+**📱 Content & Platform**
+| Skill | Description |
+|-------|-------------|
+| xhs-publisher | 小红书 safe publishing pipeline |
+| content-inbox | Content intake → multi-platform draft |
+| email-classifier | Email classification + learning |
+| platform-bridge | Cross-platform message routing |
 
-### 🧠 AI & Development
+**📋 Memory & Process**
+| Skill | Description |
+|-------|-------------|
+| memory-audit | Memory file audit |
+| reminder-cron | Cron-based reminders |
 
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **ai-sdk** | AI SDK development guide | Build AI-powered apps | "How to use generateText in Next.js?" |
-| **mastra** | Mastra framework guide | Build agents with Mastra | "How to create an agent with Mastra?" |
-| **coding-agent** | Coding task delegation | Complex coding, PR review, refactoring | "Refactor this large codebase" |
-| **calculator** | 100% accurate math calculations | Any calculation (costs, percentages, unit conversions) | "Calculate the API cost" |
+## Setup
 
----
+**Existing environment:** Skills sync to `~/.openclaw/skills/` via post-commit hook automatically.
 
-### 📊 Research & Analysis
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **research-pro** | Unified research tool (Tavily + Grok + Reddit) | Deep research, investigation, information gathering | "Research this competitor" |
-| **grok-search** | Grok X/Twitter search | Search X/Twitter, real-time information | "Search Twitter for discussions on this topic" |
-| **content-research-writer** | Content research + writing assistant | Write articles, add citations, improve outlines | "Write an article about AI" |
-| **reddit-cli** | Reddit search and browsing | View Reddit posts and discussions | "Search Reddit for reviews of this product" |
-
----
-
-### 📝 Content & Documentation
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **html-screenshot** | HTML file screenshot | Render HTML to image | "See how this HTML looks" |
-
----
-
-### 🛠️ Utilities & Tools
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **deploy-artifact** | Deploy files to Vercel artifacts | Share files, get public URL | "Deploy this HTML file" |
-| **goplaces** | Google Places API query | Search places, get details | "Get info about this restaurant" |
-| **weather** | Weather query (wttr.in + Open-Meteo) | Check weather, forecasts | "What's the weather tomorrow?" |
-
----
-
-### 🎵 Audio & Video
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **songsee** | Audio spectrum and feature visualization | Analyze audio files | "Show me the spectrum of this audio" |
-| **video-frames** | Video frame extraction and clipping | Extract frames or short clips from video | "Extract some frames from this video" |
-| **openai-whisper** | Local speech-to-text (Whisper) | Transcribe audio (no API needed) | "Transcribe this audio" |
-| **openai-whisper-api** | OpenAI Whisper API transcription | Transcribe audio (with API) | "Transcribe this audio" |
-
----
-
-### 📱 Platform & Integration
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **douyin-dl** | Douyin video download | Download Douyin videos | "Download this Douyin video" |
-| **content-inbox** | Unified content management (Douyin/Xiaohongshu/WeChat) | Download and manage content | "Process this link" |
-| **platform-bridge** | Platform adapter (multi-platform support) | Cross-platform content processing | (Auto-triggered internally) |
-
----
-
-### 🧪 Testing & Quality
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **audio-timestamp-verifier** | Audio timestamp verification | Verify transcription timestamp accuracy | "Verify this timestamp" |
-| **python-code-review** | Python code review | Review Python code | "Review this Python code" |
-
----
-
-### 🧠 Agent & Memory
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **reflection** | Self-reflection and learning (three-layer memory) | Record lessons, continuous improvement | (Auto-triggered when user corrects) |
-| **soul-keeper** | Workspace file synchronization | Update SOUL.md, AGENTS.md, etc. | (Triggered when updates needed) |
-| **self-improving** | Self-improvement (with reflection) | Agent self-evaluation and improvement | (Auto-triggered) |
-
----
-
-### 📚 Documentation & Guides
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **skill-creator** | Create and optimize skills | Write new skill or improve existing | "Create a new skill" |
-| **plan-mode** | Plan mode (think-only) | Analyze, plan, don't execute | "Analyze this problem" |
-| **sub-agent-patterns** | Sub-agent patterns guide | Create and manage sub-agents | "How to create a custom sub-agent?" |
-
----
-
-### 🔧 System & Config
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **openclaw-config** | OpenClaw configuration management | Modify openclaw.json | "Change the config" |
-| **node-connect** | OpenClaw node connection diagnostics | Diagnose node connection issues | "My node won't connect" |
-| **healthcheck** | System security and hardening | Security audit, firewall config | "Check system security" |
-
----
-
-### 🎨 Creative & Design
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **nano-banana-2** | Image generation (NB2 + Pro) | Generate or edit images | "Generate an image" |
-
----
-
-### 📖 Knowledge & Learning
-
-| Skill | Description | When to Use | Quick Example |
-|-------|-------------|-------------|---------------|
-| **summarize** | URL/podcast/file summarization | Summarize content, extract text | "Summarize this YouTube video" |
-| **Grokipedia** | Grokipedia encyclopedia search | Search Grokipedia articles | "Look up this concept" |
-| **apple-reminders** | Apple Reminders management | Manage Apple Reminders | "Add a reminder" |
-
----
-
-## Quick Start
-
-### 1. Install OpenClaw
-
+**New environment:**
 ```bash
-# macOS
-brew install openclaw
-
-# Or from source
-git clone https://github.com/openclaw/openclaw.git
-cd openclaw && npm install && npm link
+git clone git@github.com:mfang0126/openclaw-skills.git
+cd openclaw-skills
+bash setup.sh
 ```
 
----
-
-### 2. Install Skills
-
-**Option A: Clone this repo into your skills directory**
-```bash
-git clone https://github.com/mfang0126/openclaw-skills.git ~/.openclaw/skills
-```
-
-**Option B: Install individual skills from ClawHub marketplace**
-```bash
-openclaw skill install calculator
-openclaw skill install mermaid-architect
-```
-
----
-
-### 3. Verify Installation
-
-```bash
-# List installed skills
-ls ~/.openclaw/skills/
-
-# Check a specific skill
-cat ~/.openclaw/skills/calculator/SKILL.md | head -20
-```
-
----
-
-## Skill Categories
-
-### By Google ADK Five Patterns
-
-| Pattern | Skills | Characteristics |
-|---------|--------|-----------------|
-| **Tool Wrapper** | ai-sdk | Load knowledge on demand |
-| **Generator** | calculator | Fixed output structure |
-| **Reviewer** | python-code-review | Review and validate |
-| **Inversion** | plan-mode | Ask before doing |
-| **Pipeline** | reflection, soul-keeper | Pipeline processing |
-
----
-
-## Common Scenarios
-
-### 🔍 "I want to research a topic"
+## Architecture
 
 ```
-Recommended: research-pro
-
-Example:
-"Research the differences between LangGraph and LangChain"
-→ research-pro will automatically search, compare, and summarize
+~/Code/openclaw-skills/     ← This repo (source of truth, our work only)
+        │
+        ├── extraDirs (live dev, lowest priority)
+        │
+        ├── post-commit hook → sync to managed on commit
+        │
+~/.openclaw/skills/          ← Runtime (mixed: ours + ClawHub + third-party)
+        │
+OpenClaw loads from managed (high priority) > bundled > extraDirs (low)
 ```
 
----
+- **Our skills**: Edit in repo → commit → hook syncs to managed
+- **External skills**: `openclaw skills install <slug>` → goes to managed directly
+- **Bundled skills**: Ship with OpenClaw, auto-updated
 
-### 💰 "I need to calculate costs/percentages"
+## External Skills
 
-```
-Recommended: calculator
+See [EXTERNAL.md](EXTERNAL.md) for the full list of third-party skills we use but don't maintain.
 
-Example:
-"Calculate the GPT-4 API cost: 100K input, 50K output"
-→ calculator will calculate precisely without errors
-```
+## Writing Skills
 
----
-
-### 🌐 "I need to open a webpage/screenshot/scrape data"
-
-```
-Recommended: agent-browser (automation) or firecrawl (scraping)
-
-Example:
-"Open google.com and take a screenshot" → agent-browser
-"Scrape the content from this webpage" → firecrawl
-```
-
----
-
-### 📊 "I need to draw flowcharts/sequence diagrams"
-
-```
-Recommended: mermaid-architect (installed from ClawHub)
-
-Example:
-"Draw a flowchart for user login"
-→ mermaid-architect will generate Mermaid code and render to image
-```
-
----
-
-### 📝 "I need to create Word/PDF documents"
-
-```
-Word documents → docx (Claude Code built-in)
-PDF operations → pdf (Claude Code built-in)
-
-Example:
-"Create a Word document with a table" → docx
-"Merge these PDF files" → pdf
-```
-
----
-
-### 🎵 "I need to transcribe audio"
-
-```
-Local transcription (free) → openai-whisper
-API transcription (faster) → openai-whisper-api
-
-Example:
-"Transcribe this recording" → openai-whisper
-```
-
----
-
-### 📱 "I need to download Douyin/Xiaohongshu content"
-
-```
-Douyin videos → douyin-dl
-Multi-platform content → content-inbox
-
-Example:
-"Download this Douyin video" → douyin-dl
-"Process this link (Douyin/Xiaohongshu/WeChat)" → content-inbox
-```
-
----
-
-### 🧠 "I want my agent to continuously learn and improve"
-
-```
-Reflection and learning → reflection
-Config file synchronization → soul-keeper
-
-These skills auto-trigger, no manual invocation needed
-```
-
----
-
-## Develop Your Own Skill
-
-### 1. Read the Skill Development Guide
-
-```bash
-# Complete guide
-cat ~/.openclaw/shared/docs/SKILL_GUIDELINE.md
-
-# Or check this repo's HOW-TO-WRITE-SKILLS.md
-```
-
----
-
-### 2. Use skill-creator
-
-```bash
-# Let AI help you create a skill
-"Create a skill for..."
-→ skill-creator will guide you through
-```
-
----
-
-### 3. Reference the template
-
-```bash
-# Standard skill structure
-skill-name/
-├── SKILL.md           # Core file
-├── scripts/           # Executable scripts
-├── references/        # Detailed docs
-├── assets/            # Templates, icons
-└── evals/             # Test cases
-```
-
----
-
-## Contributing
-
-Contributions welcome! New skills or improvements to existing ones.
-
-### Contribution Process
-
-1. Fork this repo
-2. Create new skill or improve existing
-3. Ensure it meets SKILL_GUIDELINE.md standards
-4. Submit Pull Request
-
----
-
-## License
-
-MIT - Use freely, improve freely, share freely
-
----
-
-## Support
-
-- **Docs**: https://docs.openclaw.ai
-- **Community**: https://discord.com/invite/clawd
-- **GitHub**: https://github.com/openclaw/openclaw
-- **ClawHub**: https://clawhub.com
-
----
-
-## External Skills We Use
-
-These are installed separately (not in this repo):
-
-| Skill | Source | Description |
-|-------|--------|-------------|
-| ffmpeg-cli | [ClawHub](https://clawhub.ai) (ascendswang) | FFmpeg wrapper |
-| mermaid-architect | [ClawHub](https://clawhub.ai) | Mermaid diagrams |
-| snap | [ClawHub](https://clawhub.ai) (Kav-K) | Website screenshots |
-| show-my-ip | [ClawHub](https://clawhub.ai) | Public IP lookup |
-| tailscale | [ClawHub](https://clawhub.ai) | Tailscale management |
-| ui-ux-pro-max-2 | [ClawHub](https://clawhub.ai) | UI/UX design |
-| docx | Claude Code built-in (© Anthropic) | Word documents |
-| pdf | Claude Code built-in (© Anthropic) | PDF operations |
-| nextjs-supabase-auth | vibeship-spawner-skills (Apache 2.0) | Next.js + Supabase auth |
-| nextjs-best-practices | Community | Next.js best practices |
-| supabase-postgres | Supabase official docs (MIT) | Postgres optimization |
-| mastra | Mastra official docs (Apache 2.0) | Mastra framework guide |
-| nano-banana-2 | kingbootoshi (MIT) | AI image generation |
-
----
-
-**Last Updated**: 2026-04-02
-**Skills Count**: 32+ (this repo) + 13 external
+See [SKILL_GUIDELINE.md](SKILL_GUIDELINE.md) and [HOW-TO-WRITE-SKILLS.md](HOW-TO-WRITE-SKILLS.md).
