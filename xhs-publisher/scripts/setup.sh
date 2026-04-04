@@ -53,6 +53,10 @@ EOF
   echo "✅ config.json 已创建"
 fi
 
+# Read config for cookie check
+ACCOUNT=$(python3 -c "import json; print(json.load(open('$CONFIG_FILE'))['account'])")
+SAU_DIR=$(python3 -c "import json; print(json.load(open('$CONFIG_FILE'))['sauDir'])")
+
 echo ""
 
 # 2. 创建 state.json
@@ -68,7 +72,6 @@ echo ""
 # 3. 检查 cookie
 echo "🍪 第 2 步：检查登录状态"
 source "$SAU_DIR/.venv/bin/activate"
-ACCOUNT=$(python3 -c "import json; print(json.load(open('$CONFIG_FILE'))['account'])")
 
 if sau xiaohongshu check --account "$ACCOUNT" 2>&1 | grep -q "valid"; then
   echo "✅ 账号 $ACCOUNT cookie 有效"
