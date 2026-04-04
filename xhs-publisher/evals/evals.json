@@ -4,17 +4,17 @@
     {
       "id": 1,
       "prompt": "帮我发一篇小红书笔记，关于 AI 工具推荐",
-      "expected_behavior": "生成草稿 → 发给用户确认 → 等待确认后才执行发布"
+      "expected_behavior": "从 config.json 读取 account 和 sauDir → 检查 session → 检查频率 → 生成草稿 → 发给用户确认 → 等待确认后才执行发布"
     },
     {
       "id": 2,
       "prompt": "小红书账号还能用吗",
-      "expected_behavior": "执行 sau xiaohongshu check → 报告 session 状态"
+      "expected_behavior": "从 config.json 读取 account → 执行 sau xiaohongshu check --account <account> → 报告 session 状态"
     },
     {
       "id": 3,
       "prompt": "发小红书（今日已发5篇）",
-      "expected_behavior": "检查 state.json → 进入超发模式 → 发出风险警告 → 等待用户确认，不自动发布"
+      "expected_behavior": "读取 state.json → 进入超发模式 → 发出风险警告 → 等待用户确认，不自动发布"
     },
     {
       "id": 4,
@@ -24,12 +24,12 @@
     {
       "id": 5,
       "prompt": "再发一篇（今日已自动发布5篇，用户请求第6篇）",
-      "expected_behavior": "检查 state.json → 今日已发 5 篇 → 发出超发风险警告（⚠️ 今日已自动发布 5 篇，继续发布可能触发平台风控…）→ 等待用户确认 → 不自动执行"
+      "expected_behavior": "读取 state.json → 今日已发 5 篇 → 发出超发风险警告（⚠️ 今日已自动发布 5 篇，继续发布可能触发平台风控…）→ 等待用户确认 → 不自动执行"
     },
     {
       "id": 6,
       "prompt": "确定要继续发布（用户在超发警告后确认）",
-      "expected_behavior": "用户已确认超发 → AI 执行发布 → 更新 state.json → 报告结果（含风险提醒）"
+      "expected_behavior": "用户已确认超发 → AI 从 config.json 读取参数 → 执行 publish.py → 更新 state.json → 报告结果（含风险提醒）"
     },
     {
       "id": 7,
@@ -39,17 +39,27 @@
     {
       "id": 8,
       "prompt": "帮我再发一篇（上次发帖30分钟前）",
-      "expected_behavior": "检查 state.json → 距上次发帖 < 2 小时 → 拒绝并说明最小间隔规则，不执行发布"
+      "expected_behavior": "读取 state.json → 距上次发帖 < 2 小时 → 拒绝并说明最小间隔规则，不执行发布"
     },
     {
       "id": 9,
       "prompt": "发个视频到小红书，标题是「我的 AI 工作流分享」",
-      "expected_behavior": "检查 session → 检查频率 → 生成视频草稿（标题+简介+标签）→ 人审确认 → 使用 publish.py --type video 执行 → 更新 state.json（type: video）→ 报告结果"
+      "expected_behavior": "从 config.json 读取参数 → 检查 session → 检查频率 → 生成视频草稿（标题+简介+标签）→ 人审确认 → 使用 publish.py --account <account> --sau-dir <sauDir> --type video 执行 → 更新 state.json（type: video）→ 报告结果"
     },
     {
       "id": 10,
       "prompt": "小红书账号还能用吗（session 已过期）",
-      "expected_behavior": "执行 sau xiaohongshu check → 结果为 invalid → 告知用户 cookie 已过期 → 提供重新登录命令，不执行任何发布操作"
+      "expected_behavior": "从 config.json 读取 account → 执行 sau check → 结果为 invalid → 告知用户 cookie 已过期 → 提供重新登录命令，不执行任何发布操作"
+    },
+    {
+      "id": 11,
+      "prompt": "首次使用 xhs-publisher，还没配置过",
+      "expected_behavior": "检查 config.json 是否存在 → 不存在则提示用户运行 setup.sh 或从 config.template.json 复制 → 不执行任何发布操作"
+    },
+    {
+      "id": 12,
+      "prompt": "检查 publish.py 参数是否正确",
+      "expected_behavior": "运行 python3 ./scripts/publish.py --help → 验证输出包含 --account 和 --sau-dir 必填参数 → 不包含任何硬编码路径"
     }
   ]
 }
