@@ -1,7 +1,15 @@
-# Added by ggshield
-.cache_ggshield
+# ===== GITIGNORE FOR OPENCLAW-SKILLS =====
+# See .dev/SKILLS-REPO-MANAGEMENT-REVIEW.md for full documentation
 
-# Private skills — not for public repo
+# ----- Development files (not synced, not pushed) -----
+.dev/
+.state/
+
+# ----- Runtime state (should never be committed) -----
+**/state.json
+
+# ----- Private skills (live in ~/.openclaw/skills/, not in this repo) -----
+# These are gitignored here as a safety net, but should NOT exist in this dir
 audio-timestamp-verifier/
 memory-audit/
 content-inbox/
@@ -13,17 +21,22 @@ self-improving/
 reflection.bak/
 email-classifier/
 reminder-cron/
-
-# Skills Index maintenance files (private)
-scripts/
-SKILLS_INDEX_TEMPLATE.md
-MAINTENANCE.md
-.DS_Store
-bundled-baseline.sha256
-verify-bundled.sh
-clawdcursor
 nextjs-supabase-auth/
 nextjs-best-practices/
 supabase-postgres-best-practices/
 mastra/
 nano-banana-2/
+clawdcursor
+douyin-transcript/
+
+# ----- Maintenance files (not for public repo) -----
+SKILLS_INDEX_TEMPLATE.md
+MAINTENANCE.md
+bundled-baseline.sha256
+verify-bundled.sh
+sync.sh
+check-drift.sh
+
+# ----- System files -----
+.DS_Store
+.cache_ggshield

@@ -72,15 +72,16 @@ sau xiaohongshu upload-note \
 
 ## publish.py 包装脚本
 
-路径：`~/.openclaw/skills/xhs-publisher/scripts/publish.py`
+路径：skill 根目录下的 `scripts/publish.py`
 
 包装脚本在调用 sau 之前自动执行人类行为模拟（预热、延迟、刷推荐页），详见 [`knowledge/safety-policy.md`](safety-policy.md)。
 
 ### 图文笔记
 
 ```bash
-python3 ~/.openclaw/skills/xhs-publisher/scripts/publish.py \
-  --account myaccount \
+python3 ./scripts/publish.py \
+  --account <从 config.json 读取> \
+  --sau-dir <从 config.json 读取> \
   --type note \
   --title "<标题>" \
   --note "<正文>" \
@@ -92,8 +93,9 @@ python3 ~/.openclaw/skills/xhs-publisher/scripts/publish.py \
 ### 视频笔记
 
 ```bash
-python3 ~/.openclaw/skills/xhs-publisher/scripts/publish.py \
-  --account myaccount \
+python3 ./scripts/publish.py \
+  --account <从 config.json 读取> \
+  --sau-dir <从 config.json 读取> \
   --type video \
   --title "<标题>" \
   --desc "<简介>" \
@@ -106,13 +108,14 @@ python3 ~/.openclaw/skills/xhs-publisher/scripts/publish.py \
 
 | 参数 | 必填 | 说明 |
 |------|------|------|
-| `--account` | ✅ | 账号名称（默认 `myaccount`） |
+| `--account` | ✅ | 账号名称（从 config.json 读取） |
+| `--sau-dir` | ✅ | social-auto-upload 安装路径（从 config.json 读取） |
 | `--type` | ✅ | 笔记类型：`note` 或 `video` |
 | `--title` | ✅ | 标题 |
 | `--note` | 图文时 | 图文正文 |
 | `--desc` | 视频时 | 视频简介 |
 | `--tags` | 否 | 标签，逗号分隔 |
-| `--images` | 图文时 | 图片路径，空格分隔（`--images <图片1> <图片2> ...`，支持多张图片，空格分隔） |
+| `--images` | 图文时 | 图片路径，支持多张，空格分隔（如 `--images img1.png img2.png img3.png`） |
 | `--file` | 视频时 | 视频文件路径 |
 | `--headed` | 否 | 有头模式（可见浏览器） |
 | `--headless` | 否 | 无头模式（默认） |
