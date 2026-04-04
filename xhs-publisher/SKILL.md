@@ -26,11 +26,22 @@ metadata: {"clawdbot":{"emoji":"📕","requires":{"bins":["sau"]}}}
 
 不适用：搜索小红书内容、抓取数据、多账号批量操作。
 
+## 配置
+
+使用前，从 config.template.json 复制并填写实际值：
+
+```
+cp config.template.json config.json
+```
+
+config.json 包含：账号名、social-auto-upload 路径、频率限制参数。
+脚本不直接读 config.json——由 AI 读取后通过 CLI 参数传递给脚本。
+
 ## Workflow
 
 发布流程详见 [`workflow/publish-flow.md`](workflow/publish-flow.md)。
 
-简要流程：检查前提 → 生成草稿 → 人审确认 → 安全发帖 → 更新状态 → 报告结果。
+简要流程：读取 config.json → 检查前提 → 生成草稿 → 人审确认 → 安全发帖 → 更新状态 → 报告结果。
 
 ## Knowledge
 
