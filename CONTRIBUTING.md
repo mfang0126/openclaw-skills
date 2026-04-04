@@ -12,23 +12,56 @@
 | 位置 | 用途 | 工具 |
 |------|------|------|
 | `~/Code/openclaw-skills/` | 开发（版本控制） | git |
-| `~/.openclaw/skills/` | 运行（私有 skill + 状态） | OpenClaw 默认读取 |
+| `~/.openclaw/skills/` | **运行（实际生效）** | OpenClaw 默认读取 |
 | GitHub (mfang0126/openclaw-skills) | 分发（别人装 skill） | git push |
 
-### 0.2 extraDirs 机制
+### 0.2 ⚠️ Skill 加载顺序（重要）
 
-OpenClaw 通过 `extraDirs` 同时从两个位置加载 skill：
+OpenClaw 按以下顺序加载 skill，**后加载的覆盖前加载的**（源码：`skills-Xrdxpo0d.js` 第 560-562 行）：
 
-```json
-// ~/.openclaw/openclaw.json
-"skills": { "load": { "extraDirs": ["~/Code/openclaw-skills"] } }
+```
+1. extraDirs（extraSkills）     ← 先加载
+2. bundledSkills               ← 覆盖
+3. ~/.openclaw/skills/ (managed) ← 覆盖一切，始终生效
+4. personalAgentsSkills
+5. projectAgentsSkills
+6. workspaceSkills
 ```
 
-- **公开 skill** → 在 `~/Code/openclaw-skills/` 里开发，OpenClaw 自动读到（source: `openclaw-extra`）
-- **私有 skill** → 留在 `~/.openclaw/skills/`，不需要同步
-- **不需要 sync 脚本、不需要 rsync、不需要符号链接**
+**关键结论：`~/.openclaw/skills/` 始终覆盖 extraDirs 的同名 skill。**
 
-### 0.3 .dev/ 目录（gitignored）
+这意味着：
+- 在 git repo 里改了 skill → **必须手动同步**到 `~/.openclaw/skills/` 才能生效
+- extraDirs 对已存在于 managed 目录的重复 skill **没有效果**
+- extraDirs 只对 managed 目录里**不存在**的新 skill 有效
+
+### 0.3 同步机制（必须做）
+
+**每次修改公开 skill 后，必须同步到运行目录：**
+
+```bash
+# 同步单个 skill
+rsync -av --exclude='state.json' --exclude='config.json' \
+  ~/Code/openclaw-skills/<skill>/ \
+  ~/.openclaw/skills/<skill>/
+
+# 同步所有公开 skill
+rsync -av --delete \
+  --exclude='.git/' --exclude='.dev/' --exclude='.state/' \
+  --exclude='state.json' --exclude='config.json' \
+  --exclude='CONTRIBUTING.md' --exclude='README.md' \
+  ~/Code/openclaw-skills/ ~/.openclaw/skills/
+```
+
+**`--exclude='state.json' --exclude='config.json'`** 确保不会覆盖运行时数据。
+
+### 0.4 extraDirs 的实际作用
+
+extraDirs 配置保留，但它的作用**不是替代 sync**，而是：
+- 加载 git repo 里有、但 managed 目录里没有的新 skill
+- 作为新 skill 的发现机制，直到同步到 managed 目录
+
+### 0.5 .dev/ 目录（gitignored）
 
 `.dev/` 存放开发过程文件，不提交、不推送：
 
@@ -39,34 +72,35 @@ OpenClaw 通过 `extraDirs` 同时从两个位置加载 skill：
 └── case-studies/     ← 踩坑记录和教训
 ```
 
-### 0.4 文件路由
+### 0.6 文件路由
 
-| 文件类型 | OpenClaw 可读 | push 到 GitHub |
+| 文件类型 | OpenClaw 实际生效 | push 到 GitHub |
 |---------|:---:|:---:|
-| 公开 skill（xhs-publisher 等） | ✅ via extraDirs | ✅ |
-| 私有 skill（~/.openclaw/skills/） | ✅ 默认位置 | ❌ |
-| 开发文件（.dev/） | ❌ | ❌ |
-| 运行时状态（state.json） | ❌ | ❌ |
+| 公开 skill（managed 目录） | ✅ **managed 始终优先** | ✅ 源码在 git repo |
+| 公开 skill（git repo） | ❌ 被 managed 覆盖 | ✅ |
+| 私有 skill（managed 目录） | ✅ | ❌ |
+| 运行时状态（state.json、config.json） | 不加载，但脚本使用 | ❌ gitignore |
 
-### 0.5 日常维护工作流
+### 0.7 日常维护工作流
 
-**改 skill：**
+**改公开 skill：**
 1. 在 `~/Code/openclaw-skills/` 里改
-2. OpenClaw 通过 extraDirs 自动读到最新版（不需要 sync）
+2. **rsync 同步到 `~/.openclaw/skills/`（必须做，否则不生效）**
 3. commit → push 到 GitHub
+
+**改私有 skill：**
+1. 直接在 `~/.openclaw/skills/<skill>/` 里改
+2. 不需要 commit（私有 skill 不在 git repo 里）
 
 **分享给别人：**
 - 别人安装：`npx skills add mfang0126/openclaw-skills --skill <skill名>`
 - 别人更新：`npx skills update`
 
-**自己用：**
-- 公开 skill：改完自动生效（extraDirs）
-- 私有 skill：直接改 `~/.openclaw/skills/` 里的
-
 **新建 skill：**
 ```bash
 cd ~/Code/openclaw-skills
 npx skills init my-new-skill    # 生成 SKILL.md 模板
+# 改完后 rsync 到 ~/.openclaw/skills/
 ```
 
 **别人贡献：**
