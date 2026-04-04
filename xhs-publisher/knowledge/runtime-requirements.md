@@ -2,10 +2,10 @@
 
 ## 安装 sau CLI
 
-sau（social-auto-upload）需要从源码安装：
+sau（social-auto-upload）需要从源码安装。安装路径因人而异，安装后记在 config.json 的 sauDir 字段中：
 
 ```bash
-cd ~/Projects/social-auto-upload
+cd <sau 安装目录>
 uv pip install -e .
 ```
 
@@ -19,28 +19,24 @@ patchright install chromium
 
 ## 虚拟环境激活
 
+脚本会自动处理虚拟环境激活（基于 config.json 中的 sauDir）。手动调试时：
+
 ### Bash / Zsh
 
 ```bash
-source ~/Projects/social-auto-upload/.venv/bin/activate
-```
-
-### PowerShell (Windows)
-
-```powershell
-.\.venv\Scripts\Activate.ps1
+source <sauDir>/.venv/bin/activate
 ```
 
 ### uv run（推荐，无需手动激活）
 
 ```bash
-uv run sau xiaohongshu --help
+cd <sauDir> && uv run sau xiaohongshu --help
 ```
 
 ## 验证安装
 
 ```bash
-source ~/Projects/social-auto-upload/.venv/bin/activate && sau xiaohongshu --help
+cd <sauDir> && source .venv/bin/activate && sau xiaohongshu --help
 ```
 
 如果能看到帮助信息，说明安装成功。

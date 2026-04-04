@@ -50,9 +50,9 @@ publish.py 包装脚本自动执行以下人类行为模拟：
 
 ## 状态追踪
 
-状态文件：`~/.openclaw/skills/xhs-publisher/state.json`
+状态文件：skill 根目录下的 `state.json`
 
-如果文件不存在，首次使用前创建：`echo '{"posts":[]}' > ~/.openclaw/skills/xhs-publisher/state.json`
+如果文件不存在，首次使用前创建：`echo '{"posts":[]}' > state.json`
 
 ```json
 {

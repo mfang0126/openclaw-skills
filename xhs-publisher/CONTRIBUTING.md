@@ -68,15 +68,23 @@ xhs-publisher/
 
 ### config.json
 
+从 config.template.json 复制并填写实际值：
+
 ```json
 {
-  "sau_dir": "~/Projects/social-auto-upload",
-  "account": "your-account-name"
+  "account": "your-account-name",
+  "sauDir": "<social-auto-upload 安装路径>",
+  "limits": {
+    "maxPerDay": 5,
+    "minIntervalMinutes": 120,
+    "randomOffsetMinutes": 30
+  }
 }
 ```
 
-- `sau_dir` — social-auto-upload 项目路径
 - `account` — sau 账号名（一个名称对应一组 cookie）
+- `sauDir` — social-auto-upload 项目路径
+- `limits` — 频率限制参数（可选，有默认值）
 
 ### AI 使用配置的方式
 
@@ -102,7 +110,7 @@ python3 ./scripts/warmup.py --help
 
 ```bash
 python3 ./scripts/publish.py \
-  --account test --sau-dir ~/Projects/social-auto-upload \
+  --account test --sau-dir <sauDir> \
   --type note --title "测试" --skip-warmup --headed
 ```
 
