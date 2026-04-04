@@ -40,6 +40,16 @@
       "id": 8,
       "prompt": "帮我再发一篇（上次发帖30分钟前）",
       "expected_behavior": "检查 state.json → 距上次发帖 < 2 小时 → 拒绝并说明最小间隔规则，不执行发布"
+    },
+    {
+      "id": 9,
+      "prompt": "发个视频到小红书，标题是「我的 AI 工作流分享」",
+      "expected_behavior": "检查 session → 检查频率 → 生成视频草稿（标题+简介+标签）→ 人审确认 → 使用 publish.py --type video 执行 → 更新 state.json（type: video）→ 报告结果"
+    },
+    {
+      "id": 10,
+      "prompt": "小红书账号还能用吗（session 已过期）",
+      "expected_behavior": "执行 sau xiaohongshu check → 结果为 invalid → 告知用户 cookie 已过期 → 提供重新登录命令，不执行任何发布操作"
     }
   ]
 }

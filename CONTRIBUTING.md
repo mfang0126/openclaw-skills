@@ -1,6 +1,52 @@
 # OpenClaw Skills 开发维护指南
 
 > **面向所有维护者（包括 AI agent）。** 修改本 repo 中任何 skill 前，先读此文件。
+> **第一步：** 读完此文件后，读 `.dev/TODO.md`（任务队列）和 `.dev/SESSION.md`（上次做了什么）。
+
+---
+
+## 0. 目录架构
+
+### 0.1 三个位置，三个用途
+
+| 位置 | 用途 | 工具 |
+|------|------|------|
+| `~/Code/openclaw-skills/` | 开发（版本控制） | git |
+| `~/.openclaw/skills/` | 运行（私有 skill + 状态） | OpenClaw 默认读取 |
+| GitHub (mfang0126/openclaw-skills) | 分发（别人装 skill） | git push |
+
+### 0.2 extraDirs 机制
+
+OpenClaw 通过 `extraDirs` 同时从两个位置加载 skill：
+
+```json
+// ~/.openclaw/openclaw.json
+"skills": { "load": { "extraDirs": ["~/Code/openclaw-skills"] } }
+```
+
+- **公开 skill** → 在 `~/Code/openclaw-skills/` 里开发，OpenClaw 自动读到（source: `openclaw-extra`）
+- **私有 skill** → 留在 `~/.openclaw/skills/`，不需要同步
+- **不需要 sync 脚本、不需要 rsync、不需要符号链接**
+
+### 0.3 .dev/ 目录（gitignored）
+
+`.dev/` 存放开发过程文件，不提交、不推送：
+
+```
+.dev/
+├── TODO.md           ← 任务队列（每个 session 开始时读）
+├── SESSION.md        ← 会话交接（每个 session 结束时更新）
+└── case-studies/     ← 踩坑记录和教训
+```
+
+### 0.4 文件路由
+
+| 文件类型 | OpenClaw 可读 | push 到 GitHub |
+|---------|:---:|:---:|
+| 公开 skill（xhs-publisher 等） | ✅ via extraDirs | ✅ |
+| 私有 skill（~/.openclaw/skills/） | ✅ 默认位置 | ❌ |
+| 开发文件（.dev/） | ❌ | ❌ |
+| 运行时状态（state.json） | ❌ | ❌ |
 
 ---
 

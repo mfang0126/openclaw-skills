@@ -112,7 +112,7 @@ python3 ~/.openclaw/skills/xhs-publisher/scripts/publish.py \
 | `--note` | 图文时 | 图文正文 |
 | `--desc` | 视频时 | 视频简介 |
 | `--tags` | 否 | 标签，逗号分隔 |
-| `--images` | 图文时 | 图片路径，空格分隔（`--images <图片1> <图片2> ...`，支持多张图片，空格分隔） |
+| `--images` | 图文时 | 图片路径，支持多张，空格分隔（如 `--images img1.png img2.png img3.png`） |
 | `--file` | 视频时 | 视频文件路径 |
 | `--headed` | 否 | 有头模式（可见浏览器） |
 | `--headless` | 否 | 无头模式（默认） |

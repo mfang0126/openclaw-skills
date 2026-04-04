@@ -76,3 +76,16 @@ YYYY-MM-DD HH:MM
 ```
 
 如果不需要定时发布，去掉 `--schedule` 即可改为立即发布。
+
+## publish.py 执行失败
+
+- 检查脚本是否存在：`ls ~/.openclaw/skills/xhs-publisher/scripts/publish.py`
+- 检查脚本是否有执行权限：`chmod +x ~/.openclaw/skills/xhs-publisher/scripts/publish.py`
+- publish.py 需要在 sau 虚拟环境下运行（脚本内部会自动 source activate）
+- 如果脚本超时无响应（正常耗时 3-6 分钟），超过 10 分钟可视为卡死，Ctrl+C 中断后检查浏览器进程
+
+## state.json 异常
+
+- **文件不存在**：首次使用前创建：`echo '{"posts":[]}' > ~/.openclaw/skills/xhs-publisher/state.json`
+- **JSON 格式错误**：手动修复或删除重建（会丢失历史记录）
+- **日期筛选异常**：state.json 中的 `date` 格式必须是 `YYYY-MM-DD`，检查是否有格式不一致的记录
