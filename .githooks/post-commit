@@ -1,0 +1,29 @@
+#!/bin/bash
+# post-commit — 自动同步改动的 skill 到 managed 目录
+# commit 改了 skill → rsync 到 ~/.openclaw/skills/
+# 不依赖任何外部工具，纯 bash + rsync
+
+REPO_DIR="$(git rev-parse --show-toplevel)"
+MANAGED_DIR="$HOME/.openclaw/skills"
+
+# managed 目录不存在则跳过（非标准环境）
+[ ! -d "$MANAGED_DIR" ] && exit 0
+
+# 获取本次 commit 改动的顶层目录
+CHANGED=$(git diff-tree --no-commit-id --name-only -r HEAD \
+  --diff-filter=ACMR | cut -d'/' -f1 | sort -u)
+
+SYNCED=0
+for dir in $CHANGED; do
+  # 只同步有 SKILL.md 的目录（真正的 skill）
+  [ ! -f "$REPO_DIR/$dir/SKILL.md" ] && continue
+  rsync -a \
+    --exclude='state.json' \
+    --exclude='config.json' \
+    --exclude='.DS_Store' \
+    "$REPO_DIR/$dir/" "$MANAGED_DIR/$dir/" 2>/dev/null
+  echo "  ✅ $dir"
+  SYNCED=$((SYNCED + 1))
+done
+
+[ $SYNCED -gt 0 ] && echo "🔄 Synced $SYNCED skill(s) to managed dir"

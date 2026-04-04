@@ -34,8 +34,6 @@ SKILLS_INDEX_TEMPLATE.md
 MAINTENANCE.md
 bundled-baseline.sha256
 verify-bundled.sh
-sync.sh
-check-drift.sh
 
 # ----- System files -----
 .DS_Store
