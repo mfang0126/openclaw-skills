@@ -48,6 +48,30 @@ OpenClaw 通过 `extraDirs` 同时从两个位置加载 skill：
 | 开发文件（.dev/） | ❌ | ❌ |
 | 运行时状态（state.json） | ❌ | ❌ |
 
+### 0.5 日常维护工作流
+
+**改 skill：**
+1. 在 `~/Code/openclaw-skills/` 里改
+2. OpenClaw 通过 extraDirs 自动读到最新版（不需要 sync）
+3. commit → push 到 GitHub
+
+**分享给别人：**
+- 别人安装：`npx skills add mfang0126/openclaw-skills --skill <skill名>`
+- 别人更新：`npx skills update`
+
+**自己用：**
+- 公开 skill：改完自动生效（extraDirs）
+- 私有 skill：直接改 `~/.openclaw/skills/` 里的
+
+**新建 skill：**
+```bash
+cd ~/Code/openclaw-skills
+npx skills init my-new-skill    # 生成 SKILL.md 模板
+```
+
+**别人贡献：**
+- Fork → 改 → PR → review → merge
+
 ---
 
 ## 为什么有这个文件
