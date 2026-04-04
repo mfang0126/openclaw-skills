@@ -1,0 +1,9 @@
+{
+  "account": "your_account_name",
+  "sauDir": "~/Projects/social-auto-upload",
+  "limits": {
+    "maxPerDay": 5,
+    "minIntervalMinutes": 120,
+    "randomOffsetMinutes": 30
+  }
+}
