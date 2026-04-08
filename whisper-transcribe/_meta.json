@@ -1,14 +1,19 @@
 {
   "name": "whisper-transcribe",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "King",
   "pattern": "Tool Wrapper",
   "emoji": "🎤",
   "created": "2026-03-29",
+  "updated": "2026-04-08",
   "requires": {
-    "bins": ["ffmpeg", "whisper-cli"],
+    "bins": ["ffmpeg"],
     "modules": []
   },
-  "providers": ["groq", "whisper-cpp"],
-  "tags": ["transcription", "speech-to-text", "whisper", "audio", "video"]
+  "optional": {
+    "bins": ["whisper-cli"],
+    "modules": ["mlx-qwen3-asr"]
+  },
+  "providers": ["mlx-qwen3-asr", "groq", "whisper-cpp"],
+  "tags": ["transcription", "speech-to-text", "whisper", "mlx", "audio", "video", "srt", "vtt"]
 }
