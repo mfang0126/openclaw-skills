@@ -14,7 +14,7 @@ description: |
   Output: 结构化研究报告（结论 + 子问题答案 + 来源 + 争议点 + 未解决缺口）
 
 user-invocable: true
-version: 3.5.0-mf
+version: 3.6.0-mf
 metadata:
   fork:
     origin: research-pro-v2
@@ -28,6 +28,7 @@ metadata:
       - "v3.3.0-mf: 工具矩阵基于实测修正（第一轮）；移除不可用工具；补充 Tavily Research、YouTube 两步流程"
       - "v3.4.0-mf: 修复 XAI_API_KEY 变量名错误（原 X_AI）；更新 OPENROUTER_API_KEY；加入 Perplexity/sonar 实时搜索（替代 Grok）；Grok 无实时搜索能力"
       - "v3.5.0-mf: 集成 Grok Responses API（web_search + x_search）；模型必须用 grok-4 系列；x_search 可搜 X/Twitter 实时讨论"
+      - "v3.6.0-mf: 信号路由规则（S1-S6）+ 工具覆盖检查；防止惰性只用 Tavily；强制多工具组合"
   pattern: spiral-convergence
   phases: 4
   requires:
@@ -113,15 +114,40 @@ Phase 1 结束时输出一行：
 **目标：** 为每个"未知"或"部分"子问题构建 query，选工具。
 
 1. 每个子问题提取 **2-3 个 keyword 组合**
-2. 选工具（见下方矩阵）
-3. 按"对核心目标的影响"排优先级
+2. 对每个子问题过一遍**信号路由规则**（见下方），确定工具组合
+3. 执行**工具覆盖检查**
+4. 按"对核心目标的影响"排优先级
 
 **Keyword 构建原则：**
 - 用具体名词，不用动词短语（"React RSC limitations 2025" 好过 "what are the problems with RSC"）
 - 一个宽泛版本 + 一个具体版本
 - 技术问题加版本号或年份
 
-**工具选择（基于实测 2026-04-12）：**
+### 信号路由规则（必须逐条过）
+
+对每个子问题，按顺序检查以下信号。匹配到的工具**必须加入**该子问题的工具组合（不是二选一，是叠加）：
+
+| # | 信号 | 触发条件 | 必须加入的工具 |
+|---|------|---------|---------------|
+| S1 | 社区情绪 | 问题涉及"开发者怎么看"、"社区反馈"、"用户体验"、产品口碑 | Grok x_search + Tavily site:reddit.com |
+| S2 | 实时性 | 问题涉及"最新"、"最近"、"2026"、"本周"、新闻、发布 | Perplexity sonar（快）或 Grok web_search（带引用） |
+| S3 | 深度对比 | 问题是 A vs B、技术选型、竞品分析 | Tavily Research + 至少一个实时工具（S2） |
+| S4 | 教程/How-to | 问题涉及"怎么做"、实现方式、代码示例 | Tavily search + YouTube（可能有视频教程） |
+| S5 | 市场/热度 | 问题涉及"有多少人用"、"趋势"、"市场份额" | DataForSEO + Grok x_search |
+| S6 | 单一权威源 | 已知某个 URL 有关键信息 | Firecrawl scrape（非 Reddit）/ Tavily extract（Reddit） |
+
+**没有匹配任何信号？** → 默认 Tavily search。
+
+### 工具覆盖检查（⛔ 强制）
+
+选完工具后，必须回答这个问题：
+
+> "这组子问题里，有没有哪个维度只用了 Tavily？如果是，有没有第二个工具能提供**不同视角**的信息？"
+
+- 如果所有子问题都只用 Tavily → **至少给一个子问题加一个非 Tavily 工具**
+- 每次研究至少使用 **2 种不同的工具**（Tavily 算一种）
+
+**工具选择矩阵（基于实测 2026-04-12）：**
 | 问题类型 | 时效 | 首选工具 | 命令 | 备用 |
 |---------|------|---------|------|------|
 | 通用技术搜索 | 不限 | Tavily | `tvly search "query"` | Firecrawl search |
