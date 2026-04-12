@@ -1,487 +1,306 @@
 ---
 name: research-pro
 description: |
-  Unified research skill — handles ANY research, investigation, or information-gathering task automatically.
-  Selects the right depth (Quick/Standard/Deep/Crawl) and tools (Tavily API, Grok X/web search, Reddit, Firecrawl) based on what the user needs.
+  系统化研究 skill — 螺旋收敛模型。把任何问题（模糊或清晰）分解成子问题，迭代搜索，越搜越清晰，直到每个子问题都有答案。
 
-  USE FOR:
-  - "research / investigate / look up / explore / analyze" + any topic
-  - "帮我研究/查/了解/调研/分析/对比" + 任何话题
-  - 竞品分析、市场调研、技术对比、趋势了解
-  - 需要 X/Twitter 实时讨论、Reddit 社区意见、YouTube 视频内容
-  - 不确定用哪个工具时 → 直接用这个，它会自动选
+  Triggers: "帮我研究", "研究一下", "调研", "分析对比", "research", "investigate", "look up"
+  也触发: 竞品分析、市场调研、技术选型对比、趋势了解
 
-  别名路由（Alias Routing）：
-  - 用户说 "grok search X" / "用 grok 搜" → 强制用 Grok web_search
-  - 用户说 "tavily search/extract/crawl/map/research X" → 强制用对应 tvly 命令
-  - 用户说 "firecrawl scrape/search/map X" → 强制用 firecrawl CLI
-  - 用户说 "reddit X" → 强制用 reddit-cli
-  - 用户说 "youtube X" → 强制用 YouTube 方法
-  - 用户只说 "search X" / "搜 X"（不指定工具）→ 默认 tvly search
-  - 没有工具偏好的研究请求 → 正常进入模式判断
+  Does NOT trigger:
+  - 已经知道答案的简单事实问题
+  - 用户直接给了 URL 要抓取的
+  - 代码调试、写代码任务
 
-  不触发：
-  - 用户给了具体 URL 要抓内容（直接用 firecrawl）
-  - 已知答案的简单事实问题
+  Output: 结构化研究报告（结论 + 子问题答案 + 来源 + 争议点 + 未解决缺口）
 
 user-invocable: true
-metadata: {"clawdbot":{"emoji":"🔬","requires":{"env":["TAVILY_API_KEY","XAI_API_KEY"]}}}
+version: 3.3.0-mf
+metadata:
+  fork:
+    origin: research-pro-v2
+    maintainer: mingfang
+    version: v3.3.0-mf
+    created: "2026-04-12"
+    changes:
+      - "v3.0.0-mf: 螺旋收敛模型，Research Map，线索评分，Critic/Reflection"
+      - "v3.1.0-mf: Phase 1 加本地上下文检查 + 前提验证；启动时告知深度"
+      - "v3.2.0-mf: 工具矩阵更新为实际可用工具（理论推断版）"
+      - "v3.3.0-mf: 工具矩阵基于实测修正（第一轮）；移除不可用工具；补充 Tavily Research、YouTube 两步流程"
+      - "v3.4.0-mf: 修复 XAI_API_KEY 变量名错误（原 X_AI）；更新 OPENROUTER_API_KEY；加入 Perplexity/sonar 实时搜索（替代 Grok）；Grok 无实时搜索能力"
+  pattern: spiral-convergence
+  phases: 4
+  requires:
+    env: ["TAVILY_API_KEY"]
+    optional: ["FIRECRAWL_API_KEY", "YOUTUBE_API", "DATAFORSEO_LOGIN", "DATAFORSEO_PASSWORD", "OPENROUTER_API_KEY", "XAI_API_KEY"]
 ---
 
-# Research Pro — 统一研究入口
+# Research Pro v3.1-mf（螺旋收敛模型）
 
-**你是研究员，不是工具操作员。** 用户不需要知道你用了哪个工具，他们只要高质量的结果。
-
-**架构定位：** 这是所有搜索/研究 skill 的调度层。下层工具（grok-search、reddit-cli、youtube、tavily-*、firecrawl）通常由本 skill 调用，不直接被用户触发。
+**核心原则：** 不是"问清楚再搜"，是"边搜边搞清楚"。先看本地，再看网络。
 
 ---
 
-## Phase 1: 判断模式（5秒内完成）
+## 核心机制：研究地图（Research Map）
+
+在整个研究过程中，在工作记忆中维护研究地图，每轮结束后**必须更新**。
 
 ```
-用户请求
-    │
-    ├── 简单事实 / "X 是什么" / 最新版本？
-    │   → Quick Mode
-    │
-    ├── 了解一个话题 / 趋势 / 概览？
-    │   → Standard Mode
-    │
-    ├── 多源对比 / 深度分析 / 决策支持？
-    │   → Deep Mode
-    │
-    └── 批量收集多个目标的信息？
-        → Crawl Mode
+研究地图
+├── 原始问题: "..."
+├── 核心目标: "..."（一句话：最终要知道什么）
+├── 当前假设: [对答案的初步猜测，每轮 Reflection 后更新]
+├── 子问题列表:
+│     - Q1: [问题] | 状态: 未知/部分/已知 | 置信度: 高/中/低
+│     - Q2: ...
+├── 已知事实: [每条必须带来源 URL 或本地路径]
+├── 线索池:
+│     - {描述, 来源, 相关性分 0-3, 已追/未追}
+└── 搜索轮次: N / 上限: M
 ```
 
-**判断信号：**
-- "快速"、"简单"、"大概"、"quick"、"briefly" → Quick
-- "详细"、"深度"、"全面"、"报告"、"comprehensive"、"in-depth" → Deep
-- 多个实体需要对比 → Deep 或 Crawl
-- 用户给了 URL 列表 → Crawl
-- 不确定 → Standard（最安全的默认值）
-- 话题太模糊 → 先问一个澄清问题，再进入模式
+研究地图是思考过程的载体，不是最终输出。
 
 ---
 
-## Phase 1.5: 别名路由（Alias Routing）
+## Phase 1：理解问题
 
-**在判断模式之前，先检查用户是否指定了工具。** 如果指定了，跳过模式判断，直接用指定工具。
+**目标：** 验证问题前提，拆成 2-4 个可以独立回答的子问题。
 
+### Step 1.1：本地上下文检查（先做，再拆问题）
+
+在搜索任何东西之前，先检查本地：
+
+- **问题涉及"我们的"或"当前"系统/项目** → 先读相关文件（配置、代码、文档）
+- **问题是关于某工具/库是否存在或已集成** → 先检查 `package.json`、配置文件、`extensions/`、`plugins/`
+- **问题涉及某个决策或现状** → 先查 `shared/docs/`、`DECISIONS.md`、`PROJECTS.md`
+
+**本地检查结果决定下一步：**
+- 发现问题前提错误（如"要不要集成X" → X 已经集成了）→ 立即触发 Phase 4 方向转变，问用户
+- 发现有用的上下文 → 加入研究地图"已知事实"，跳过对应子问题的外部搜索
+- 没有相关本地信息 → 继续 Step 1.2
+
+### Step 1.2：歧义检查
+
+检查问题是否有未定义的关键词：
+- "我们的系统" / "最好的" / "值不值得" → 确认判断标准
+- 问题涉及两个层面但只说了一个（如"multi-agent"可能指架构层面或 LLM 部署层面）
+- 问题极其模糊（如"帮我研究AI"）
+
+发现歧义 → 问用户 **1 个** 最关键的澄清问题（只问一个）
+
+### Step 1.3：拆子问题
+
+1. 提炼**核心目标**（一句话）
+2. 写下**当前假设**（哪怕是错的）
+3. 拆出 2-4 个子问题
+
+**⛔ Gate：**
+- 每个子问题必须能独立回答
+- 所有子问题合起来必须覆盖核心目标
+
+### Step 1.4：告知用户
+
+Phase 1 结束时输出一行：
 ```
-用户请求
-    │
-    ├── 包含 "grok" → 用 Grok（web 或 x，根据上下文判断）
-    │   node {skillDir}/scripts/grok_search.mjs "<query>" --web
-    │   node {skillDir}/scripts/grok_search.mjs "<query>" --x
-    │
-    ├── 包含 "tavily search" → tvly search "<query>" --json
-    ├── 包含 "tavily extract" → tvly extract "<url>" --json
-    ├── 包含 "tavily crawl" → tvly crawl "<url>" --json
-    ├── 包含 "tavily map" → tvly map "<url>" --json
-    ├── 包含 "tavily research" → tvly research "<query>" --json
-    │
-    ├── 包含 "firecrawl" → firecrawl <subcommand> ...
-    │
-    ├── 包含 "reddit" → node {skillDir}/scripts/reddit-cli.js search "<query>"
-    │
-    ├── 包含 "youtube" → YouTube workflow（见下方 YouTube 章节）
-    │
-    ├── 只说 "search" / "搜"（无工具名）→ tvly search "<query>" --json
-    │
-    └── 无工具偏好 → 进入 Phase 1 模式判断
+深度：[Quick/Standard/Deep]（最多 N 轮）| 子问题：Q1, Q2, Q3 | 如需调整深度请说明
 ```
 
-**别名路由后的输出：** 直接返回工具原始结果 + 简短总结。不需要走完整的模式流程。
+---
+
+## Phase 2：搜索准备
+
+**目标：** 为每个"未知"或"部分"子问题构建 query，选工具。
+
+1. 每个子问题提取 **2-3 个 keyword 组合**
+2. 选工具（见下方矩阵）
+3. 按"对核心目标的影响"排优先级
+
+**Keyword 构建原则：**
+- 用具体名词，不用动词短语（"React RSC limitations 2025" 好过 "what are the problems with RSC"）
+- 一个宽泛版本 + 一个具体版本
+- 技术问题加版本号或年份
+
+**工具选择（基于实测 2026-04-12）：**
+| 问题类型 | 时效 | 首选工具 | 命令 | 备用 |
+|---------|------|---------|------|------|
+| 通用技术搜索 | 不限 | Tavily | `tvly search "query"` | Firecrawl search |
+| 深度综合报告 | 不限 | Tavily Research | `tvly research "query"` | — |
+| 最新动态/实时 | 实时 | Perplexity sonar | OpenRouter REST API | Tavily |
+| 社区/Reddit 讨论 | 近期 | Tavily site filter | `tvly search "query site:reddit.com"` | WebSearch |
+| 深挖单页（普通） | 不限 | Firecrawl scrape | `firecrawl scrape "URL"` | Tavily extract |
+| 深挖单页（Reddit） | 不限 | Tavily extract | `tvly extract "URL"` | WebFetch |
+| 视频内容 | 不限 | YouTube API + Transcript | 见下方两步流程 | — |
+| 关键词热度/SERP | 不限 | DataForSEO | REST API | — |
+| 复杂推理 + 实时搜索 | 实时 | Perplexity sonar-pro | OpenRouter REST API | Tavily Research |
+| X/Twitter 实时讨论 | 实时 | 🔲 TODO: Grok x_search | 需用 Responses API `/v1/responses`，见下方备注 | Tavily site:x.com |
+
+**调用方式：**
+```bash
+# Tavily — 快速搜索（1.7s）
+tvly search "query"
+tvly extract "https://url"
+
+# Tavily — 深度综合报告（~42s，自动整合多源）
+tvly research "query"
+
+# Perplexity via OpenRouter — 实时网络搜索 + 推理（需要 OPENROUTER_API_KEY）
+# sonar: 快速实时搜索；sonar-pro: 更深度，带引用
+source ~/.openclaw/.env
+curl -s https://openrouter.ai/api/v1/chat/completions \
+  -H "Authorization: Bearer $OPENROUTER_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"perplexity/sonar","messages":[{"role":"user","content":"QUERY"}],"max_tokens":500}'
+
+# Firecrawl — 深挖单页完整内容（不支持 Reddit）
+firecrawl search "query" --limit 10
+firecrawl scrape "https://url"
+
+# YouTube — 两步流程：先找视频，再提取字幕
+# Step 1: YouTube Data API（需要 YOUTUBE_API env var）
+curl "https://www.googleapis.com/youtube/v3/search?part=snippet&q=QUERY&type=video&maxResults=5&key=$YOUTUBE_API"
+# Step 2: 提取字幕（无需额外 key）
+youtube_transcript_api "VIDEO_ID" --format text
+
+# DataForSEO — 关键词搜索量 + SERP 结构分析
+# 使用 DATAFORSEO_LOGIN / DATAFORSEO_PASSWORD env vars
+# REST API: https://api.dataforseo.com/v3/serp/google/organic/live/advanced
+
+# 🔲 TODO: Grok web_search + x_search（实时网页 + X/Twitter）
+# 必须用 Responses API，不是 /v1/chat/completions
+# 正确端点: POST https://api.x.ai/v1/responses
+# 正确格式:
+#   "tools": [{"type": "web_search"}, {"type": "x_search"}]
+#   "model": "grok-4.20-reasoning"（reasoning 系列幻觉最少）
+# 支持参数: allowed_domains, excluded_domains, enable_image_understanding
+# 计费: $5 / 1000 tool calls（单独计费）
+# 参考: https://docs.x.ai/docs/guides/tools/overview
+```
+
+**⛔ Gate：** 每个子问题有至少 2 个 keyword 组合才能开始搜索。
 
 ---
 
-## Phase 2: 按模式执行
+## Phase 3：搜索 + 地图更新（循环核心）
 
-### Quick Mode（~30秒）
+**目标：** 执行搜索，更新研究地图，发现并评分新线索。
 
-**目标：** 快速拿到答案，不过度挖掘。
+**步骤：**
 
-1. **Grok web_search** — 搜话题，取 top 5 结果
-2. 读 snippets — 够用就直接总结
-3. 不够 → **firecrawl scrape** 最相关的 1 页全文
-4. 涉及社区观点 → **reddit-cli search** 补充
-5. 输出紧凑总结
+1. **并行发起**所有未知子问题的搜索
+2. 对每条结果：
+   - 提取事实 → 加入已知事实（**必须带来源 URL**）
+   - 更新子问题状态
+3. 扫描结果中的新线索，打分：
 
-**输出：** 3–5 个要点 + 来源 URL，可选提示"想要更深入的报告吗？"
+**线索评分：**
+| 分 | 标准 | 动作 |
+|----|------|------|
+| 3 | 直接回答子问题，或根本改变核心目标理解 | 立即追 |
+| 2 | 与核心目标相关，但是支线 | 加入线索池，本轮后追 |
+| 1 | 边缘相关，不影响核心目标 | 记录但不追 |
+| 0 | 不相关或重复 | 忽略 |
 
----
+**Critic（每轮必做）：**
+- 已知事实中有矛盾吗？→ 标记为争议点
+- 关键来源 URL 是真实可访问的吗？
+- 给每条关键事实打 Evidence Strength（强/中/弱）
 
-### Standard Mode（~1–2分钟）
+**Reflection（每轮必做，1-2 句）：**
+> "本轮最重要的新发现是什么？哪个假设被推翻或加强？下一轮优先追什么？"
 
-**目标：** 有引用支撑的全面话题覆盖。
+更新研究地图中的"当前假设"。
 
-1. **Grok web_search** — top 10 结果
-2. **Grok x_search** — 检查 X/Twitter 近期讨论（话题较新时）
-3. **reddit-cli search** — 社区真实意见（产品/技术类话题）
-4. 判断是否需要 YouTube 内容（教程/演讲/评测类话题）→ **youtube search + transcript**
-5. 识别 3–5 个最有价值的 URL
-6. **firecrawl scrape** 并行抓取
-7. 综合所有来源，输出结构化报告
+**自我校准规则：**
+- 已知事实越多 → 1 分线索阈值自动提高（更严格）
+- 某方向连续 2 轮无新发现 → 降低优先级，换方向
+- 新线索与已有假设矛盾 → 自动升为 3 分，优先追
 
-**输出：** 概述段 → 按主题的关键发现 → 编号引用 → 建议后续方向
-
----
-
-### Deep Mode（~2–5分钟）
-
-**目标：** 多源交叉验证的研究报告，支持决策。
-
-1. **Tavily Research 先行**（有 `TAVILY_API_KEY` 时）：
-   ```bash
-   bash {skillDir}/scripts/research.sh '{"input": "<topic>", "model": "pro"}' ./temp_report.md
-   ```
-2. **Grok x_search** — 补充 X/Twitter 上的实时观点和社区反应
-3. **reddit-cli** — 补充 Reddit 真实用户讨论
-4. **YouTube** — 如果话题有重要演讲/教程 → 拿字幕补充
-5. **Firecrawl 补深度：**
-   - 从 Tavily 报告提取关键 URL
-   - 识别遗漏角度（官方文档、技术博客、论坛）
-   - `firecrawl scrape` 补充内容
-   - 需要站点结构 → `firecrawl map` 先探索
-6. **交叉验证：** 对比各来源，标注分歧，注明信息时效
-
-**输出：**
-- Executive Summary（3–5句，可以直接给人看）
-- 详细分析（分章节）
-- 合并引用列表（去重）
-- 可靠度说明（已确认 vs 待验证）
-- 建议下一步
+**Token 管理：**
+- 每 3 轮：summarize 已知事实为要点列表，清理 0-1 分线索
 
 ---
 
-### Crawl Mode（~3–10分钟）
+## Phase 4：收敛判断
 
-**目标：** 批量收集多个目标的信息，结构化对比。
+每轮 Phase 3 完成后（或 Phase 1 检查发现重大问题时）执行：
 
-典型场景：竞品分析、技术选型、市场扫描。
+**1. 方向转变检查（最优先）**
+- 发现问题前提错误，或本轮发现根本改变了核心目标？
+- 是 → 暂停，告诉用户具体发现了什么，问是否调整方向
+- 否 → 继续
 
-1. **确定目标：**
-   - 用户给了 URL → 直接用
-   - 用户给了名称/关键词 → Grok web_search 找官网/文档页
-2. **批量收集：**
-   - `firecrawl scrape` 并行抓取所有目标
-   - 需要多页面 → `firecrawl crawl`（设 limit 避免过度）
-3. **结构化提取：**
-   - 有明确对比维度 → `firecrawl extract` 用 schema 拿 JSON
-   - 没有 → 先抓内容，再自行提取共性维度
-4. **补充社区声音：** reddit-cli 搜各目标的用户评价
+**2. 覆盖检查**
+- 所有子问题状态都是"已知"？→ 进入输出
+- 还有"未知" + 线索池有 3 分线索？→ 回 Phase 3 继续
+- 还有"未知"但线索池空了？→ 回 Phase 2 重新构建 keyword
 
-**输出：** 对比矩阵（Markdown 表格）→ 各目标详细分析 → 优劣势总结 → 建议
+**3. 轮次上限**
+- Quick: 2 轮 | Standard: 5 轮 | Deep: 10 轮
+- 达到上限未完全覆盖 → 输出"部分结果"，说明缺口
 
 ---
 
-## Phase 3: 输出格式（所有模式通用）
+## 调用方式
+
+**用户直接调用：**
+```
+"帮我研究 [主题]"  →  自动进入 Phase 1
+深度默认 Standard（5轮）
+```
+
+**Agent 结构化调用：**
+```json
+{
+  "question": "...",
+  "depth": "quick|standard|deep",
+  "context": "已知背景，跳过部分 Phase 1"
+}
+```
+
+---
+
+## 输出格式
 
 ```markdown
-# [话题] — 研究结果
+深度：Standard（最多5轮）| 子问题：Q1, Q2, Q3 | 如需调整深度请说明
 
-> **模式**: Quick / Standard / Deep / Crawl
-> **日期**: YYYY-MM-DD
-> **来源数**: N
+# 研究结果：[核心目标]
 
-## 摘要
-[1–3句核心结论]
+## 结论
+[1-3 句话直接回答]
+
+## 子问题答案
+### Q1: [问题]
+[答案] | 置信度: 高/中/低 | 证据强度: 强/中/弱
 
 ## 关键发现
-[按主题组织]
+- [发现] — [来源](URL)
 
-## 来源
-1. [标题](URL) — 引用原因
-2. ...
+## 争议点 & 反证
+- [相互矛盾的发现，双方来源]（如有）
 
-## 后续建议（可选）
-- [建议下一步]
-```
+## 未解决的缺口
+- [未完全回答的部分]（如有）
 
-**引用规则：** 每个事实性陈述标注来源编号如 [1][3]，注明来源类型（官方文档/新闻/博客/论坛/论文）
-
-**输出前自查：**
-- [ ] 回答了用户的核心问题？
-- [ ] 有没有遗漏重要角度？
-- [ ] 引用可追溯？
-- [ ] 信息足够新？
-- [ ] 非专家能看懂？
-
----
-
-## 工具调用参考
-
-| 需求 | 首选工具 | 备选 |
-|------|---------|------|
-| 普通网页搜索 | `grok web_search` | `tvly search` |
-| X/Twitter 内容 | `grok x_search` | — |
-| Reddit 社区讨论 | `reddit-cli search` | grok web_search + site:reddit.com |
-| YouTube 视频/字幕 | `youtube search` + `youtube transcript` | — |
-| 单页内容提取 | `firecrawl scrape` | `web_fetch` |
-| 站点结构发现 | `firecrawl map` | — |
-| 多页批量抓取 | `firecrawl crawl` | 循环 scrape |
-| 结构化数据提取 | `firecrawl extract` | 手动解析 |
-| 深度研究报告 | `tavily research` (scripts/research.sh) | Deep Mode 手动流程 |
-| 百科类事实 | `grok web_search` | `tvly search` |
-
-### Grok Search
-```bash
-# Web 搜索
-node {skillDir}/scripts/grok_search.mjs "<query>" --web
-
-# X/Twitter 搜索
-node {skillDir}/scripts/grok_search.mjs "<query>" --x
-
-# 参数: --max <n>  --days <n>  --from YYYY-MM-DD  --to YYYY-MM-DD
-```
-需要 `XAI_API_KEY`。
-
-### Reddit CLI
-```bash
-node {skillDir}/scripts/reddit-cli.js search "query"                    # 全 Reddit 搜索
-node {skillDir}/scripts/reddit-cli.js search "query" --sub subreddit    # 指定版块
-node {skillDir}/scripts/reddit-cli.js posts subreddit 10                # 热门帖子
-```
-
-### YouTube
-```bash
-# 搜索（无需 API Key）
-yt-dlp "ytsearch5:<query>" --dump-json --no-download --quiet
-
-# 获取字幕
-python3 -c "from youtube_transcript_api import YouTubeTranscriptApi; api = YouTubeTranscriptApi(); t = api.fetch('<VIDEO_ID>'); print(' '.join(s.text for s in t))"
-```
-需要 `YOUTUBE_API_KEY`（用 API 搜索时）。yt-dlp 搜索无需 key。
-
-### Tavily Research Script
-```bash
-bash {skillDir}/scripts/research.sh '{"input": "<topic>", "model": "pro"}' ./report.md
-```
-model: `mini`（快速）/ `pro`（深度）/ `auto`（自动）
-需要 `TAVILY_API_KEY`（已配置）。
-
----
-
-## Tavily CLI 参考
-
-> 详细 API 文档见 `references/tavily/` 目录。
-
-### tvly search — 网页搜索
-
-```bash
-# 基础搜索
-tvly search "your query" --json
-
-# 高级搜索（更多结果、更高质量）
-tvly search "quantum computing" --depth advanced --max-results 10 --json
-
-# 新闻搜索
-tvly search "AI news" --time-range week --topic news --json
-
-# 限定域名
-tvly search "SEC filings" --include-domains sec.gov,reuters.com --json
-
-# 包含页面全文（省去后续 extract）
-tvly search "react hooks tutorial" --include-raw-content --max-results 3 --json
-```
-
-| 参数 | 说明 |
-|------|------|
-| `--depth` | `ultra-fast` / `fast` / `basic`(默认) / `advanced` |
-| `--max-results` | 最大结果数 0–20（默认 5） |
-| `--topic` | `general`(默认) / `news` / `finance` |
-| `--time-range` | `day` / `week` / `month` / `year` |
-| `--include-domains` | 限定域名（逗号分隔） |
-| `--exclude-domains` | 排除域名 |
-| `--include-raw-content` | 返回页面全文（`markdown` 或 `text`） |
-| `--include-answer` | 包含 AI 回答（`basic` 或 `advanced`） |
-| `-o, --output` | 保存到文件 |
-
-### tvly extract — URL 内容提取
-
-```bash
-# 单个 URL
-tvly extract "https://example.com/article" --json
-
-# 多个 URL（最多 20 个）
-tvly extract "https://example.com/page1" "https://example.com/page2" --json
-
-# 按查询聚焦提取
-tvly extract "https://example.com/docs" --query "authentication API" --chunks-per-source 3 --json
-
-# JS 渲染页面
-tvly extract "https://app.example.com" --extract-depth advanced --json
-```
-
-| 参数 | 说明 |
-|------|------|
-| `--query` | 按相关度重排 chunks |
-| `--chunks-per-source` | 每 URL 返回 chunks 数（1–5，需配合 `--query`） |
-| `--extract-depth` | `basic`(默认) / `advanced`（JS 页面） |
-| `--format` | `markdown`(默认) / `text` |
-| `--timeout` | 超时（1–60 秒） |
-
-### tvly crawl — 多页抓取
-
-```bash
-# 基础爬取
-tvly crawl "https://docs.example.com" --json
-
-# 保存为本地 markdown 文件
-tvly crawl "https://docs.example.com" --output-dir ./docs/
-
-# 路径过滤
-tvly crawl "https://example.com" --select-paths "/api/.*,/guides/.*" --exclude-paths "/blog/.*" --json
-
-# 语义聚焦
-tvly crawl "https://docs.example.com" --instructions "Find authentication docs" --chunks-per-source 3 --json
-```
-
-| 参数 | 说明 |
-|------|------|
-| `--max-depth` | 爬取深度 1–5（默认 1） |
-| `--max-breadth` | 每页链接数（默认 20） |
-| `--limit` | 总页数上限（默认 50） |
-| `--instructions` | 语义聚焦指令 |
-| `--select-paths` | 路径正则（包含） |
-| `--exclude-paths` | 路径正则（排除） |
-| `--output-dir` | 保存每页为 .md 文件 |
-
-### tvly map — URL 发现
-
-```bash
-# 列出所有 URL
-tvly map "https://docs.example.com" --json
-
-# 语义过滤
-tvly map "https://docs.example.com" --instructions "Find API docs" --json
-
-# 路径过滤
-tvly map "https://example.com" --select-paths "/blog/.*" --limit 500 --json
-```
-
-**Map + Extract 模式：** 先 map 找 URL，再 extract 特定页面。比 crawl 更高效（只需要几个页面时）。
-
-### tvly research — AI 深度研究
-
-```bash
-# 基础研究（等待完成）
-tvly research "competitive landscape of AI code assistants"
-
-# Pro 模型（全面分析）
-tvly research "electric vehicle market analysis" --model pro
-
-# 实时流式输出
-tvly research "AI agent frameworks comparison" --stream
-
-# 保存报告
-tvly research "fintech trends 2025" --model pro -o fintech-report.md
-```
-
-| 模型 | 适用场景 | 速度 |
-|------|---------|------|
-| `mini` | 单一话题、针对性研究 | ~30s |
-| `pro` | 全面多角度分析 | ~60–120s |
-| `auto` | API 自动选择 | 不定 |
-
-**或用 research.sh 脚本：**
-```bash
-bash {skillDir}/scripts/research.sh '{"input": "<topic>", "model": "pro"}' ./report.md
+## 搜索摘要
+共 N 轮 | M 个来源 | 追踪了 X 条线索
 ```
 
 ---
 
-## Firecrawl CLI 参考
+## 执行铁律
 
-> 安装指南见 `references/firecrawl/install.md`。
+禁止：
+- ❌ 跳过 Phase 1 的本地上下文检查直接搜索
+- ❌ 发现问题前提错误还继续执行
+- ❌ 搜完不更新研究地图
+- ❌ 引用没有来源 URL 的"事实"
+- ❌ 跳过 Reflection 步骤
 
-```bash
-# 检查状态
-firecrawl --status
-
-# 搜索
-firecrawl search "your query" -o .firecrawl/search-query.json --json
-
-# 搜索 + 抓取内容
-firecrawl search "your query" --scrape -o .firecrawl/search-scraped.json --json
-
-# 单页抓取
-firecrawl scrape https://example.com -o .firecrawl/example.md
-
-# 仅主内容
-firecrawl scrape https://example.com --only-main-content -o .firecrawl/clean.md
-
-# 等待 JS 渲染
-firecrawl scrape https://spa-app.com --wait-for 3000 -o .firecrawl/spa.md
-
-# 站点 URL 发现
-firecrawl map https://example.com -o .firecrawl/urls.txt
-
-# 按关键词过滤 URL
-firecrawl map https://example.com --search "blog" -o .firecrawl/blog-urls.txt
-```
-
-**并行抓取（必须并行，不要顺序执行）：**
-```bash
-firecrawl scrape https://site1.com -o .firecrawl/1.md &
-firecrawl scrape https://site2.com -o .firecrawl/2.md &
-firecrawl scrape https://site3.com -o .firecrawl/3.md &
-wait
-```
-
-**输出目录：** 在工作目录创建 `.firecrawl/`，加入 `.gitignore`。
-
----
-
-## 错误处理
-
-| 问题 | 处理方式 |
-|------|---------|
-| Grok 搜索结果差 | 换关键词重试，或切 Tavily |
-| firecrawl scrape 失败 | 回退 web_fetch，或跳过该 URL |
-| Tavily 不可用 | 降级 Standard Mode（Grok + firecrawl）|
-| 抓取内容质量差（广告多）| 跳过，换下一个 URL |
-| YouTube transcript 失败 | 跳过，用 Grok/Tavily 文字内容替代 |
-| 话题太模糊 | 先问一个澄清问题 |
-| XAI_API_KEY 未配置 | 跳过 X/Twitter，用 Tavily 替代网页搜索 |
-| TAVILY_API_KEY 未配置 | 跳过 Tavily 报告，用 Grok + firecrawl |
-
----
-
-## 示例
-
-**Quick:** "Next.js 15 有什么新功能？" → Grok web_search → snippets 足够 → 5个新特性 + 官方链接
-
-**Standard:** "2026年 AI Agent 框架趋势" → Grok web + X → Reddit → 5篇文章 → firecrawl → 综合报告
-
-**Deep:** "详细对比 Supabase vs Firebase vs PocketBase" → Tavily pro → firecrawl补充文档/定价 → Reddit用户反馈 → 对比表
-
-**Crawl:** "调研5个竞品定价：Notion/Coda/Obsidian/Roam/Logseq" → Grok找各定价页 → firecrawl批量抓 → Reddit用户评价 → 对比矩阵
-
----
-
-## 依赖工具版本追踪
-
-> 每月检查一次，有更新通知 Ming。
-
-| 工具 | 检查方式 |
-|------|---------|
-| tavily CLI | `tvly --version` |
-| firecrawl CLI | `firecrawl --version` |
-| xAI API | https://docs.x.ai/docs/guides/tools/search-tools |
-| Tavily API | https://tavily.com/changelog |
-
----
-
-
-
----
-
-## References
-
-### APIs & Tools
-- **Tavily API** — https://tavily.com
-- **xAI Grok API** — https://docs.x.ai
-- **Reddit API** — https://www.reddit.com/dev/api
-- **Firecrawl** — https://firecrawl.dev
+必须：
+- ✅ Phase 1 先查本地，再查网络
+- ✅ Phase 1 结束后告知用户深度和子问题
+- ✅ 每轮结束更新研究地图
+- ✅ 每轮做 Critic + Reflection
+- ✅ 所有事实带来源
+- ✅ 方向大变时问用户
