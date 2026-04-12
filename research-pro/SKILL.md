@@ -14,7 +14,7 @@ description: |
   Output: 结构化研究报告（结论 + 子问题答案 + 来源 + 争议点 + 未解决缺口）
 
 user-invocable: true
-version: 3.3.0-mf
+version: 3.5.0-mf
 metadata:
   fork:
     origin: research-pro-v2
@@ -27,6 +27,7 @@ metadata:
       - "v3.2.0-mf: 工具矩阵更新为实际可用工具（理论推断版）"
       - "v3.3.0-mf: 工具矩阵基于实测修正（第一轮）；移除不可用工具；补充 Tavily Research、YouTube 两步流程"
       - "v3.4.0-mf: 修复 XAI_API_KEY 变量名错误（原 X_AI）；更新 OPENROUTER_API_KEY；加入 Perplexity/sonar 实时搜索（替代 Grok）；Grok 无实时搜索能力"
+      - "v3.5.0-mf: 集成 Grok Responses API（web_search + x_search）；模型必须用 grok-4 系列；x_search 可搜 X/Twitter 实时讨论"
   pattern: spiral-convergence
   phases: 4
   requires:
@@ -34,7 +35,7 @@ metadata:
     optional: ["FIRECRAWL_API_KEY", "YOUTUBE_API", "DATAFORSEO_LOGIN", "DATAFORSEO_PASSWORD", "OPENROUTER_API_KEY", "XAI_API_KEY"]
 ---
 
-# Research Pro v3.1-mf（螺旋收敛模型）
+# Research Pro v3.5-mf（螺旋收敛模型）
 
 **核心原则：** 不是"问清楚再搜"，是"边搜边搞清楚"。先看本地，再看网络。
 
@@ -132,7 +133,8 @@ Phase 1 结束时输出一行：
 | 视频内容 | 不限 | YouTube API + Transcript | 见下方两步流程 | — |
 | 关键词热度/SERP | 不限 | DataForSEO | REST API | — |
 | 复杂推理 + 实时搜索 | 实时 | Perplexity sonar-pro | OpenRouter REST API | Tavily Research |
-| X/Twitter 实时讨论 | 实时 | 🔲 TODO: Grok x_search | 需用 Responses API `/v1/responses`，见下方备注 | Tavily site:x.com |
+| X/Twitter 实时讨论 | 实时 | Grok x_search | Responses API `/v1/responses` | Tavily site:x.com |
+| 实时网页搜索（带引用） | 实时 | Grok web_search | Responses API `/v1/responses` | Perplexity sonar |
 
 **调用方式：**
 ```bash
@@ -165,15 +167,31 @@ youtube_transcript_api "VIDEO_ID" --format text
 # 使用 DATAFORSEO_LOGIN / DATAFORSEO_PASSWORD env vars
 # REST API: https://api.dataforseo.com/v3/serp/google/organic/live/advanced
 
-# 🔲 TODO: Grok web_search + x_search（实时网页 + X/Twitter）
-# 必须用 Responses API，不是 /v1/chat/completions
-# 正确端点: POST https://api.x.ai/v1/responses
-# 正确格式:
-#   "tools": [{"type": "web_search"}, {"type": "x_search"}]
-#   "model": "grok-4.20-reasoning"（reasoning 系列幻觉最少）
-# 支持参数: allowed_domains, excluded_domains, enable_image_understanding
+# Grok web_search — 实时网页搜索，带引用（~50s，返回带 URL 引用的结构化回答）
+# 必须用 grok-4 系列模型（grok-3 不支持 server-side tools）
+source ~/.openclaw/.env
+curl -s https://api.x.ai/v1/responses \
+  -H "Authorization: Bearer $XAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"grok-4","tools":[{"type":"web_search"}],"input":"QUERY","max_output_tokens":500}'
+
+# Grok x_search — X/Twitter 实时讨论搜索（Tavily 做不到的独特能力）
+source ~/.openclaw/.env
+curl -s https://api.x.ai/v1/responses \
+  -H "Authorization: Bearer $XAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"grok-4","tools":[{"type":"x_search"}],"input":"QUERY","max_output_tokens":500}'
+
+# Grok web_search + x_search 同时使用（网页 + X/Twitter 双搜）
+source ~/.openclaw/.env
+curl -s https://api.x.ai/v1/responses \
+  -H "Authorization: Bearer $XAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"grok-4","tools":[{"type":"web_search"},{"type":"x_search"}],"input":"QUERY","max_output_tokens":500}'
+
+# 解析 Grok 响应：输出文本在 output[].content[].text（type=message 的元素里）
+# 引用在 output[].content[].annotations[]（type=url_citation）
 # 计费: $5 / 1000 tool calls（单独计费）
-# 参考: https://docs.x.ai/docs/guides/tools/overview
 ```
 
 **⛔ Gate：** 每个子问题有至少 2 个 keyword 组合才能开始搜索。
