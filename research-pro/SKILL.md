@@ -14,7 +14,7 @@ description: |
   Output: 结构化研究报告（结论 + 子问题答案 + 来源 + 争议点 + 未解决缺口）
 
 user-invocable: true
-version: 3.7.0-mf
+version: 3.8.0-mf
 metadata:
   fork:
     origin: research-pro-v2
@@ -30,8 +30,9 @@ metadata:
       - "v3.5.0-mf: 集成 Grok Responses API（web_search + x_search）；模型必须用 grok-4 系列；x_search 可搜 X/Twitter 实时讨论"
       - "v3.6.0-mf: 信号路由规则（S1-S6）+ 工具覆盖检查；防止惰性只用 Tavily；强制多工具组合"
       - "v3.7.0-mf: Phase 5 自动日志（JSONL）+ 每 10 次阈值复盘；跟踪工具使用率 vs 贡献率；支持手动复盘"
+      - "v3.8.0-mf: 日志扩展完整字段：token 消耗（Grok/Perplexity 精确值）、费用、tool_calls 次数、sub_questions、direction_change、confidence；复盘加费用分析；phases 修正为 5"
   pattern: spiral-convergence
-  phases: 4
+  phases: 5
   requires:
     env: ["TAVILY_API_KEY"]
     optional: ["FIRECRAWL_API_KEY", "YOUTUBE_API", "DATAFORSEO_LOGIN", "DATAFORSEO_PASSWORD", "OPENROUTER_API_KEY", "XAI_API_KEY"]
@@ -292,14 +293,75 @@ curl -s https://api.x.ai/v1/responses \
 输出报告后，用 Bash 追加一行 JSONL：
 
 ```bash
-echo '{"ts":"YYYY-MM-DD","question":"简短问题摘要","depth":"quick|standard|deep","rounds":N,"tools_used":["tavily","grok_x",...],"tools_contributed":["tavily","grok_x"],"tools_planned_not_used":["youtube"],"signals_matched":["S1","S3"],"citations":N,"gaps":N}' >> ~/.openclaw/projects/research-pro-v3/run-log.jsonl
+echo '{...}' >> ~/.openclaw/projects/research-pro-v3/run-log.jsonl
 ```
 
-字段说明：
+**JSONL 字段（完整）：**
+
+```jsonc
+{
+  // 基础
+  "ts": "2026-04-13",
+  "question": "简短问题摘要",
+  "depth": "standard",
+  "rounds": 3,
+  "sub_questions": 3,
+  "direction_change": false,
+  "confidence": "high",
+
+  // 工具追踪
+  "tools_used": ["tavily", "grok_x", "perplexity"],
+  "tools_contributed": ["tavily", "grok_x"],
+  "tools_planned_not_used": ["youtube"],
+  "tool_calls": {"tavily": 4, "grok_x": 1, "perplexity": 1},
+  "signals_matched": ["S1", "S3"],
+
+  // 质量
+  "citations": 22,
+  "gaps": 0,
+
+  // Token & 费用（从 API 响应中提取）
+  "tokens": {
+    "grok": {"in": 4312, "out": 1696, "calls": 1},
+    "perplexity": {"in": 850, "out": 420, "calls": 1},
+    "tavily": {"calls": 4},
+    "firecrawl": {"calls": 0},
+    "youtube": {"calls": 0},
+    "dataforseo": {"calls": 0}
+  },
+  "cost_usd": {
+    "grok": 0.035,
+    "perplexity": 0.002,
+    "tavily": 0,
+    "total": 0.037
+  }
+}
+```
+
+**Token 数据提取方式：**
+
+```bash
+# Grok — 响应自带（精确）
+# response.usage.input_tokens / output_tokens / cost_in_usd_ticks
+# cost_in_usd_ticks 除以 1,000,000,000 = USD
+
+# Perplexity via OpenRouter — 响应自带（精确）
+# response.usage.prompt_tokens / completion_tokens
+
+# Tavily / Firecrawl / YouTube / DataForSEO — 只记调用次数
+```
+
+**字段说明：**
 - `tools_used`: 实际调用了的工具
 - `tools_contributed`: 结果进入了最终报告的工具（关键指标）
 - `tools_planned_not_used`: 计划用但没用的（信号误匹配）
+- `tool_calls`: 每个工具调了几次（不只是用/没用）
 - `signals_matched`: 触发了哪些 S1-S6 信号
+- `sub_questions`: 拆了几个子问题
+- `direction_change`: 是否触发了方向转变（Phase 4.1）
+- `confidence`: 最终结论的整体置信度
+- `tokens`: 每个 API 工具的精确 token 消耗
+- `cost_usd`: 换算成美元的费用（grok 从 cost_in_usd_ticks 算，perplexity 按费率算）
 - `gaps`: 未解决缺口数量
 
 ### Step 5.2：阈值复盘（每 10 次自动触发）
@@ -312,7 +374,7 @@ wc -l < ~/.openclaw/projects/research-pro-v3/run-log.jsonl 2>/dev/null || echo 0
 
 如果行数是 **10 的倍数且 > 0**，在 Phase 1 之前输出复盘：
 
-**复盘必须回答这 4 个问题：**
+**复盘必须回答这 5 个问题：**
 
 1. **工具效率**：每个工具的使用率 vs 贡献率是多少？
    - 使用率高但贡献率低 → 该工具被过度使用
@@ -320,6 +382,7 @@ wc -l < ~/.openclaw/projects/research-pro-v3/run-log.jsonl 2>/dev/null || echo 0
 2. **信号准确度**：哪些信号经常触发但工具没贡献？→ 信号条件需收紧
 3. **工具盲区**：有没有哪种问题类型总是只用 Tavily？→ 覆盖检查没起作用
 4. **缺口趋势**：gaps 数量是在减少还是增加？→ 整体质量趋势
+5. **Token & 费用**：总 token 消耗和费用趋势，哪个工具性价比最低？
 
 复盘格式：
 ```
@@ -331,6 +394,11 @@ wc -l < ~/.openclaw/projects/research-pro-v3/run-log.jsonl 2>/dev/null || echo 0
 信号调整建议：
   - S1 扩大触发词（加入"争议"、"吐槽"）
   - S4 对 YouTube 改为可选而非默认
+Token & 费用：
+  - 总计: ~58K tokens, $0.42
+  - 平均/次: ~5.8K tokens, $0.042
+  - grok: 15K tokens ($0.35) — 占总费用 83%，但贡献了 40% 关键发现
+  - perplexity: 8K tokens ($0.07) — 性价比高
 整体：gaps 平均 0.3/次 → 质量良好
 ```
 
