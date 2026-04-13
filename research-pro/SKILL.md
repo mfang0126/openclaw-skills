@@ -14,7 +14,7 @@ description: |
   Output: 结构化研究报告（结论 + 子问题答案 + 来源 + 争议点 + 未解决缺口）
 
 user-invocable: true
-version: 3.6.0-mf
+version: 3.7.0-mf
 metadata:
   fork:
     origin: research-pro-v2
@@ -29,6 +29,7 @@ metadata:
       - "v3.4.0-mf: 修复 XAI_API_KEY 变量名错误（原 X_AI）；更新 OPENROUTER_API_KEY；加入 Perplexity/sonar 实时搜索（替代 Grok）；Grok 无实时搜索能力"
       - "v3.5.0-mf: 集成 Grok Responses API（web_search + x_search）；模型必须用 grok-4 系列；x_search 可搜 X/Twitter 实时讨论"
       - "v3.6.0-mf: 信号路由规则（S1-S6）+ 工具覆盖检查；防止惰性只用 Tavily；强制多工具组合"
+      - "v3.7.0-mf: Phase 5 自动日志（JSONL）+ 每 10 次阈值复盘；跟踪工具使用率 vs 贡献率；支持手动复盘"
   pattern: spiral-convergence
   phases: 4
   requires:
@@ -36,7 +37,7 @@ metadata:
     optional: ["FIRECRAWL_API_KEY", "YOUTUBE_API", "DATAFORSEO_LOGIN", "DATAFORSEO_PASSWORD", "OPENROUTER_API_KEY", "XAI_API_KEY"]
 ---
 
-# Research Pro v3.5-mf（螺旋收敛模型）
+# Research Pro v3.7-mf（螺旋收敛模型）
 
 **核心原则：** 不是"问清楚再搜"，是"边搜边搞清楚"。先看本地，再看网络。
 
@@ -284,6 +285,59 @@ curl -s https://api.x.ai/v1/responses \
 
 ---
 
+## Phase 5：日志 + 自我优化
+
+### Step 5.1：自动日志（每次研究结束后必做）
+
+输出报告后，用 Bash 追加一行 JSONL：
+
+```bash
+echo '{"ts":"YYYY-MM-DD","question":"简短问题摘要","depth":"quick|standard|deep","rounds":N,"tools_used":["tavily","grok_x",...],"tools_contributed":["tavily","grok_x"],"tools_planned_not_used":["youtube"],"signals_matched":["S1","S3"],"citations":N,"gaps":N}' >> ~/.openclaw/projects/research-pro-v3/run-log.jsonl
+```
+
+字段说明：
+- `tools_used`: 实际调用了的工具
+- `tools_contributed`: 结果进入了最终报告的工具（关键指标）
+- `tools_planned_not_used`: 计划用但没用的（信号误匹配）
+- `signals_matched`: 触发了哪些 S1-S6 信号
+- `gaps`: 未解决缺口数量
+
+### Step 5.2：阈值复盘（每 10 次自动触发）
+
+Phase 1 开始前，检查日志行数：
+
+```bash
+wc -l < ~/.openclaw/projects/research-pro-v3/run-log.jsonl 2>/dev/null || echo 0
+```
+
+如果行数是 **10 的倍数且 > 0**，在 Phase 1 之前输出复盘：
+
+**复盘必须回答这 4 个问题：**
+
+1. **工具效率**：每个工具的使用率 vs 贡献率是多少？
+   - 使用率高但贡献率低 → 该工具被过度使用
+   - 使用率低但贡献率高 → 信号路由太窄，应扩大触发条件
+2. **信号准确度**：哪些信号经常触发但工具没贡献？→ 信号条件需收紧
+3. **工具盲区**：有没有哪种问题类型总是只用 Tavily？→ 覆盖检查没起作用
+4. **缺口趋势**：gaps 数量是在减少还是增加？→ 整体质量趋势
+
+复盘格式：
+```
+📊 research-pro 复盘（过去 10 次）
+工具效率：
+  - tavily: 10/10 用 → 8/10 贡献 (80%) ✅ 主力稳定
+  - grok_x: 3/10 用 → 3/3 贡献 (100%) ⚠️ 命中率高但触发太少
+  - youtube: 2/10 用 → 0/2 贡献 (0%) ⚠️ 考虑降优先级
+信号调整建议：
+  - S1 扩大触发词（加入"争议"、"吐槽"）
+  - S4 对 YouTube 改为可选而非默认
+整体：gaps 平均 0.3/次 → 质量良好
+```
+
+复盘只输出，不阻塞研究流程。
+
+---
+
 ## 调用方式
 
 **用户直接调用：**
@@ -299,6 +353,12 @@ curl -s https://api.x.ai/v1/responses \
   "depth": "quick|standard|deep",
   "context": "已知背景，跳过部分 Phase 1"
 }
+```
+
+**复盘调用（随时可用）：**
+```
+"复盘 research-pro" 或 "research-pro review"
+→ 读 run-log.jsonl，输出复盘分析（不需要凑够 10 次）
 ```
 
 ---
@@ -348,3 +408,5 @@ curl -s https://api.x.ai/v1/responses \
 - ✅ 每轮做 Critic + Reflection
 - ✅ 所有事实带来源
 - ✅ 方向大变时问用户
+- ✅ 研究结束后写日志（Phase 5）
+- ✅ 每 10 次自动输出复盘
