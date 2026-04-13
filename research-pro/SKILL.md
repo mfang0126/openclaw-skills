@@ -14,7 +14,7 @@ description: |
   Output: 结构化研究报告（结论 + 子问题答案 + 来源 + 争议点 + 未解决缺口）
 
 user-invocable: true
-version: 3.9.1-mf
+version: 3.10.0-mf
 metadata:
   fork:
     origin: research-pro-v2
@@ -32,6 +32,7 @@ metadata:
       - "v3.7.0-mf: Phase 5 自动日志（JSONL）+ 每 10 次阈值复盘；跟踪工具使用率 vs 贡献率；支持手动复盘"
       - "v3.8.0-mf: 日志扩展完整字段：token 消耗（Grok/Perplexity 精确值）、费用、tool_calls 次数、sub_questions、direction_change、confidence；复盘加费用分析；phases 修正为 5"
       - "v3.9.0-mf: 工具局限表（9 条已知局限 + 应对策略）；数据来源：Grok API 文档 + Tavily 搜索 + 实测"
+      - "v3.10.0-mf: Perplexity 降级为 fallback（引用幻觉 37%）；Grok web_search 升为实时搜索首选；信号 S2 更新"
   pattern: spiral-convergence
   phases: 5
   requires:
@@ -133,7 +134,7 @@ Phase 1 结束时输出一行：
 | # | 信号 | 触发条件 | 必须加入的工具 |
 |---|------|---------|---------------|
 | S1 | 社区情绪 | 问题涉及"开发者怎么看"、"社区反馈"、"用户体验"、产品口碑 | Grok x_search + Tavily site:reddit.com |
-| S2 | 实时性 | 问题涉及"最新"、"最近"、"2026"、"本周"、新闻、发布 | Perplexity sonar（快）或 Grok web_search（带引用） |
+| S2 | 实时性 | 问题涉及"最新"、"最近"、"2026"、"本周"、新闻、发布 | Grok web_search（引用可靠）；Grok 不可用时 fallback Tavily |
 | S3 | 深度对比 | 问题是 A vs B、技术选型、竞品分析 | Tavily Research + 至少一个实时工具（S2） |
 | S4 | 教程/How-to | 问题涉及"怎么做"、实现方式、代码示例 | Tavily search + YouTube（可能有视频教程） |
 | S5 | 市场/热度 | 问题涉及"有多少人用"、"趋势"、"市场份额" | DataForSEO + Grok x_search |
@@ -155,15 +156,15 @@ Phase 1 结束时输出一行：
 |---------|------|---------|------|------|
 | 通用技术搜索 | 不限 | Tavily | `tvly search "query"` | Firecrawl search |
 | 深度综合报告 | 不限 | Tavily Research | `tvly research "query"` | — |
-| 最新动态/实时 | 实时 | Perplexity sonar | OpenRouter REST API | Tavily |
+| 最新动态/实时 | 实时 | Grok web_search | Responses API `/v1/responses` | Tavily |
 | 社区/Reddit 讨论 | 近期 | Tavily site filter | `tvly search "query site:reddit.com"` | WebSearch |
 | 深挖单页（普通） | 不限 | Firecrawl scrape | `firecrawl scrape "URL"` | Tavily extract |
 | 深挖单页（Reddit） | 不限 | Tavily extract | `tvly extract "URL"` | WebFetch |
 | 视频内容 | 不限 | YouTube API + Transcript | 见下方两步流程 | — |
 | 关键词热度/SERP | 不限 | DataForSEO | REST API | — |
-| 复杂推理 + 实时搜索 | 实时 | Perplexity sonar-pro | OpenRouter REST API | Tavily Research |
+| 复杂推理 + 实时搜索 | 实时 | Grok web_search | Responses API `/v1/responses` | Tavily Research |
 | X/Twitter 实时讨论 | 实时 | Grok x_search | Responses API `/v1/responses` | Tavily site:x.com |
-| 实时网页搜索（带引用） | 实时 | Grok web_search | Responses API `/v1/responses` | Perplexity sonar |
+| Grok 不可用时的 fallback | 实时 | Perplexity sonar | OpenRouter REST API（⚠️ 引用幻觉 37%） | Tavily |
 
 **已知局限（选工具时必须考虑）：**
 | 工具 | 局限 | 应对 |
@@ -173,7 +174,7 @@ Phase 1 结束时输出一行：
 | Tavily extract | 对复杂 JS SPA 页面效果差 | 换 Firecrawl scrape |
 | Firecrawl | ❌ 无法抓 Reddit；Cloudflare 保护的站点可能被拦；付费墙内容抓不到 | Reddit → Tavily extract；被拦 → WebFetch |
 | Grok x_search | ~50s 慢；日期过滤只支持 YYYY-MM-DD 精度到天；很老的帖子相关性下降 | 时效性强的问题优先用；历史讨论考虑 Tavily site:x.com |
-| Grok web_search | ~50s 慢；非英文内容覆盖可能不如 Tavily | 中文搜索优先用 Tavily 或 Perplexity |
+| Grok web_search | ~50s 慢（Tavily 1.7s）；非英文内容覆盖可能不如 Tavily；$5/1000 calls | 中文搜索优先 Tavily；速度敏感的 Quick 模式考虑先 Tavily 再 Grok |
 | Perplexity sonar | ⚠️ 回答准确率 >90%，但**引用幻觉率 37%**（CJR 2025 基准，1/3 的引用不匹配内容）；Sonar Pro 更差 45%。答案大概率对但来源可能对不上 | Critic 步骤**必须**用 Firecrawl/Tavily extract 验证关键引用 URL 是否真说了那些话 |
 | YouTube | 不是所有视频有字幕；自动字幕质量参差；API quota 有限 | 检查 transcript 可用性再决定是否深挖 |
 | DataForSEO | 中文关键词支持有限；数据有延迟（非实时） | 中文市场用 Grok x_search 补充 |
