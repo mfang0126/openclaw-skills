@@ -14,7 +14,7 @@ description: |
   Output: 结构化研究报告（结论 + 子问题答案 + 来源 + 争议点 + 未解决缺口）
 
 user-invocable: true
-version: 3.9.0-mf
+version: 3.9.1-mf
 metadata:
   fork:
     origin: research-pro-v2
@@ -174,7 +174,7 @@ Phase 1 结束时输出一行：
 | Firecrawl | ❌ 无法抓 Reddit；Cloudflare 保护的站点可能被拦；付费墙内容抓不到 | Reddit → Tavily extract；被拦 → WebFetch |
 | Grok x_search | ~50s 慢；日期过滤只支持 YYYY-MM-DD 精度到天；很老的帖子相关性下降 | 时效性强的问题优先用；历史讨论考虑 Tavily site:x.com |
 | Grok web_search | ~50s 慢；非英文内容覆盖可能不如 Tavily | 中文搜索优先用 Tavily 或 Perplexity |
-| Perplexity sonar | 引用可能存在幻觉（URL 看着对但内容不匹配）；结果是 AI 综合的 | Critic 步骤必须验证关键引用 URL 真实性 |
+| Perplexity sonar | ⚠️ 回答准确率 >90%，但**引用幻觉率 37%**（CJR 2025 基准，1/3 的引用不匹配内容）；Sonar Pro 更差 45%。答案大概率对但来源可能对不上 | Critic 步骤**必须**用 Firecrawl/Tavily extract 验证关键引用 URL 是否真说了那些话 |
 | YouTube | 不是所有视频有字幕；自动字幕质量参差；API quota 有限 | 检查 transcript 可用性再决定是否深挖 |
 | DataForSEO | 中文关键词支持有限；数据有延迟（非实时） | 中文市场用 Grok x_search 补充 |
 
