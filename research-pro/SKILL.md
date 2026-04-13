@@ -14,7 +14,7 @@ description: |
   Output: 结构化研究报告（结论 + 子问题答案 + 来源 + 争议点 + 未解决缺口）
 
 user-invocable: true
-version: 3.8.0-mf
+version: 3.9.0-mf
 metadata:
   fork:
     origin: research-pro-v2
@@ -31,6 +31,7 @@ metadata:
       - "v3.6.0-mf: 信号路由规则（S1-S6）+ 工具覆盖检查；防止惰性只用 Tavily；强制多工具组合"
       - "v3.7.0-mf: Phase 5 自动日志（JSONL）+ 每 10 次阈值复盘；跟踪工具使用率 vs 贡献率；支持手动复盘"
       - "v3.8.0-mf: 日志扩展完整字段：token 消耗（Grok/Perplexity 精确值）、费用、tool_calls 次数、sub_questions、direction_change、confidence；复盘加费用分析；phases 修正为 5"
+      - "v3.9.0-mf: 工具局限表（9 条已知局限 + 应对策略）；数据来源：Grok API 文档 + Tavily 搜索 + 实测"
   pattern: spiral-convergence
   phases: 5
   requires:
@@ -163,6 +164,19 @@ Phase 1 结束时输出一行：
 | 复杂推理 + 实时搜索 | 实时 | Perplexity sonar-pro | OpenRouter REST API | Tavily Research |
 | X/Twitter 实时讨论 | 实时 | Grok x_search | Responses API `/v1/responses` | Tavily site:x.com |
 | 实时网页搜索（带引用） | 实时 | Grok web_search | Responses API `/v1/responses` | Perplexity sonar |
+
+**已知局限（选工具时必须考虑）：**
+| 工具 | 局限 | 应对 |
+|------|------|------|
+| Tavily search | 结果偏 SEO 优化内容，深度不够；JS 重度渲染页可能抓不全 | 深度内容用 Firecrawl scrape 或 Tavily Research |
+| Tavily Research | ~42s 慢；结果是 AI 综合的，可能丢原始细节 | 需要原始来源时用 search + extract 组合 |
+| Tavily extract | 对复杂 JS SPA 页面效果差 | 换 Firecrawl scrape |
+| Firecrawl | ❌ 无法抓 Reddit；Cloudflare 保护的站点可能被拦；付费墙内容抓不到 | Reddit → Tavily extract；被拦 → WebFetch |
+| Grok x_search | ~50s 慢；日期过滤只支持 YYYY-MM-DD 精度到天；很老的帖子相关性下降 | 时效性强的问题优先用；历史讨论考虑 Tavily site:x.com |
+| Grok web_search | ~50s 慢；非英文内容覆盖可能不如 Tavily | 中文搜索优先用 Tavily 或 Perplexity |
+| Perplexity sonar | 引用可能存在幻觉（URL 看着对但内容不匹配）；结果是 AI 综合的 | Critic 步骤必须验证关键引用 URL 真实性 |
+| YouTube | 不是所有视频有字幕；自动字幕质量参差；API quota 有限 | 检查 transcript 可用性再决定是否深挖 |
+| DataForSEO | 中文关键词支持有限；数据有延迟（非实时） | 中文市场用 Grok x_search 补充 |
 
 **调用方式：**
 ```bash
