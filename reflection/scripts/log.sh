@@ -8,24 +8,31 @@ MEMORY_DIR="${REFLECTION_MEMORY:-./memory}"
 STATE_FILE="${REFLECTION_STATE:-$HOME/.openclaw/reflection-state.json}"
 
 # Parse args
-TAG="${1:?Usage: reflection log <tag> <miss> <fix> [--weight <n>]}"
+TAG="${1:?Usage: reflection log <tag> <miss> <fix> [--weight <n>] [--domain <name>]}"
 MISS="${2:?Missing: <miss> — what went wrong}"
 FIX="${3:?Missing: <fix> — what to do instead}"
 shift 3
 
 WEIGHT=1
+DOMAIN=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --weight) WEIGHT="${2:?--weight requires a number}"; shift 2 ;;
+    --domain) DOMAIN="${2:?--domain requires a name}"; shift 2 ;;
     *) echo "Unknown option: $1" >&2; exit 1 ;;
   esac
 done
 
-# Ensure memory directory
-mkdir -p "$MEMORY_DIR"
+# Determine target directory: domain-specific or general
+if [[ -n "$DOMAIN" ]]; then
+  TARGET_DIR="$MEMORY_DIR/domains/$DOMAIN"
+else
+  TARGET_DIR="$MEMORY_DIR"
+fi
+mkdir -p "$TARGET_DIR"
 
 TODAY=$(date +%Y-%m-%d)
-LOG_FILE="$MEMORY_DIR/$TODAY.md"
+LOG_FILE="$TARGET_DIR/$TODAY.md"
 NOW=$(date +%H:%M)
 
 # Create file with header if new
@@ -42,6 +49,7 @@ cat >> "$LOG_FILE" << EOF
 - **Fix:** $FIX
 - **Weight:** $WEIGHT
 - **Applied:** 0
+- **Domain:** ${DOMAIN:-general}
 EOF
 
 # Update state: increment session corrections, record last log time

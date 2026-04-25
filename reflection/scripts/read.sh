@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# reflection read [n] [--tag <tag>] [--layer <1|2|3>] [--all]
+# reflection read [n] [--tag <tag>] [--layer <1|2|3>] [--all] [--domain <name>]
 # Read recent reflections. Default: last 5 from Layer 3 (daily logs)
 
 set -euo pipefail
@@ -12,14 +12,16 @@ COUNT=5
 TAG=""
 LAYER="3"
 ALL=false
+DOMAIN=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --tag)   TAG="${2:?--tag requires a value}"; shift 2 ;;
-    --layer) LAYER="${2:?--layer requires 1, 2, or 3}"; shift 2 ;;
-    --all)   ALL=true; shift ;;
-    [0-9]*)  COUNT="$1"; shift ;;
-    *)       echo "Unknown option: $1" >&2; exit 1 ;;
+    --tag)    TAG="${2:?--tag requires a value}"; shift 2 ;;
+    --layer)  LAYER="${2:?--layer requires 1, 2, or 3}"; shift 2 ;;
+    --all)    ALL=true; shift ;;
+    --domain) DOMAIN="${2:?--domain requires a name}"; shift 2 ;;
+    [0-9]*)   COUNT="$1"; shift ;;
+    *)        echo "Unknown option: $1" >&2; exit 1 ;;
   esac
 done
 
@@ -60,14 +62,23 @@ if [[ "$LAYER" == "2" && "$ALL" == "false" ]]; then
   exit 0
 fi
 
-# Layer 3: daily logs
-if [[ ! -d "$MEMORY_DIR" ]]; then
-  echo "No memory directory at $MEMORY_DIR"
+# Layer 3: daily logs (search domain-specific dirs if --domain given)
+SEARCH_DIR="$MEMORY_DIR"
+if [[ -n "$DOMAIN" ]]; then
+  SEARCH_DIR="$MEMORY_DIR/domains/$DOMAIN"
+  if [[ ! -d "$SEARCH_DIR" ]]; then
+    echo "No domain '$DOMAIN' found in $MEMORY_DIR/domains/"
+    exit 0
+  fi
+fi
+
+if [[ ! -d "$SEARCH_DIR" ]]; then
+  echo "No memory directory at $SEARCH_DIR"
   exit 0
 fi
 
 # Find log files, newest first
-LOG_FILES=$(find "$MEMORY_DIR" -name '????-??-??.md' -type f 2>/dev/null | sort -r | head -"$COUNT")
+LOG_FILES=$(find "$SEARCH_DIR" -name '????-??-??.md' -type f 2>/dev/null | sort -r | head -"$COUNT")
 
 if [[ -z "$LOG_FILES" ]]; then
   echo "No daily logs found in $MEMORY_DIR"
