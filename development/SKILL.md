@@ -154,6 +154,25 @@ Preview: https://my-app-fix-button.vercel.app
    - 分工明确
    - Preview 通过 = 可以 merge
 
+4. **保护项目边界，不把所有代码塞进 page/action**
+   - Next.js `page.tsx` 保持 route composition only
+   - 复用 UI 放 `src/components/**`，domain feature 放 `src/features/**`
+   - 业务逻辑、auth-sensitive logic、scoring/storage/billing 放 `src/server/services/**`
+   - `src/app/api/**` 和 server actions 只做 adapter；复杂逻辑下沉到 service
+   - public route 变更要同步 nav/footer/copy、middleware public paths、public smoke tests
+
+## Next.js folder / action / server boundary checklist
+
+Use this before implementing or reviewing a Next.js app change:
+
+- **Route file:** `src/app/**/page.tsx` should assemble data + sections, not contain large copy blocks, duplicated layout, or non-trivial mutation logic.
+- **Client component:** never import server-only modules; receive data/handlers through props or call route-safe APIs.
+- **Server action:** OK for simple route-local form mutation. If reused, security-sensitive, or branching-heavy, call a service instead of owning the logic.
+- **API route:** HTTP adapter only — parse request, auth/validate, call service, shape response.
+- **Service:** put durable business rules in `src/server/services/**`; make these easier to unit test than route components.
+- **Config/copy:** stable copy, route metadata, nav labels, and shared constants belong in `src/config/**` when reused by pages/tests.
+- **Public routes:** when adding/removing one, update middleware public-path allowlist and smoke tests in the same PR.
+
 ## 常见错误
 
 | 错误 | 正确做法 |
